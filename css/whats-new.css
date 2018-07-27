@@ -1,0 +1,38 @@
+.panel {
+    margin-bottom: 5px;
+}
+.panel-body {
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+.panel-heading > a {
+    font-size: 16px;
+    padding-right: 100%;
+}
+
+.panel-heading > a[rel="external"] {
+    background: url('img/java.png') no-repeat;
+    background-position: right;
+    padding-right: 25px;
+}
+
+nav.toolbar {
+    width: 100%;
+    height: 45px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid lightgray;
+    padding: 10.5px 0px 10.5px 10px;
+}
+
+div.java-versions {
+    margin-top: 50px;
+}
+
+#filter-content {
+    display: none;
+}
+
+#clear-filter {
+    cursor: pointer;
+    color: #a94442;
+}
