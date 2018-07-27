@@ -1,0 +1,24 @@
+<div th:fragment="dialog" id="filter-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title">Filter</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="filter-value" class="col-xs-2 control-label">Filter:</label>
+              <div class="col-xs-10">
+                <input type="text" class="form-control" id="filter-value" name="filter-value" placeholder="Start with = to use exact, case sensitive matching">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="apply-filter">Apply Filter</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

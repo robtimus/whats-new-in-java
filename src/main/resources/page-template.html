@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>What's new in Java</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/whats-new.css">
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/whats-new.js"></script>
+</head>
+<body>
+  <th:block th:replace="toolbar :: toolbar"></th:block>
+  <div class="java-versions">
+    <div class="panel panel-default java-version"
+         th:with="javaVersion=${entry.key},
+                  javaPackages=${entry.value},
+                  javaVersionPrefix=${'java-' + javaVersion.toString().replace('.', '-')},
+                  javaVersionHeaderId=${javaVersionPrefix + '-header'},
+                  javaVersionContentId=${javaVersionPrefix + '-content'}"
+         th:attr="id=${javaVersionPrefix + '-panel'}"
+         th:each="entry : ${packagesPerVersion}">
+      <div class="panel-heading"
+           th:attr="id=${javaVersionHeaderId}">
+        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + javaVersionContentId}"
+           th:attr="aria-controls=${javaVersionContentId}">
+          Java [[${javaVersion}]]
+        </a>
+      </div>
+      <div class="collapse"
+           th:attr="id=${javaVersionContentId}, aria-labelledby=${javaVersionHeaderId}">
+        <div class="panel-body">
+          <div class="panel panel-default java-package"
+               th:with="javaClasses=${javaPackage.getJavaClasses(javaVersion)},
+                        javaPackagePrefix=${javaVersionPrefix + '_' + javaPackage.name.replace('.', '-')},
+                        javaPackageHeaderId=${javaPackagePrefix + '-header'},
+                        javaPackageContentId=${javaPackagePrefix + '-content'}"
+               th:attr="id=${javaPackagePrefix + '-panel'}, data-filter-value=${javaPackage.name}"
+               th:each="javaPackage : ${javaPackages}">
+            <div class="panel-heading"
+                 th:attr="id=${javaPackageHeaderId}"
+                 th:if="${javaClasses.empty}">
+              <a class="btn btn-link" th:href="${linkGenerator.generateLink(javaPackage)}" rel="external">
+                [[${javaPackage.name}]]
+              </a>
+            </div>
+            <th:block th:unless="${javaClasses.empty}">
+            <div class="panel-heading"
+                 th:attr="id=${javaPackageHeaderId}">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + javaPackageContentId}"
+                 th:attr="aria-controls=${javaPackageContentId}">
+                [[${javaPackage.name}]]
+              </a>
+            </div>
+            <div class="collapse"
+                 th:attr="id=${javaPackageContentId}, aria-labelledby=${javaPackageHeaderId}">
+              <div class="panel-body">
+                <div class="panel panel-default java-class"
+                     th:with="javaMembers=${javaClass.getJavaMembers(javaVersion)},
+                              javaClassPrefix=${javaPackagePrefix + '-' + javaClass.name.replace('.', '-')},
+                              javaClassHeaderId=${javaClassPrefix + '-header'},
+                              javaClassContentId=${javaClassPrefix + '-content'}"
+                     th:attr="id=${javaClassPrefix + '-panel'}, data-filter-value=${javaPackage.name + '.' + javaClass.name}"
+                     th:each="javaClass : ${javaClasses}">
+                  <div class="panel-heading"
+                       th:attr="id=${javaClassHeaderId}"
+                       th:if="${javaMembers.empty}">
+                    <a class="btn btn-link" th:href="${linkGenerator.generateLink(javaClass)}" rel="external">
+                      [[${javaClass.name}]]
+                    </a>
+                  </div>
+                  <th:block th:unless="${javaMembers.empty}">
+                  <div class="panel-heading"
+                       th:attr="id=${javaClassHeaderId}">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + javaClassContentId}" 
+                       th:attr="aria-controls=${javaClassContentId}">
+                      [[${javaClass.name}]]
+                    </a>
+                  </div>
+                  <div class="collapse"
+                       th:attr="id=${javaClassContentId}, aria-labelledby=${javaClassHeaderId}">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member"
+                            th:each="javaMember : ${javaMembers}">
+                          <div class="title">
+                            <a class="btn btn-link" th:href="${linkGenerator.generateLink(javaMember)}" rel="external">
+                              [[${javaMember.constructorSafeSignature}]]
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  </th:block>
+                </div>
+              </div>
+            </div>
+            </th:block>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <th:block th:replace="filter-dialog :: dialog"></th:block>
+</body>
