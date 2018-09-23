@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>What's removed in Java</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/whats-new.css">
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/whats-new.js"></script>
+</head>
+<body>
+  <nav class="toolbar navbar-fixed-top">
+    <a href="https://github.com/robtimus/whats-new-in-java/blob/gh-pages/README.md" rel="external" target="_blank">README</a>
+    |
+    <a href="#" id="collapse-all">Collapse All</a>
+    |
+    <a href="#" id="expand-all">Expand All</a>
+    |
+    <a href="#" id="filter">Filter</a><span id="filter-content">: <span id="current-filter"></span> <span id="clear-filter" class="glyphicon glyphicon-remove"></span></span>
+    <span class="related">
+        <a href="." >What's new</a>
+        |
+        <a href="deprecated.html" >What's deprecated</a>
+    </span>
+  </nav>
+  <div class="java-versions">
+    <div class="panel panel-default java-version" id="java-10-panel">
+      <div class="panel-heading" id="java-10-header">
+        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10-content" aria-controls="java-10-content">
+          Java 10
+        </a>
+      </div>
+      <div class="collapse" id="java-10-content" aria-labelledby="java-10-header">
+        <div class="panel-body">
+          <div class="panel panel-default java-package" id="java-10_java-lang-panel" data-filter-value="java.lang">
+            <div class="panel-heading" id="java-10_java-lang-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_java-lang-content" aria-controls="java-10_java-lang-content">
+                java.lang
+              </a>
+            </div>
+            <div class="collapse" id="java-10_java-lang-content" aria-labelledby="java-10_java-lang-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-10_java-lang-Runtime-panel" data-filter-value="java.lang.Runtime">
+                  <div class="panel-heading" id="java-10_java-lang-Runtime-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_java-lang-Runtime-content" aria-controls="java-10_java-lang-Runtime-content">
+                      Runtime
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_java-lang-Runtime-content" aria-labelledby="java-10_java-lang-Runtime-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#getLocalizedInputStream-java.io.InputStream-" rel="external">
+                              getLocalizedInputStream(java.io.InputStream)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/Runtime.html#getLocalizedOutputStream-java.io.OutputStream-" rel="external">
+                              getLocalizedOutputStream(java.io.OutputStream)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_java-lang-SecurityManager-panel" data-filter-value="java.lang.SecurityManager">
+                  <div class="panel-heading" id="java-10_java-lang-SecurityManager-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_java-lang-SecurityManager-content" aria-controls="java-10_java-lang-SecurityManager-content">
+                      SecurityManager
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_java-lang-SecurityManager-content" aria-labelledby="java-10_java-lang-SecurityManager-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#classDepth-java.lang.String-" rel="external">
+                              classDepth(java.lang.String)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#classLoaderDepth--" rel="external">
+                              classLoaderDepth()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#currentClassLoader--" rel="external">
+                              currentClassLoader()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#currentLoadedClass--" rel="external">
+                              currentLoadedClass()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#getInCheck--" rel="external">
+                              getInCheck()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#inCheck" rel="external">
+                              inCheck
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#inClass-java.lang.String-" rel="external">
+                              inClass(java.lang.String)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/java/lang/SecurityManager.html#inClassLoader--" rel="external">
+                              inClassLoader()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-10_javax-xml-bind-helpers-panel" data-filter-value="javax.xml.bind.helpers">
+            <div class="panel-heading" id="java-10_javax-xml-bind-helpers-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_javax-xml-bind-helpers-content" aria-controls="java-10_javax-xml-bind-helpers-content">
+                javax.xml.bind.helpers
+              </a>
+            </div>
+            <div class="collapse" id="java-10_javax-xml-bind-helpers-content" aria-labelledby="java-10_javax-xml-bind-helpers-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-panel" data-filter-value="javax.xml.bind.helpers.AbstractMarshallerImpl">
+                  <div class="panel-heading" id="java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-content" aria-controls="java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-content">
+                      AbstractMarshallerImpl
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-content" aria-labelledby="java-10_javax-xml-bind-helpers-AbstractMarshallerImpl-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/javax/xml/bind/helpers/AbstractMarshallerImpl.html#getAttachmentMarshaller--" rel="external">
+                              getAttachmentMarshaller()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-panel" data-filter-value="javax.xml.bind.helpers.AbstractUnmarshallerImpl">
+                  <div class="panel-heading" id="java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-content" aria-controls="java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-content">
+                      AbstractUnmarshallerImpl
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-content" aria-labelledby="java-10_javax-xml-bind-helpers-AbstractUnmarshallerImpl-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/javax/xml/bind/helpers/AbstractUnmarshallerImpl.html#getAttachmentUnmarshaller--" rel="external">
+                              getAttachmentUnmarshaller()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-10_jdk-incubator-http-panel" data-filter-value="jdk.incubator.http">
+            <div class="panel-heading" id="java-10_jdk-incubator-http-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-content" aria-controls="java-10_jdk-incubator-http-content">
+                jdk.incubator.http
+              </a>
+            </div>
+            <div class="collapse" id="java-10_jdk-incubator-http-content" aria-labelledby="java-10_jdk-incubator-http-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpClient-panel" data-filter-value="jdk.incubator.http.HttpClient">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpClient-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-HttpClient-content" aria-controls="java-10_jdk-incubator-http-HttpClient-content">
+                      HttpClient
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-HttpClient-content" aria-labelledby="java-10_jdk-incubator-http-HttpClient-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpClient.html#cookieManager--" rel="external">
+                              cookieManager()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpClient.html#newWebSocketBuilder-java.net.URI-jdk.incubator.http.WebSocket.Listener-" rel="external">
+                              newWebSocketBuilder(java.net.URI,jdk.incubator.http.WebSocket.Listener)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpClient.html#sendAsync-jdk.incubator.http.HttpRequest-jdk.incubator.http.HttpResponse.MultiProcessor-" rel="external">
+                              sendAsync(jdk.incubator.http.HttpRequest,jdk.incubator.http.HttpResponse.MultiProcessor)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpClient-Builder-panel" data-filter-value="jdk.incubator.http.HttpClient.Builder">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpClient-Builder-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-HttpClient-Builder-content" aria-controls="java-10_jdk-incubator-http-HttpClient-Builder-content">
+                      HttpClient.Builder
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-HttpClient-Builder-content" aria-labelledby="java-10_jdk-incubator-http-HttpClient-Builder-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpClient.Builder.html#cookieManager-java.net.CookieManager-" rel="external">
+                              cookieManager(java.net.CookieManager)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpRequest-panel" data-filter-value="jdk.incubator.http.HttpRequest">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpRequest-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-HttpRequest-content" aria-controls="java-10_jdk-incubator-http-HttpRequest-content">
+                      HttpRequest
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-HttpRequest-content" aria-labelledby="java-10_jdk-incubator-http-HttpRequest-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.html#bodyProcessor--" rel="external">
+                              bodyProcessor()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.html#duration--" rel="external">
+                              duration()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.html#noBody--" rel="external">
+                              noBody()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpRequest-BodyProcessor-panel" data-filter-value="jdk.incubator.http.HttpRequest.BodyProcessor">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpRequest-BodyProcessor-header">
+                    <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.BodyProcessor.html" rel="external">
+                      HttpRequest.BodyProcessor
+                    </a>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpRequest-Builder-panel" data-filter-value="jdk.incubator.http.HttpRequest.Builder">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpRequest-Builder-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-HttpRequest-Builder-content" aria-controls="java-10_jdk-incubator-http-HttpRequest-Builder-content">
+                      HttpRequest.Builder
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-HttpRequest-Builder-content" aria-labelledby="java-10_jdk-incubator-http-HttpRequest-Builder-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.Builder.html#DELETE-jdk.incubator.http.HttpRequest.BodyProcessor-" rel="external">
+                              DELETE(jdk.incubator.http.HttpRequest.BodyProcessor)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.Builder.html#POST-jdk.incubator.http.HttpRequest.BodyProcessor-" rel="external">
+                              POST(jdk.incubator.http.HttpRequest.BodyProcessor)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.Builder.html#PUT-jdk.incubator.http.HttpRequest.BodyProcessor-" rel="external">
+                              PUT(jdk.incubator.http.HttpRequest.BodyProcessor)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpRequest.Builder.html#method-java.lang.String-jdk.incubator.http.HttpRequest.BodyProcessor-" rel="external">
+                              method(java.lang.String,jdk.incubator.http.HttpRequest.BodyProcessor)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpResponse-panel" data-filter-value="jdk.incubator.http.HttpResponse">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpResponse-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-HttpResponse-content" aria-controls="java-10_jdk-incubator-http-HttpResponse-content">
+                      HttpResponse
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-HttpResponse-content" aria-labelledby="java-10_jdk-incubator-http-HttpResponse-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpResponse.html#finalRequest--" rel="external">
+                              finalRequest()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpResponse.html#trailers--" rel="external">
+                              trailers()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpResponse-BodyProcessor-panel" data-filter-value="jdk.incubator.http.HttpResponse.BodyProcessor">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpResponse-BodyProcessor-header">
+                    <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpResponse.BodyProcessor.html" rel="external">
+                      HttpResponse.BodyProcessor
+                    </a>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-HttpResponse-MultiProcessor-panel" data-filter-value="jdk.incubator.http.HttpResponse.MultiProcessor">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-HttpResponse-MultiProcessor-header">
+                    <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/HttpResponse.MultiProcessor.html" rel="external">
+                      HttpResponse.MultiProcessor
+                    </a>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-WebSocket-panel" data-filter-value="jdk.incubator.http.WebSocket">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-WebSocket-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-WebSocket-content" aria-controls="java-10_jdk-incubator-http-WebSocket-content">
+                      WebSocket
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-WebSocket-content" aria-labelledby="java-10_jdk-incubator-http-WebSocket-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/WebSocket.html#isClosed--" rel="external">
+                              isClosed()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_jdk-incubator-http-WebSocket-Builder-panel" data-filter-value="jdk.incubator.http.WebSocket.Builder">
+                  <div class="panel-heading" id="java-10_jdk-incubator-http-WebSocket-Builder-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_jdk-incubator-http-WebSocket-Builder-content" aria-controls="java-10_jdk-incubator-http-WebSocket-Builder-content">
+                      WebSocket.Builder
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_jdk-incubator-http-WebSocket-Builder-content" aria-labelledby="java-10_jdk-incubator-http-WebSocket-Builder-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/jdk/incubator/http/WebSocket.Builder.html#buildAsync--" rel="external">
+                              buildAsync()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-10_org-omg-CORBA-panel" data-filter-value="org.omg.CORBA">
+            <div class="panel-heading" id="java-10_org-omg-CORBA-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_org-omg-CORBA-content" aria-controls="java-10_org-omg-CORBA-content">
+                org.omg.CORBA
+              </a>
+            </div>
+            <div class="collapse" id="java-10_org-omg-CORBA-content" aria-labelledby="java-10_org-omg-CORBA-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-10_org-omg-CORBA-StringValueHelper-panel" data-filter-value="org.omg.CORBA.StringValueHelper">
+                  <div class="panel-heading" id="java-10_org-omg-CORBA-StringValueHelper-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_org-omg-CORBA-StringValueHelper-content" aria-controls="java-10_org-omg-CORBA-StringValueHelper-content">
+                      StringValueHelper
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_org-omg-CORBA-StringValueHelper-content" aria-labelledby="java-10_org-omg-CORBA-StringValueHelper-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/StringValueHelper.html#get_id--" rel="external">
+                              get_id()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/StringValueHelper.html#read_value-org.omg.CORBA.portable.InputStream-" rel="external">
+                              read_value(org.omg.CORBA.portable.InputStream)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/StringValueHelper.html#write_value-org.omg.CORBA.portable.OutputStream-java.io.Serializable-" rel="external">
+                              write_value(org.omg.CORBA.portable.OutputStream,java.io.Serializable)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-10_org-omg-CORBA-WStringValueHelper-panel" data-filter-value="org.omg.CORBA.WStringValueHelper">
+                  <div class="panel-heading" id="java-10_org-omg-CORBA-WStringValueHelper-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-10_org-omg-CORBA-WStringValueHelper-content" aria-controls="java-10_org-omg-CORBA-WStringValueHelper-content">
+                      WStringValueHelper
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-10_org-omg-CORBA-WStringValueHelper-content" aria-labelledby="java-10_org-omg-CORBA-WStringValueHelper-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/WStringValueHelper.html#get_id--" rel="external">
+                              get_id()
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/WStringValueHelper.html#read_value-org.omg.CORBA.portable.InputStream-" rel="external">
+                              read_value(org.omg.CORBA.portable.InputStream)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/9/docs/api/org/omg/CORBA/WStringValueHelper.html#write_value-org.omg.CORBA.portable.OutputStream-java.io.Serializable-" rel="external">
+                              write_value(org.omg.CORBA.portable.OutputStream,java.io.Serializable)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default java-version" id="java-9-panel">
+      <div class="panel-heading" id="java-9-header">
+        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9-content" aria-controls="java-9-content">
+          Java 9
+        </a>
+      </div>
+      <div class="collapse" id="java-9-content" aria-labelledby="java-9-header">
+        <div class="panel-body">
+          <div class="panel panel-default java-package" id="java-9_java-awt-panel" data-filter-value="java.awt">
+            <div class="panel-heading" id="java-9_java-awt-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-content" aria-controls="java-9_java-awt-content">
+                java.awt
+              </a>
+            </div>
+            <div class="collapse" id="java-9_java-awt-content" aria-labelledby="java-9_java-awt-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_java-awt-Component-panel" data-filter-value="java.awt.Component">
+                  <div class="panel-heading" id="java-9_java-awt-Component-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-Component-content" aria-controls="java-9_java-awt-Component-content">
+                      Component
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-Component-content" aria-labelledby="java-9_java-awt-Component-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Component.html#getPeer--" rel="external">
+                              getPeer()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-Font-panel" data-filter-value="java.awt.Font">
+                  <div class="panel-heading" id="java-9_java-awt-Font-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-Font-content" aria-controls="java-9_java-awt-Font-content">
+                      Font
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-Font-content" aria-labelledby="java-9_java-awt-Font-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Font.html#getPeer--" rel="external">
+                              getPeer()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-MenuComponent-panel" data-filter-value="java.awt.MenuComponent">
+                  <div class="panel-heading" id="java-9_java-awt-MenuComponent-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-MenuComponent-content" aria-controls="java-9_java-awt-MenuComponent-content">
+                      MenuComponent
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-MenuComponent-content" aria-labelledby="java-9_java-awt-MenuComponent-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/MenuComponent.html#getPeer--" rel="external">
+                              getPeer()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-Toolkit-panel" data-filter-value="java.awt.Toolkit">
+                  <div class="panel-heading" id="java-9_java-awt-Toolkit-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-Toolkit-content" aria-controls="java-9_java-awt-Toolkit-content">
+                      Toolkit
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-Toolkit-content" aria-labelledby="java-9_java-awt-Toolkit-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createButton-java.awt.Button-" rel="external">
+                              createButton(java.awt.Button)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createCanvas-java.awt.Canvas-" rel="external">
+                              createCanvas(java.awt.Canvas)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createCheckbox-java.awt.Checkbox-" rel="external">
+                              createCheckbox(java.awt.Checkbox)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createCheckboxMenuItem-java.awt.CheckboxMenuItem-" rel="external">
+                              createCheckboxMenuItem(java.awt.CheckboxMenuItem)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createChoice-java.awt.Choice-" rel="external">
+                              createChoice(java.awt.Choice)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createComponent-java.awt.Component-" rel="external">
+                              createComponent(java.awt.Component)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createDesktopPeer-java.awt.Desktop-" rel="external">
+                              createDesktopPeer(java.awt.Desktop)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createDialog-java.awt.Dialog-" rel="external">
+                              createDialog(java.awt.Dialog)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createDragSourceContextPeer-java.awt.dnd.DragGestureEvent-" rel="external">
+                              createDragSourceContextPeer(java.awt.dnd.DragGestureEvent)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createFileDialog-java.awt.FileDialog-" rel="external">
+                              createFileDialog(java.awt.FileDialog)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createFrame-java.awt.Frame-" rel="external">
+                              createFrame(java.awt.Frame)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createLabel-java.awt.Label-" rel="external">
+                              createLabel(java.awt.Label)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createList-java.awt.List-" rel="external">
+                              createList(java.awt.List)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createMenu-java.awt.Menu-" rel="external">
+                              createMenu(java.awt.Menu)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createMenuBar-java.awt.MenuBar-" rel="external">
+                              createMenuBar(java.awt.MenuBar)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createMenuItem-java.awt.MenuItem-" rel="external">
+                              createMenuItem(java.awt.MenuItem)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createPanel-java.awt.Panel-" rel="external">
+                              createPanel(java.awt.Panel)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createPopupMenu-java.awt.PopupMenu-" rel="external">
+                              createPopupMenu(java.awt.PopupMenu)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createScrollPane-java.awt.ScrollPane-" rel="external">
+                              createScrollPane(java.awt.ScrollPane)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createScrollbar-java.awt.Scrollbar-" rel="external">
+                              createScrollbar(java.awt.Scrollbar)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createTextArea-java.awt.TextArea-" rel="external">
+                              createTextArea(java.awt.TextArea)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createTextField-java.awt.TextField-" rel="external">
+                              createTextField(java.awt.TextField)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#createWindow-java.awt.Window-" rel="external">
+                              createWindow(java.awt.Window)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#getFontPeer-java.lang.String-int-" rel="external">
+                              getFontPeer(java.lang.String,int)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/Toolkit.html#getMouseInfoPeer--" rel="external">
+                              getMouseInfoPeer()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_java-awt-dnd-panel" data-filter-value="java.awt.dnd">
+            <div class="panel-heading" id="java-9_java-awt-dnd-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-dnd-content" aria-controls="java-9_java-awt-dnd-content">
+                java.awt.dnd
+              </a>
+            </div>
+            <div class="collapse" id="java-9_java-awt-dnd-content" aria-labelledby="java-9_java-awt-dnd-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_java-awt-dnd-DragSource-panel" data-filter-value="java.awt.dnd.DragSource">
+                  <div class="panel-heading" id="java-9_java-awt-dnd-DragSource-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-dnd-DragSource-content" aria-controls="java-9_java-awt-dnd-DragSource-content">
+                      DragSource
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-dnd-DragSource-content" aria-labelledby="java-9_java-awt-dnd-DragSource-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DragSource.html#createDragSourceContext-java.awt.dnd.peer.DragSourceContextPeer-java.awt.dnd.DragGestureEvent-java.awt.Cursor-java.awt.Image-java.awt.Point-java.awt.datatransfer.Transferable-java.awt.dnd.DragSourceListener-" rel="external">
+                              createDragSourceContext(java.awt.dnd.peer.DragSourceContextPeer,java.awt.dnd.DragGestureEvent,java.awt.Cursor,java.awt.Image,java.awt.Point,java.awt.datatransfer.Transferable,java.awt.dnd.DragSourceListener)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-dnd-DragSourceContext-panel" data-filter-value="java.awt.dnd.DragSourceContext">
+                  <div class="panel-heading" id="java-9_java-awt-dnd-DragSourceContext-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-dnd-DragSourceContext-content" aria-controls="java-9_java-awt-dnd-DragSourceContext-content">
+                      DragSourceContext
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-dnd-DragSourceContext-content" aria-labelledby="java-9_java-awt-dnd-DragSourceContext-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DragSourceContext.html#DragSourceContext-java.awt.dnd.peer.DragSourceContextPeer-java.awt.dnd.DragGestureEvent-java.awt.Cursor-java.awt.Image-java.awt.Point-java.awt.datatransfer.Transferable-java.awt.dnd.DragSourceListener-" rel="external">
+                              DragSourceContext(java.awt.dnd.peer.DragSourceContextPeer,java.awt.dnd.DragGestureEvent,java.awt.Cursor,java.awt.Image,java.awt.Point,java.awt.datatransfer.Transferable,java.awt.dnd.DragSourceListener)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-dnd-DropTarget-panel" data-filter-value="java.awt.dnd.DropTarget">
+                  <div class="panel-heading" id="java-9_java-awt-dnd-DropTarget-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-dnd-DropTarget-content" aria-controls="java-9_java-awt-dnd-DropTarget-content">
+                      DropTarget
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-dnd-DropTarget-content" aria-labelledby="java-9_java-awt-dnd-DropTarget-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DropTarget.html#addNotify-java.awt.peer.ComponentPeer-" rel="external">
+                              addNotify(java.awt.peer.ComponentPeer)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DropTarget.html#removeNotify-java.awt.peer.ComponentPeer-" rel="external">
+                              removeNotify(java.awt.peer.ComponentPeer)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-awt-dnd-DropTargetContext-panel" data-filter-value="java.awt.dnd.DropTargetContext">
+                  <div class="panel-heading" id="java-9_java-awt-dnd-DropTargetContext-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-awt-dnd-DropTargetContext-content" aria-controls="java-9_java-awt-dnd-DropTargetContext-content">
+                      DropTargetContext
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-awt-dnd-DropTargetContext-content" aria-labelledby="java-9_java-awt-dnd-DropTargetContext-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DropTargetContext.html#addNotify-java.awt.dnd.peer.DropTargetContextPeer-" rel="external">
+                              addNotify(java.awt.dnd.peer.DropTargetContextPeer)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/awt/dnd/DropTargetContext.html#removeNotify--" rel="external">
+                              removeNotify()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_java-lang-invoke-panel" data-filter-value="java.lang.invoke">
+            <div class="panel-heading" id="java-9_java-lang-invoke-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-lang-invoke-content" aria-controls="java-9_java-lang-invoke-content">
+                java.lang.invoke
+              </a>
+            </div>
+            <div class="collapse" id="java-9_java-lang-invoke-content" aria-labelledby="java-9_java-lang-invoke-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_java-lang-invoke-LambdaMetafactory-panel" data-filter-value="java.lang.invoke.LambdaMetafactory">
+                  <div class="panel-heading" id="java-9_java-lang-invoke-LambdaMetafactory-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-lang-invoke-LambdaMetafactory-content" aria-controls="java-9_java-lang-invoke-LambdaMetafactory-content">
+                      LambdaMetafactory
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-lang-invoke-LambdaMetafactory-content" aria-labelledby="java-9_java-lang-invoke-LambdaMetafactory-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/LambdaMetafactory.html#LambdaMetafactory--" rel="external">
+                              LambdaMetafactory()
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_java-util-jar-panel" data-filter-value="java.util.jar">
+            <div class="panel-heading" id="java-9_java-util-jar-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-util-jar-content" aria-controls="java-9_java-util-jar-content">
+                java.util.jar
+              </a>
+            </div>
+            <div class="collapse" id="java-9_java-util-jar-content" aria-labelledby="java-9_java-util-jar-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_java-util-jar-Pack200-Packer-panel" data-filter-value="java.util.jar.Pack200.Packer">
+                  <div class="panel-heading" id="java-9_java-util-jar-Pack200-Packer-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-util-jar-Pack200-Packer-content" aria-controls="java-9_java-util-jar-Pack200-Packer-content">
+                      Pack200.Packer
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-util-jar-Pack200-Packer-content" aria-labelledby="java-9_java-util-jar-Pack200-Packer-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/jar/Pack200.Packer.html#addPropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              addPropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/jar/Pack200.Packer.html#removePropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              removePropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_java-util-jar-Pack200-Unpacker-panel" data-filter-value="java.util.jar.Pack200.Unpacker">
+                  <div class="panel-heading" id="java-9_java-util-jar-Pack200-Unpacker-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-util-jar-Pack200-Unpacker-content" aria-controls="java-9_java-util-jar-Pack200-Unpacker-content">
+                      Pack200.Unpacker
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-util-jar-Pack200-Unpacker-content" aria-labelledby="java-9_java-util-jar-Pack200-Unpacker-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/jar/Pack200.Unpacker.html#addPropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              addPropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/jar/Pack200.Unpacker.html#removePropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              removePropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_java-util-logging-panel" data-filter-value="java.util.logging">
+            <div class="panel-heading" id="java-9_java-util-logging-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-util-logging-content" aria-controls="java-9_java-util-logging-content">
+                java.util.logging
+              </a>
+            </div>
+            <div class="collapse" id="java-9_java-util-logging-content" aria-labelledby="java-9_java-util-logging-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_java-util-logging-LogManager-panel" data-filter-value="java.util.logging.LogManager">
+                  <div class="panel-heading" id="java-9_java-util-logging-LogManager-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_java-util-logging-LogManager-content" aria-controls="java-9_java-util-logging-LogManager-content">
+                      LogManager
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_java-util-logging-LogManager-content" aria-labelledby="java-9_java-util-logging-LogManager-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/LogManager.html#addPropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              addPropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/logging/LogManager.html#removePropertyChangeListener-java.beans.PropertyChangeListener-" rel="external">
+                              removePropertyChangeListener(java.beans.PropertyChangeListener)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_javax-naming-panel" data-filter-value="javax.naming">
+            <div class="panel-heading" id="java-9_javax-naming-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-naming-content" aria-controls="java-9_javax-naming-content">
+                javax.naming
+              </a>
+            </div>
+            <div class="collapse" id="java-9_javax-naming-content" aria-labelledby="java-9_javax-naming-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_javax-naming-CompoundName-panel" data-filter-value="javax.naming.CompoundName">
+                  <div class="panel-heading" id="java-9_javax-naming-CompoundName-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-naming-CompoundName-content" aria-controls="java-9_javax-naming-CompoundName-content">
+                      CompoundName
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-naming-CompoundName-content" aria-labelledby="java-9_javax-naming-CompoundName-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/naming/CompoundName.html#impl" rel="external">
+                              impl
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_javax-swing-panel" data-filter-value="javax.swing">
+            <div class="panel-heading" id="java-9_javax-swing-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-content" aria-controls="java-9_javax-swing-content">
+                javax.swing
+              </a>
+            </div>
+            <div class="collapse" id="java-9_javax-swing-content" aria-labelledby="java-9_javax-swing-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_javax-swing-JFrame-panel" data-filter-value="javax.swing.JFrame">
+                  <div class="panel-heading" id="java-9_javax-swing-JFrame-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-JFrame-content" aria-controls="java-9_javax-swing-JFrame-content">
+                      JFrame
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-swing-JFrame-content" aria-labelledby="java-9_javax-swing-JFrame-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JFrame.html#EXIT_ON_CLOSE" rel="external">
+                              EXIT_ON_CLOSE
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_javax-swing-JRootPane-panel" data-filter-value="javax.swing.JRootPane">
+                  <div class="panel-heading" id="java-9_javax-swing-JRootPane-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-JRootPane-content" aria-controls="java-9_javax-swing-JRootPane-content">
+                      JRootPane
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-swing-JRootPane-content" aria-labelledby="java-9_javax-swing-JRootPane-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JRootPane.html#defaultPressAction" rel="external">
+                              defaultPressAction
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JRootPane.html#defaultReleaseAction" rel="external">
+                              defaultReleaseAction
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_javax-swing-plaf-metal-panel" data-filter-value="javax.swing.plaf.metal">
+            <div class="panel-heading" id="java-9_javax-swing-plaf-metal-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-plaf-metal-content" aria-controls="java-9_javax-swing-plaf-metal-content">
+                javax.swing.plaf.metal
+              </a>
+            </div>
+            <div class="collapse" id="java-9_javax-swing-plaf-metal-content" aria-labelledby="java-9_javax-swing-plaf-metal-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-panel" data-filter-value="javax.swing.plaf.metal.MetalBorders.ToolBarBorder">
+                  <div class="panel-heading" id="java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-content" aria-controls="java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-content">
+                      MetalBorders.ToolBarBorder
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-content" aria-labelledby="java-9_javax-swing-plaf-metal-MetalBorders-ToolBarBorder-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/plaf/metal/MetalBorders.ToolBarBorder.html#bumps" rel="external">
+                              bumps
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_javax-swing-plaf-metal-MetalFileChooserUI-panel" data-filter-value="javax.swing.plaf.metal.MetalFileChooserUI">
+                  <div class="panel-heading" id="java-9_javax-swing-plaf-metal-MetalFileChooserUI-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-plaf-metal-MetalFileChooserUI-content" aria-controls="java-9_javax-swing-plaf-metal-MetalFileChooserUI-content">
+                      MetalFileChooserUI
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-swing-plaf-metal-MetalFileChooserUI-content" aria-labelledby="java-9_javax-swing-plaf-metal-MetalFileChooserUI-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/plaf/metal/MetalFileChooserUI.html#createDirectoryComboBoxRenderer-javax.swing.JFileChooser-" rel="external">
+                              createDirectoryComboBoxRenderer(javax.swing.JFileChooser)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default java-class" id="java-9_javax-swing-plaf-metal-MetalScrollBarUI-panel" data-filter-value="javax.swing.plaf.metal.MetalScrollBarUI">
+                  <div class="panel-heading" id="java-9_javax-swing-plaf-metal-MetalScrollBarUI-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-swing-plaf-metal-MetalScrollBarUI-content" aria-controls="java-9_javax-swing-plaf-metal-MetalScrollBarUI-content">
+                      MetalScrollBarUI
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-swing-plaf-metal-MetalScrollBarUI-content" aria-labelledby="java-9_javax-swing-plaf-metal-MetalScrollBarUI-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/swing/plaf/metal/MetalScrollBarUI.html#bumps" rel="external">
+                              bumps
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-9_javax-xml-ws-spi-panel" data-filter-value="javax.xml.ws.spi">
+            <div class="panel-heading" id="java-9_javax-xml-ws-spi-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-xml-ws-spi-content" aria-controls="java-9_javax-xml-ws-spi-content">
+                javax.xml.ws.spi
+              </a>
+            </div>
+            <div class="collapse" id="java-9_javax-xml-ws-spi-content" aria-labelledby="java-9_javax-xml-ws-spi-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-9_javax-xml-ws-spi-Provider-panel" data-filter-value="javax.xml.ws.spi.Provider">
+                  <div class="panel-heading" id="java-9_javax-xml-ws-spi-Provider-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-9_javax-xml-ws-spi-Provider-content" aria-controls="java-9_javax-xml-ws-spi-Provider-content">
+                      Provider
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-9_javax-xml-ws-spi-Provider-content" aria-labelledby="java-9_javax-xml-ws-spi-Provider-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/8/docs/api/javax/xml/ws/spi/Provider.html#JAXWSPROVIDER_PROPERTY" rel="external">
+                              JAXWSPROVIDER_PROPERTY
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default java-version" id="java-8-panel">
+      <div class="panel-heading" id="java-8-header">
+        <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-8-content" aria-controls="java-8-content">
+          Java 8
+        </a>
+      </div>
+      <div class="collapse" id="java-8-content" aria-labelledby="java-8-header">
+        <div class="panel-body">
+          <div class="panel panel-default java-package" id="java-8_java-net-panel" data-filter-value="java.net">
+            <div class="panel-heading" id="java-8_java-net-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-8_java-net-content" aria-controls="java-8_java-net-content">
+                java.net
+              </a>
+            </div>
+            <div class="collapse" id="java-8_java-net-content" aria-labelledby="java-8_java-net-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-8_java-net-URL-panel" data-filter-value="java.net.URL">
+                  <div class="panel-heading" id="java-8_java-net-URL-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-8_java-net-URL-content" aria-controls="java-8_java-net-URL-content">
+                      URL
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-8_java-net-URL-content" aria-labelledby="java-8_java-net-URL-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/7/docs/api/java/net/URL.html#set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)" rel="external">
+                              set(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String)
+                            </a>
+                          </div>
+                        </li>
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/7/docs/api/java/net/URL.html#set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)" rel="external">
+                              set(java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default java-package" id="java-8_javax-swing-panel" data-filter-value="javax.swing">
+            <div class="panel-heading" id="java-8_javax-swing-header">
+              <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-8_javax-swing-content" aria-controls="java-8_javax-swing-content">
+                javax.swing
+              </a>
+            </div>
+            <div class="collapse" id="java-8_javax-swing-content" aria-labelledby="java-8_javax-swing-header">
+              <div class="panel-body">
+                <div class="panel panel-default java-class" id="java-8_javax-swing-JComponent-panel" data-filter-value="javax.swing.JComponent">
+                  <div class="panel-heading" id="java-8_javax-swing-JComponent-header">
+                    <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" href="#java-8_javax-swing-JComponent-content" aria-controls="java-8_javax-swing-JComponent-content">
+                      JComponent
+                    </a>
+                  </div>
+                  <div class="collapse" id="java-8_javax-swing-JComponent-content" aria-labelledby="java-8_javax-swing-JComponent-header">
+                    <div class="panel-body">
+                      <ul class="list-unstyled">
+                        <li class="java-member">
+                          <div class="title">
+                            <a class="btn btn-link" href="https://docs.oracle.com/javase/7/docs/api/javax/swing/JComponent.html#accessibleContext" rel="external">
+                              accessibleContext
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="filter-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title">Filter</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="filter-value" class="col-xs-2 control-label">Filter:</label>
+              <div class="col-xs-10">
+                <input type="text" class="form-control" id="filter-value" name="filter-value" placeholder="Start with = to use exact, case sensitive matching">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="apply-filter">Apply Filter</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
