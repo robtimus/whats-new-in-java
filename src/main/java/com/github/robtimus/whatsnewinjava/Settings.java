@@ -12,7 +12,6 @@ import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
 
 public final class Settings {
 
-    private static final String JAVADOC_BASE_URL;
     private static final JavaVersion MINIMAL_JAVA_VERSION;
     private static final Set<String> PACKAGES_TO_IGNORE;
 
@@ -24,7 +23,6 @@ public final class Settings {
             throw new UncheckedIOException(e);
         }
 
-        JAVADOC_BASE_URL = properties.getProperty("javadoc-base-url");
         MINIMAL_JAVA_VERSION = JavaVersion.parse(properties.getProperty("minimal-java-version"));
         PACKAGES_TO_IGNORE = Collections.unmodifiableSet(Pattern.compile("\\s*,\\s*").splitAsStream(properties.getProperty("ignore-packages"))
                 .collect(Collectors.toSet()));
@@ -32,10 +30,6 @@ public final class Settings {
 
     private Settings() {
         throw new Error("cannot create instances of " + getClass().getName());
-    }
-
-    public static String getJavadocBaseURL() {
-        return JAVADOC_BASE_URL;
     }
 
     public static JavaVersion getMinimalJavaVersion() {

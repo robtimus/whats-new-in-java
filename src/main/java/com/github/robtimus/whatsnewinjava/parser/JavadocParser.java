@@ -3,10 +3,13 @@ package com.github.robtimus.whatsnewinjava.parser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
@@ -16,14 +19,15 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
+import com.github.robtimus.whatsnewinjava.domain.JavaMember;
 import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
 
 public final class JavadocParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavadocParser.class);
 
-    public JavaAPI parseJavadoc(Path rootFolder, JavaVersion minimalJavaVersion, Set<String> packagesToIgnore) throws IOException {
-        Parser parser = new Parser(rootFolder, minimalJavaVersion, packagesToIgnore);
+    public JavaAPI parseJavadoc(Path rootFolder, Set<String> packagesToIgnore, String javadocBaseURL) throws IOException {
+        Parser parser = new Parser(rootFolder, packagesToIgnore, javadocBaseURL);
         parser.parse();
         return parser.javaAPI;
     }
@@ -34,15 +38,14 @@ public final class JavadocParser {
         private static final Pattern SINCE_PATTERN = Pattern.compile("^(?:(?:JDK|J2SE|JSE)\\s*)?([\\d.u]+)$");
 
         private final Path rootFolder;
-        private final JavaVersion minimalJavaVersion;
         private final Set<String> packagesToIgnore;
 
-        private final JavaAPI javaAPI = new JavaAPI();
+        private final JavaAPI javaAPI;
 
-        private Parser(Path rootFolder, JavaVersion minimalJavaVersion, Set<String> packagesToIgnore) {
+        private Parser(Path rootFolder, Set<String> packagesToIgnore, String javadocBaseURL) {
             this.rootFolder = rootFolder;
-            this.minimalJavaVersion = minimalJavaVersion;
             this.packagesToIgnore = packagesToIgnore;
+            this.javaAPI = new JavaAPI(javadocBaseURL);
         }
 
         private void parse() throws IOException {
@@ -50,6 +53,8 @@ public final class JavadocParser {
                     .filter(Files::isRegularFile)
                     .filter(this::isNonIgnoredPackageSummaryFile)
                     .forEach(this::handlePackageFile);
+
+            LOGGER.info("Processed all packages");
         }
 
         private void handlePackageFile(Path file) {
@@ -73,21 +78,36 @@ public final class JavadocParser {
 
             try (InputStream input = Files.newInputStream(file)) {
                 Document document = Jsoup.parse(input, "UTF-8", "");
-                Element sinceTagElement = document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+                JavaVersion since = null;
+                boolean deprecated = false;
+
+                Element sinceTagElement = packageSinceTagElement(document);
                 if (sinceTagElement != null) {
                     String sinceString = extractSinceString(sinceTagElement);
-                    JavaVersion since = extractJavaVersion(sinceString);
+                    since = extractJavaVersion(sinceString);
                     if (since == null) {
                         LOGGER.warn("Package {}: unexpected since: {}", packageName, sinceString);
-                    } else if (since.compareTo(minimalJavaVersion) >= 0) {
-                        javaAPI.addPackage(packageName, since);
-                    } else {
-                        LOGGER.debug("Package {}: ignoring since because it's too old: {}", packageName, sinceString);
                     }
                 }
+
+                Element deprecatedBlockElement = packageDeprecatedBlockElement(document);
+                deprecated = deprecatedBlockElement != null;
+
+                javaAPI.addPackage(packageName, since, deprecated);
+
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
+        }
+
+        private Element packageSinceTagElement(Document document) {
+            // No Java 7/8 equivalent
+            return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+        }
+
+        private Element packageDeprecatedBlockElement(Document document) {
+            // No Java 7/8 equivalent
+            return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
         }
 
         private void handleClassFile(Path file) {
@@ -102,65 +122,142 @@ public final class JavadocParser {
 
             try (InputStream input = Files.newInputStream(file)) {
                 Document document = Jsoup.parse(input, "UTF-8", "");
-                parseClassVersion(document, packageName, className);
-                parseFieldVersions(document, packageName, className);
-                parseConstructorVersions(document, packageName, className);
-                parseMethodVersions(document, packageName, className);
+                parseClassInfo(document, packageName, className);
+                parseFields(document, packageName, className);
+                parseConstructors(document, packageName, className);
+                parseMethods(document, packageName, className);
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
         }
 
-        private void parseClassVersion(Document document, String packageName, String className) {
-            Element sinceTagElement = document.selectFirst("div.contentContainer > div.description dl > dt > span:contains(Since:)");
+        private void parseClassInfo(Document document, String packageName, String className) {
+            JavaVersion since = null;
+            boolean deprecated = false;
+
+            Element sinceTagElement = classSinceTagElement(document);
             if (sinceTagElement != null) {
                 String sinceString = extractSinceString(sinceTagElement);
-                JavaVersion since = extractJavaVersion(sinceString);
+                since = extractJavaVersion(sinceString);
                 if (since == null) {
                     LOGGER.warn("Class {}.{}: unexpected since: {}", packageName, className, sinceString);
-                } else if (since.compareTo(minimalJavaVersion) >= 0) {
-                    javaAPI.addClass(packageName, className, since);
-                } else {
-                    LOGGER.debug("Class {}.{}: ignoring since because it's too old: {}", packageName, className, sinceString);
                 }
             }
+
+            Element deprecatedBlockElement = classDeprecatedBlockElement(document);
+            deprecated = deprecatedBlockElement != null;
+
+            Set<String> inheritedMethodSignatures = inheritedMethodSignatures(document);
+
+            javaAPI.addClass(packageName, className, since, deprecated, inheritedMethodSignatures);
         }
 
-        private void parseFieldVersions(Document document, String packageName, String className) {
-            parseMemberVersions(document, packageName, className, "Field");
+        private Element classSinceTagElement(Document document) {
+            return document.selectFirst("div.contentContainer > div.description dl > dt > span:contains(Since:)");
         }
 
-        private void parseConstructorVersions(Document document, String packageName, String className) {
-            parseMemberVersions(document, packageName, className, "Constructor");
-        }
-
-        private void parseMethodVersions(Document document, String packageName, String className) {
-            parseMemberVersions(document, packageName, className, "Method");
-        }
-
-        private void parseMemberVersions(Document document, String packageName, String className, String memberType) {
-            Element memberDetailElement = document.selectFirst("div.contentContainer > div.details section[role=region] h3:contains(" + memberType + " Detail)");
-            if (memberDetailElement == null) {
-                LOGGER.debug("No members of type {} defined for class {}.{}", memberType, packageName, className);
-                return;
+        private Element classDeprecatedBlockElement(Document document) {
+            Element element = document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
+            if (element == null) {
+                // Java 7 workaround
+                element = document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > :contains(Deprecated)");
             }
-            // go one level up to find the <ul> with the members
-            Elements memberElements = memberDetailElement.parent().select("> ul");
-            for (Element memberElement : memberElements) {
-                String signature = memberElement.previousElementSibling().attr("id");
-                Element sinceTagElement = memberElement.selectFirst("li dl > dt > span:contains(Since:)");
-                if (sinceTagElement != null) {
-                    String sinceString = extractSinceString(sinceTagElement);
-                    JavaVersion since = extractJavaVersion(sinceString);
-                    if (since == null) {
-                        LOGGER.warn("Class {}.{}, member {}: unexpected since: {}", packageName, className, signature, sinceString);
-                    } else if (since.compareTo(minimalJavaVersion) >= 0) {
-                        javaAPI.addMember(packageName, className, signature, since);
-                    } else {
-                        LOGGER.debug("Class {}.{}, member {}: ignoring since because it's too old: {}", packageName, className, signature, sinceString);
+            return element;
+        }
+
+        private Set<String> inheritedMethodSignatures(Document document) {
+            Set<String> signatures = new TreeSet<>();
+            Elements elements = document.select("div.contentContainer > div.summary h3:contains(Methods declared in)");
+            if (elements.size() == 0) {
+                elements = document.select("div.contentContainer > div.summary h3:contains(Methods inherited from)");
+            }
+            for (Element element : elements) {
+                Element methodLinkParent = element.nextElementSibling();
+                // methodLinkParent can be null if no methods are inherited
+                if (methodLinkParent != null) {
+                    Elements methodLinks = methodLinkParent.select("a");
+                    for (Element methodLink : methodLinks) {
+                        String href = methodLink.attr("href");
+                        try {
+                            String signature = URLDecoder.decode(href.replaceAll(".*#", ""), "UTF-8");
+                            signatures.add(signature);
+                        } catch (UnsupportedEncodingException e) {
+                            throw new IllegalStateException(e);
+                        }
                     }
                 }
             }
+            return signatures;
+        }
+
+        private void parseFields(Document document, String packageName, String className) {
+            parseMembers(document, packageName, className, JavaMember.Type.FIELD, "Field");
+        }
+
+        private void parseConstructors(Document document, String packageName, String className) {
+            parseMembers(document, packageName, className, JavaMember.Type.CONSTRUCTOR, "Constructor");
+        }
+
+        private void parseMethods(Document document, String packageName, String className) {
+            parseMembers(document, packageName, className, JavaMember.Type.METHOD, "Method");
+        }
+
+        private void parseMembers(Document document, String packageName, String className, JavaMember.Type memberType, String memberTypeString) {
+            Element memberDetailElement = memberDetailElement(document, memberTypeString);
+            if (memberDetailElement == null) {
+                LOGGER.debug("No members of type {} defined for class {}.{}", memberTypeString, packageName, className);
+                return;
+            }
+            // go one level up to find the <ul> with the members
+            Elements memberElements = memberElements(memberDetailElement);
+            for (Element memberElement : memberElements) {
+                String signature = signature(memberElement);
+                JavaVersion since = null;
+                boolean deprecated = false;
+
+                Element sinceTagElement = memberSinceTagElement(memberElement);
+                if (sinceTagElement != null) {
+                    String sinceString = extractSinceString(sinceTagElement);
+                    since = extractJavaVersion(sinceString);
+                    if (since == null) {
+                        LOGGER.warn("Class {}.{}, member {}: unexpected since: {}", packageName, className, signature, sinceString);
+                    }
+                }
+
+                Element deprecatedBlockElement = memberDeprecatedBlockElement(memberElement);
+                deprecated = deprecatedBlockElement != null;
+
+                javaAPI.addMember(packageName, className, memberType, signature, since, deprecated);
+            }
+        }
+
+        private Element memberDetailElement(Document document, String memberType) {
+            return document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
+        }
+
+        private Elements memberElements(Element memberDetailElement) {
+            // go one level up to find the <ul> with the members
+            return memberDetailElement.parent().select("> ul");
+        }
+
+        private String signature(Element memberElement) {
+            Element signatureElement = memberElement.previousElementSibling();
+            String id = signatureElement.attr("id");
+            String name = signatureElement.attr("name");
+            return id.isEmpty() ? name : id;
+        }
+
+        private Element memberSinceTagElement(Element memberElement) {
+            return memberElement.selectFirst("li dl > dt > span:contains(Since:)");
+        }
+
+        private Element memberDeprecatedBlockElement(Element memberElement) {
+            Element element = memberElement.selectFirst("li > div > span.deprecatedLabel");
+            if (element == null) {
+                // Java 7 workaround
+                element = memberElement.selectFirst("li > div > span.strong:contains(Deprecated)");
+            }
+            return element;
         }
 
         private String extractPackageName(Path file) {
@@ -215,7 +312,7 @@ public final class JavadocParser {
         }
 
         private boolean isClassFile(String fileName) {
-            return !fileName.startsWith("package-");
+            return !fileName.startsWith("package-") && !fileName.contains("-package-");
         }
     }
 }

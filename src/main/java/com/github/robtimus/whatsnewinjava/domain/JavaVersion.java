@@ -15,7 +15,7 @@ public final class JavaVersion implements Comparable<JavaVersion> {
 
     private static final Map<String, JavaVersion> INSTANCE_CACHE = new HashMap<>();
 
-    private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+)(?:\\.(\\d+))?(?:[\\.u](\\d+))?");
+    private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+)(?:\\.(\\d+))?(?:[\\.u](\\d+))?\\.?");
 
     private final int major;
     private final int minor;

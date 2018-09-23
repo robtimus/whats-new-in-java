@@ -6,18 +6,12 @@ import com.github.robtimus.whatsnewinjava.domain.JavaPackage;
 
 public final class LinkGenerator {
 
-    private final String javadocBaseURL;
-
-    public LinkGenerator(String javadocBaseURL) {
-        this.javadocBaseURL = javadocBaseURL;
-    }
-
     public String generateLink(JavaPackage javaPackage) {
-        return String.format("%s%s/package-summary.html", javadocBaseURL, getRelativeBaseURL(javaPackage));
+        return String.format("%s%s/package-summary.html", javaPackage.getJavadocBaseURL(), getRelativeBaseURL(javaPackage));
     }
 
     public String generateLink(JavaClass javaClass) {
-        return String.format("%s%s/%s.html", javadocBaseURL, getRelativeBaseURL(javaClass.getJavaPackage()), javaClass.getName());
+        return String.format("%s%s/%s.html", javaClass.getJavadocBaseURL(), getRelativeBaseURL(javaClass.getJavaPackage()), javaClass.getName());
     }
 
     public String generateLink(JavaMember javaMember) {
