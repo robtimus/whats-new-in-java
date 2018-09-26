@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.file.DirectoryStream;
-import java.nio.file.DirectoryStream.Filter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.github.robtimus.io.function.IOConsumer;
 import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
 import com.github.robtimus.whatsnewinjava.domain.JavaMember;
 import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
@@ -29,20 +30,18 @@ public final class JavadocParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavadocParser.class);
 
-    private static final Filter<Path> MODULE_DIRECTORY_FILTER = p -> Files.isDirectory(p) && Files.isRegularFile(p.resolve("module-summary.html"));
-
     public JavaAPI parseJavadoc(Path rootFolder, Set<String> packagesToIgnore, String javadocBaseURL) throws IOException {
         JavaAPI javaAPI;
         if (Files.isDirectory(rootFolder.resolve("java.base"))) {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, true));
             // use modules structure
-            try (DirectoryStream<Path> subFolders = Files.newDirectoryStream(rootFolder, MODULE_DIRECTORY_FILTER)) {
-                for (Path subFolder : subFolders) {
-                    String moduleName = subFolder.getFileName().toString();
-                    Parser parser = new Parser(subFolder, packagesToIgnore, moduleName, javaAPI);
-                    parser.parse();
-                }
-            }
+            Files.walk(rootFolder, 1)
+                    .filter(p -> Files.isDirectory(p) && Files.isRegularFile(p.resolve("module-summary.html")))
+                    .forEach(IOConsumer.unchecked(subFolder -> {
+                        String moduleName = subFolder.getFileName().toString();
+                        Parser parser = new Parser(subFolder, packagesToIgnore, moduleName, javaAPI);
+                        parser.parse();
+                    }));
         } else {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, false));
             Parser parser = new Parser(rootFolder, packagesToIgnore, null, javaAPI);
@@ -65,6 +64,8 @@ public final class JavadocParser {
         private final String moduleName;
         private final JavaAPI javaAPI;
 
+        private final Map<String, String> packageNamesToModuleNames = new HashMap<>();
+
         private Parser(Path rootFolder, Set<String> packagesToIgnore, String moduleName, JavaAPI javaAPI) {
             this.rootFolder = rootFolder;
             this.packagesToIgnore = packagesToIgnore;
@@ -72,16 +73,35 @@ public final class JavadocParser {
             this.javaAPI = javaAPI;
         }
 
+        private String getModuleName(String packageName) {
+            if (moduleName != null) {
+                return moduleName;
+            }
+            if (packageNamesToModuleNames.isEmpty()) {
+                return null;
+            }
+            String moduleNameForPackage = packageNamesToModuleNames.get(packageName);
+            if (moduleNameForPackage == null) {
+                throw new IllegalStateException("Could not find module for package " + packageName);
+            }
+            return moduleNameForPackage;
+        }
+
         private void parse() throws IOException {
+            packageNamesToModuleNames.clear();
+
             if (moduleName != null) {
                 Path moduleFile = rootFolder.resolve("module-summary.html");
-                if (Files.isRegularFile(moduleFile)) {
-                    parseModuleFile(moduleFile);
-                } else {
-                    javaAPI.addModule(moduleName, null, false);
-                }
+                parseModuleFile(moduleFile);
             } else {
-                javaAPI.addModule(null, null, false);
+                Files.walk(rootFolder, 1)
+                        .filter(Files::isRegularFile)
+                        .filter(this::isModuleFile)
+                        .forEach(this::parseModuleFile);
+
+                if (packageNamesToModuleNames.isEmpty()) {
+                    javaAPI.addModule(null, null, false);
+                }
             }
 
             Files.walk(rootFolder)
@@ -91,7 +111,9 @@ public final class JavadocParser {
         }
 
         private void parseModuleFile(Path file) {
-            LOGGER.info("Processing module {}", moduleName);
+            String moduleToUse = moduleName != null ? moduleName : file.getFileName().toString().replace("-summary.html", "");
+
+            LOGGER.info("Processing module {}", moduleToUse);
 
             LOGGER.debug("Parsing module file {}", file);
 
@@ -105,14 +127,29 @@ public final class JavadocParser {
                     String sinceString = extractSinceString(sinceTagElement);
                     since = extractJavaVersion(sinceString);
                     if (since == null) {
-                        LOGGER.warn("Module {}: unexpected since: {}", moduleName, sinceString);
+                        LOGGER.warn("Module {}: unexpected since: {}", moduleToUse, sinceString);
                     }
                 }
 
                 Element deprecatedBlockElement = moduleDeprecatedBlockElement(document);
                 deprecated = deprecatedBlockElement != null;
 
-                javaAPI.addModule(moduleName, since, deprecated);
+                if (moduleName != null) {
+                    javaAPI.addModule(moduleName, since, deprecated);
+                } else {
+                    String moduleNameFromFile = file.getFileName().toString().replace("-summary.html", "");
+                    Elements modulePackageLinks = modulePackageLinks(document);
+                    for (Element modulePackageLink : modulePackageLinks) {
+                        if (modulePackageLink.attr("href").endsWith("/package-summary.html")) {
+                            String packageName = modulePackageLink.text();
+                            if (packageNamesToModuleNames.containsKey(packageName)) {
+                                throw new IllegalStateException("Duplicate package: " + packageName);
+                            }
+                            packageNamesToModuleNames.put(packageName, moduleNameFromFile);
+                        }
+                    }
+                    javaAPI.addModule(moduleNameFromFile, since, deprecated);
+                }
 
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
@@ -127,6 +164,11 @@ public final class JavadocParser {
         private Element moduleDeprecatedBlockElement(Document document) {
             // No Java 7/8 equivalent
             return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
+        }
+
+        private Elements modulePackageLinks(Document document) {
+            // No Java 7/8 equivalent
+            return document.select("div.contentContainer table.packagesSummary:first-of-type tr > th > a");
         }
 
         private void handlePackageFile(Path file) {
@@ -165,7 +207,7 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = packageDeprecatedBlockElement(document);
                 deprecated = deprecatedBlockElement != null;
 
-                javaAPI.addPackage(moduleName, packageName, since, deprecated);
+                javaAPI.addPackage(getModuleName(packageName), packageName, since, deprecated);
 
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
@@ -221,7 +263,7 @@ public final class JavadocParser {
 
             Set<String> inheritedMethodSignatures = inheritedMethodSignatures(document);
 
-            javaAPI.addClass(moduleName, packageName, className, since, deprecated, inheritedMethodSignatures);
+            javaAPI.addClass(getModuleName(packageName), packageName, className, since, deprecated, inheritedMethodSignatures);
         }
 
         private Element classSinceTagElement(Document document) {
@@ -299,7 +341,7 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = memberDeprecatedBlockElement(memberElement);
                 deprecated = deprecatedBlockElement != null;
 
-                javaAPI.addMember(moduleName, packageName, className, memberType, signature, since, deprecated);
+                javaAPI.addMember(getModuleName(packageName), packageName, className, memberType, signature, since, deprecated);
             }
         }
 
@@ -385,6 +427,19 @@ public final class JavadocParser {
 
         private boolean isClassFile(String fileName) {
             return !fileName.startsWith("package-") && !fileName.contains("-package-");
+        }
+
+        private boolean isModuleFile(Path file) {
+            Path fileName = file.getFileName();
+            return fileName != null && isModuleFile(fileName.toString());
+        }
+
+        private boolean isModuleFile(String fileName) {
+            return fileName.endsWith("-summary.html")
+                    && !"overview-summary.html".equals(fileName)
+                    && !"package-summary.html".equals(fileName)
+                    && !fileName.contains("-package-")
+                    && !fileName.matches("compact\\d+-summary\\.html");
         }
     }
 }

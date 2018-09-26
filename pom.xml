@@ -61,6 +61,7 @@
 
     <version.hamcrest>1.3</version.hamcrest>
     <version.gson>2.8.5</version.gson>
+    <version.io-functions>1.0</version.io-functions>
     <version.junit>4.12</version.junit>
     <version.jsoup>1.11.3</version.jsoup>
     <version.mockito>1.10.19</version.mockito>
@@ -92,6 +93,12 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>${version.gson}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.robtimus</groupId>
+      <artifactId>io-functions</artifactId>
+      <version>${version.io-functions}</version>
     </dependency>
 
     <dependency>
