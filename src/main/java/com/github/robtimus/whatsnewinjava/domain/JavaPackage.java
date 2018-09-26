@@ -12,24 +12,35 @@ import com.google.gson.JsonObject;
 
 public final class JavaPackage extends VersionableJavaObject {
 
+    private final JavaModule javaModule;
     private final String name;
     private final Map<String, JavaClass> javaClasses;
 
-    private final String javadocBaseURL;
+    private final Javadoc  javadoc;
 
-    JavaPackage(String name, JavaVersion since, boolean deprecated, String javadocBaseURL) {
+    JavaPackage(JavaModule javaModule, String name, JavaVersion since, boolean deprecated) {
         super(since, deprecated);
+        this.javaModule = javaModule;
         this.name = name;
         this.javaClasses = new TreeMap<>();
-        this.javadocBaseURL = javadocBaseURL;
+        this.javadoc = javaModule.getJavadoc();
+    }
+
+    public JavaModule getJavaModule() {
+        return javaModule;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getJavadocBaseURL() {
-        return javadocBaseURL;
+    @Override
+    public boolean isDeprecated() {
+        return super.isDeprecated() || (javaModule != null && javaModule.isDeprecated());
+    }
+
+    public Javadoc getJavadoc() {
+        return javadoc;
     }
 
     public Collection<JavaClass> getJavaClasses() {
@@ -59,7 +70,7 @@ public final class JavaPackage extends VersionableJavaObject {
         if (javaClasses.containsKey(className)) {
             throw new IllegalStateException(String.format("Duplicate class: %s.%s", name, className));
         }
-        javaClasses.put(className, new JavaClass(this, className, since, deprecated, inheritedMethodSignatures, javadocBaseURL));
+        javaClasses.put(className, new JavaClass(this, className, since, deprecated, inheritedMethodSignatures));
     }
 
     JavaClass getJavaClass(String className) {
@@ -76,9 +87,9 @@ public final class JavaPackage extends VersionableJavaObject {
 
     Stream<JavaVersion> allSinceValues() {
         Stream<JavaVersion> ownSince = Stream.of(getSince());
-        Stream<JavaVersion> memberSinceValues = javaClasses.values().stream()
+        Stream<JavaVersion> classSinceValues = javaClasses.values().stream()
                 .flatMap(JavaClass::allSinceValues);
-        return Stream.concat(ownSince, memberSinceValues)
+        return Stream.concat(ownSince, classSinceValues)
                 .filter(Objects::nonNull);
     }
 
@@ -92,6 +103,28 @@ public final class JavaPackage extends VersionableJavaObject {
         return name;
     }
 
+    JavaPackage copy(JavaModule copyModule) {
+        JavaPackage copy = new JavaPackage(copyModule, name, getSince(), super.isDeprecated());
+        for (JavaClass javaClass : javaClasses.values()) {
+            JavaClass classCopy = javaClass.copy(copy);
+            copy.javaClasses.put(classCopy.getName(), classCopy);
+        }
+        return copy;
+    }
+
+    void merge(JavaPackage other) {
+        for (JavaClass otherClass : other.javaClasses.values()) {
+            String className = otherClass.getName();
+
+            JavaClass javaClass = javaClasses.get(className);
+            if (javaClass == null) {
+                javaClasses.put(className, otherClass);
+            } else {
+                javaClass.merge(otherClass);
+            }
+        }
+    }
+
     @Override
     void appendToJSON(JsonObject json) {
         super.appendToJSON(json);
@@ -103,11 +136,11 @@ public final class JavaPackage extends VersionableJavaObject {
         json.add("classes", classes);
     }
 
-    static JavaPackage fromJSON(JsonObject json, String name, String javadocBaseURL) {
+    static JavaPackage fromJSON(JsonObject json, JavaModule javaModule, String name) {
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
 
-        JavaPackage javaPackage = new JavaPackage(name, since, deprecated, javadocBaseURL);
+        JavaPackage javaPackage = new JavaPackage(javaModule, name, since, deprecated);
 
         JsonObject classes = json.get("classes").getAsJsonObject();
         for (String className : classes.keySet()) {

@@ -36,8 +36,8 @@ public final class PageRenderer {
         linkGenerator = new LinkGenerator();
     }
 
-    public String renderNewPage(JavaAPI javaAPI) {
-        return renderPage(TEMPLATE_SPEC_NEW, createContext(javaAPI.getPackagesPerVersion()));
+    public String renderNewPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
+        return renderPage(TEMPLATE_SPEC_NEW, createContext(JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion)));
     }
 
     public String renderDeprecatedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {

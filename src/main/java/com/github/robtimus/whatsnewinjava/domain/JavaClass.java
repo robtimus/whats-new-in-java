@@ -27,16 +27,16 @@ public final class JavaClass extends VersionableJavaObject {
     private final Map<MemberMapKey, JavaMember> javaMembers;
     private final Map<String, Signature> inheritedMethodSignatures;
 
-    private final String javadocBaseURL;
+    private final Javadoc javadoc;
 
-    JavaClass(JavaPackage javaPackage, String name, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures, String javadocBaseURL) {
+    JavaClass(JavaPackage javaPackage, String name, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
         super(since, deprecated);
         this.javaPackage = Objects.requireNonNull(javaPackage);
         this.name = Objects.requireNonNull(name);
         this.javaMembers = new TreeMap<>();
         this.inheritedMethodSignatures = inheritedMethodSignatures.stream()
                 .collect(Collectors.toMap(Function.identity(), Signature::new, (x, y) -> { throw new IllegalStateException(); }, TreeMap::new));
-        this.javadocBaseURL = javadocBaseURL;
+        this.javadoc = javaPackage.getJavadoc();
     }
 
     public JavaPackage getJavaPackage() {
@@ -47,8 +47,8 @@ public final class JavaClass extends VersionableJavaObject {
         return name;
     }
 
-    public String getJavadocBaseURL() {
-        return javadocBaseURL;
+    public Javadoc getJavadoc() {
+        return javadoc;
     }
 
     public Collection<JavaMember> getJavaMembers() {
@@ -83,7 +83,7 @@ public final class JavaClass extends VersionableJavaObject {
         if (javaMembers.containsKey(key)) {
             throw new IllegalStateException(String.format("Duplicate signature for class %s.%s: %s %s", javaPackage.getName(), name, type, signature));
         }
-        javaMembers.put(key, new JavaMember(this, type, signature, since, deprecated, javadocBaseURL));
+        javaMembers.put(key, new JavaMember(this, type, signature, since, deprecated));
     }
 
     JavaMember findJavaMember(JavaMember.Type type, String signature) {
@@ -112,6 +112,29 @@ public final class JavaClass extends VersionableJavaObject {
     @Override
     public String toString() {
         return javaPackage + "." + name;
+    }
+
+    JavaClass copy(JavaPackage copyPackage) {
+        JavaClass copy = new JavaClass(copyPackage, name, getSince(), isDeprecated(), inheritedMethodSignatures.keySet());
+        for (JavaMember javaMember : javaMembers.values()) {
+            JavaMember memberCopy = javaMember.copy(copy);
+            copy.javaMembers.put(new MemberMapKey(memberCopy.getType(), memberCopy.getSignature()), memberCopy);
+        }
+        return copy;
+    }
+
+    void merge(JavaClass other) {
+        for (JavaMember otherMember : other.javaMembers.values()) {
+            final MemberMapKey key = new MemberMapKey(otherMember.getType(), otherMember.getSignature());
+
+            JavaMember javaMember = javaMembers.get(key);
+            if (javaMember == null && (otherMember.getType() != JavaMember.Type.METHOD || !isInheritedMethod(otherMember.getSignature()))) {
+                javaMembers.put(key, otherMember);
+            }
+        }
+        for (Map.Entry<String, Signature> entry : other.inheritedMethodSignatures.entrySet()) {
+            inheritedMethodSignatures.computeIfAbsent(entry.getKey(), v -> entry.getValue());
+        }
     }
 
     @Override
@@ -145,7 +168,7 @@ public final class JavaClass extends VersionableJavaObject {
             inheritedMethodSignatures.add(inheritedMethods.get(i).getAsString());
         }
 
-        JavaClass javaClass = new JavaClass(javaPackage, name, since, deprecated, inheritedMethodSignatures, javaPackage.getJavadocBaseURL());
+        JavaClass javaClass = new JavaClass(javaPackage, name, since, deprecated, inheritedMethodSignatures);
 
         addMembers(json, "constructors", JavaMember.Type.CONSTRUCTOR, javaClass);
         addMembers(json, "fields", JavaMember.Type.FIELD, javaClass);
@@ -213,6 +236,11 @@ public final class JavaClass extends VersionableJavaObject {
         @Override
         public int compareTo(MemberMapKey o) {
             return COMPARATOR.compare(this, o);
+        }
+
+        @Override
+        public String toString() {
+            return signature;
         }
     }
 

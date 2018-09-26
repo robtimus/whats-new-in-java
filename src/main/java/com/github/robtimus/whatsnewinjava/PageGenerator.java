@@ -50,10 +50,7 @@ public final class PageGenerator {
             writer.write(removedPage);
         }
 
-        JavaAPI javaAPI = javaAPIs.lastEntry().getValue();
-        javaAPI.retainSince(minimalJavaVersion);
-
-        String newPage = pageRenderer.renderNewPage(javaAPI);
+        String newPage = pageRenderer.renderNewPage(javaAPIs, minimalJavaVersion);
         try (Writer writer = Files.newBufferedWriter(newOutputFile)) {
             writer.write(newPage);
         }
