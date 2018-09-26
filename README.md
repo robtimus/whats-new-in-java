@@ -27,7 +27,3 @@ Click on _Filter_ at the top of the page to enter a filter. This filter has two 
 To clear an existing filter, click on the little cross icon after the filter.
 
 Note: if a filter is in place, _Expand All_ will only expand the filter results.
-
-## Removed packages, classes, and members
-
-The page is generated from Oracle's latest Java API. If a package, class or member is removed, it will no longer be documented in the Java API, and therefore it will no longer be displayed.
