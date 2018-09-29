@@ -17,6 +17,10 @@ public abstract class VersionableJavaObject {
         return since;
     }
 
+    public boolean isSince(JavaVersion javaVersion) {
+        return javaVersion.equals(since);
+    }
+
     public boolean isDeprecated() {
         return deprecated;
     }

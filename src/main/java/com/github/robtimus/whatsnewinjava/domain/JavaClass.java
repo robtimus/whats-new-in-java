@@ -75,7 +75,7 @@ public final class JavaClass extends VersionableJavaObject {
     }
 
     private Predicate<JavaMember> matchesSince(JavaVersion since) {
-        return m -> m.getSince() == since && !since.equals(this.getSince());
+        return m -> m.isSince(since) && !isSince(since);
     }
 
     void addJavaMember(JavaMember.Type type, String signature, JavaVersion since, boolean deprecated) {

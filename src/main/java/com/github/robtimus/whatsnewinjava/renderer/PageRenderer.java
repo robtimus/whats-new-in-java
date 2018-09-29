@@ -10,6 +10,7 @@ import org.thymeleaf.context.IContext;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
+import com.github.robtimus.whatsnewinjava.domain.JavaModule;
 import com.github.robtimus.whatsnewinjava.domain.JavaPackage;
 import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
 
@@ -37,19 +38,20 @@ public final class PageRenderer {
     }
 
     public String renderNewPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
-        return renderPage(TEMPLATE_SPEC_NEW, createContext(JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion)));
+        return renderPage(TEMPLATE_SPEC_NEW, createContext(JavaAPI.getNewModulesPerVersion(javaAPIs, minimalJavaVersion), JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion)));
     }
 
     public String renderDeprecatedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(JavaAPI.getDeprecatedPackagesPerVersion(javaAPIs)));
+        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(JavaAPI.getDeprecatedModulesPerVersion(javaAPIs), JavaAPI.getDeprecatedPackagesPerVersion(javaAPIs)));
     }
 
     public String renderRemovedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(JavaAPI.getRemovedPackagesPerVersion(javaAPIs)));
+        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(JavaAPI.getRemovedModulesPerVersion(javaAPIs), JavaAPI.getRemovedPackagesPerVersion(javaAPIs)));
     }
 
-    private IContext createContext(Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion) {
+    private IContext createContext(Map<JavaVersion, Collection<JavaModule>> modulesPerVersion, Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion) {
         Context context = new Context();
+        context.setVariable("modulesPerVersion", modulesPerVersion);
         context.setVariable("packagesPerVersion", packagesPerVersion);
         context.setVariable("linkGenerator", linkGenerator);
         return context;

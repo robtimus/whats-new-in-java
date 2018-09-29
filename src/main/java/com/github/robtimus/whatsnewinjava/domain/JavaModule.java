@@ -28,6 +28,17 @@ public final class JavaModule extends VersionableJavaObject {
         return name;
     }
 
+    @Override
+    public boolean isSince(JavaVersion javaVersion) {
+        // For Java 9, don't match unless all packages are also introduced in the version
+        return super.isSince(javaVersion) && (!javaVersion.introducedModules() || allPackagesSince(javaVersion));
+    }
+
+    private boolean allPackagesSince(JavaVersion javaVersion) {
+        return !javaPackages.isEmpty() && javaPackages.values().stream()
+                .allMatch(p -> p.isSince(javaVersion));
+    }
+
     public Javadoc getJavadoc() {
         return javadoc;
     }
@@ -52,7 +63,7 @@ public final class JavaModule extends VersionableJavaObject {
     }
 
     private Predicate<JavaPackage> matchesSince(JavaVersion since) {
-        return c -> c.getSince() == since || c.hasJavaClasses(since);
+        return p -> (p.isSince(since) && !isSince(since)) || p.hasJavaClasses(since);
     }
 
     void addJavaPackage(JavaPackage javaPackage) {

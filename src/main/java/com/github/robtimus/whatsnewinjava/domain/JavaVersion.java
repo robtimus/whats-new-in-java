@@ -29,6 +29,14 @@ public final class JavaVersion implements Comparable<JavaVersion> {
         this.displayValue = displayValue;
     }
 
+    public boolean introducedModules() {
+        return major == 9 && minor == 0 && patch == 0;
+    }
+
+    public boolean hasModules() {
+        return major >= 9;
+    }
+
     private int getMajor() {
         return major;
     }

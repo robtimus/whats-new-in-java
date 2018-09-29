@@ -63,7 +63,7 @@ public final class JavaPackage extends VersionableJavaObject {
     }
 
     private Predicate<JavaClass> matchesSince(JavaVersion since) {
-        return c -> (c.getSince() == since && !since.equals(this.getSince())) || c.hasJavaMembers(since);
+        return c -> (c.isSince(since) && !isSince(since)) || c.hasJavaMembers(since);
     }
 
     void addJavaClass(String className, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
