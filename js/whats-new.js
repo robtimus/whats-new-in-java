@@ -18,27 +18,28 @@
 
         clearFilter();
 
-        // hide all non-matching packages and classes
-        $('.panel.java-package, .panel.java-class').filter(function () {
+        // hide all non-matching modules, packages and classes
+        $('.panel.java-module, .panel.java-package, .panel.java-class').filter(function () {
             return !matchesFilter(this, filter);
         }).hide();
-        // show all packages with non-hidden classes, as these may have gotten hidden
-        $('.panel.java-package').filter(function () {
-            return $(this).find('.panel.java-class').filter(function () {
+
+        // show all modules and packages with matching packages or classes, as these may have gotten hidden
+        $('.panel.java-module, .panel.java-package').filter(function () {
+            return $(this).find('.panel.java-package, .panel.java-class').filter(function () {
                 return matchesFilter(this, filter);
             }).length > 0;
         }).show();
-        // show all classes for packages that match exactly
-        if (filter.startsWith('=')) {
-            $('.panel.java-package').filter(function () {
-                return matchesFilter(this, filter)
-            }).find('.java-class').show();
-        }
-        // hide all versions with non-visible packages
+
+        // show all packages and classes for modules and packages that match
+        $('.panel.java-module, .panel.java-package').filter(function () {
+            return matchesFilter(this, filter);
+        }).find('.java-package, .java-class').show();
+
+        // hide all versions with non-matched modules, packages or classes
         $('.panel.java-version').filter(function () {
-            return $(this).find('.panel.java-package').filter(function () {
-                return matchesFilter(this, filter) || hasFilterMatches(this, '.panel.java-class', filter)
-            }).length === 0
+            return $(this).find('.panel.java-module, .panel.java-package, .panel.java-class').filter(function () {
+                return matchesFilter(this, filter);
+            }).length == 0;
         }).hide();
 
         $('#filter-content').show().find('#current-filter').text(filter);
@@ -47,7 +48,7 @@
     };
 
     var clearFilter = function () {
-        $('.panel.java-version, .panel.java-package, .panel.java-class').show();
+        $('.panel.java-version, .panel.java-module, .panel.java-package, .panel.java-class').show();
         $('#filter-content').hide().find('#current-filter').text('');
         currentFilter = '';
         localStorage && localStorage.removeItem('wnij-current-filter');
