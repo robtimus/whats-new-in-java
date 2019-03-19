@@ -10,6 +10,7 @@ import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Set;
@@ -35,7 +36,7 @@ public final class JavaAPI {
     private final Map<String, JavaModule> javaModules = new TreeMap<>(Comparator.nullsFirst(Comparator.naturalOrder()));
     private final Set<JavaVersion> javaVersions = new TreeSet<>();
 
-    private final Javadoc  javadoc;
+    private final Javadoc javadoc;
 
     public JavaAPI(Javadoc javadoc) {
         this.javadoc = javadoc;
@@ -281,13 +282,13 @@ public final class JavaAPI {
                 .orElse(null);
     }
 
-    private Map<JavaVersion, Collection<JavaModule>> getModulesPerVersion() {
+    private Map<JavaVersion, List<JavaModule>> getModulesPerVersion() {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
 
         for (JavaVersion javaVersion : javaVersions) {
             if (javaVersion.hasModules()) {
-                Collection<JavaModule> javaModules = getJavaModules(javaVersion).stream()
+                List<JavaModule> javaModules = getJavaModules(javaVersion).stream()
                         .sorted(Comparator.comparing(JavaModule::getName))
                         .collect(Collectors.toList());
                 if (!javaModules.isEmpty()) {
@@ -298,13 +299,13 @@ public final class JavaAPI {
         return modulesPerVersion;
     }
 
-    private Map<JavaVersion, Collection<JavaPackage>> getPackagesPerVersion() {
+    private Map<JavaVersion, List<JavaPackage>> getPackagesPerVersion() {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
 
         for (JavaVersion javaVersion : javaVersions) {
             if (!javaVersion.hasModules()) {
-                Collection<JavaPackage> javaPackages = getJavaModules(javaVersion).stream()
+                List<JavaPackage> javaPackages = getJavaModules(javaVersion).stream()
                         .flatMap(m -> m.getJavaPackages(javaVersion).stream())
                         .sorted(Comparator.comparing(JavaPackage::getName))
                         .collect(Collectors.toList());
@@ -316,7 +317,7 @@ public final class JavaAPI {
         return packagesPerVersion;
     }
 
-    public static Map<JavaVersion, Collection<JavaModule>> getNewModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
+    public static Map<JavaVersion, List<JavaModule>> getNewModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
 
         Iterator<JavaAPI> iterator = javaAPIs.descendingMap().values().iterator();
         JavaAPI latestJavaAPI = iterator.next();
@@ -327,10 +328,24 @@ public final class JavaAPI {
         }
         javaAPI.retainSince(minimalJavaVersion);
 
-        return javaAPI.getModulesPerVersion();
+        Map<JavaVersion, List<JavaModule>> result = javaAPI.getModulesPerVersion();
+        Map<JavaVersion, List<JavaModule>> modulesPerVersionFromAllAPIs = getNewModulesPerVersion(javaAPIs);
+
+        for (Map.Entry<JavaVersion, List<JavaModule>> entry : result.entrySet()) {
+            JavaVersion javaVersion = entry.getKey();
+            List<JavaModule> javaModulesFromLatestAPI = entry.getValue();
+            List<JavaModule> javaModulesFromAllAPIs = modulesPerVersionFromAllAPIs.remove(javaVersion);
+            if (javaModulesFromAllAPIs != null) {
+                JavaModule.mergeAll(javaModulesFromLatestAPI, javaModulesFromAllAPIs);
+            }
+        }
+
+        result.putAll(modulesPerVersionFromAllAPIs);
+
+        return result;
     }
 
-    public static Map<JavaVersion, Collection<JavaPackage>> getNewPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
+    public static Map<JavaVersion, List<JavaPackage>> getNewPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
 
         Iterator<JavaAPI> iterator = javaAPIs.descendingMap().values().iterator();
         JavaAPI latestJavaAPI = iterator.next();
@@ -341,12 +356,165 @@ public final class JavaAPI {
         }
         javaAPI.retainSince(minimalJavaVersion);
 
-        return javaAPI.getPackagesPerVersion();
+        Map<JavaVersion, List<JavaPackage>> result = javaAPI.getPackagesPerVersion();
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersionFromAllAPIs = getNewPackagesPerVersion(javaAPIs);
+
+        for (Map.Entry<JavaVersion, List<JavaPackage>> entry : result.entrySet()) {
+            JavaVersion javaVersion = entry.getKey();
+            List<JavaPackage> javaPackagesFromLatestAPI = entry.getValue();
+            List<JavaPackage> javaPackagesFromAllAPIs = packagesPerVersionFromAllAPIs.remove(javaVersion);
+            if (javaPackagesFromAllAPIs != null) {
+                JavaPackage.mergeAll(javaPackagesFromLatestAPI, javaPackagesFromAllAPIs);
+            }
+        }
+
+        result.putAll(packagesPerVersionFromAllAPIs);
+
+        return result;
     }
 
-    public static Map<JavaVersion, Collection<JavaModule>> getDeprecatedModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+    private static Map<JavaVersion, List<JavaModule>> getNewModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
+
+        Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
+        Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
+        while (iterator.hasNext()) {
+            Map.Entry<JavaVersion, JavaAPI> previous = iterator.next();
+            if (!current.getValue().javaModules.containsKey(null)) {
+                JavaAPI javaAPI = new JavaAPI(current.getValue().getJavadoc());
+                if (previous.getValue().javaModules.containsKey(null)) {
+                    // current uses modules but previous does not, use collectNewPackages
+                    collectNewPackages(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
+                } else {
+                    // both current and previous use modules, use collectNewModules
+                    collectNewModules(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
+                }
+                List<JavaModule> javaModules = javaAPI.javaModules.values().stream()
+                        .sorted(Comparator.comparing(JavaModule::getName))
+                        .collect(Collectors.toList());
+                if (!javaModules.isEmpty()) {
+                    modulesPerVersion.put(current.getKey(), javaModules);
+                }
+            }
+            // else current does not contain actual modules - use getNewPackagesPerVersion
+            current = previous;
+        }
+        return modulesPerVersion;
+    }
+
+    private static Map<JavaVersion, List<JavaPackage>> getNewPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+        Comparator<JavaVersion> comparator = Comparator.reverseOrder();
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
+
+        Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
+        Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
+        while (iterator.hasNext()) {
+            Map.Entry<JavaVersion, JavaAPI> previous = iterator.next();
+            if (current.getValue().javaModules.containsKey(null)) {
+                JavaAPI javaAPI = new JavaAPI(current.getValue().getJavadoc());
+                collectNewPackages(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
+                List<JavaPackage> javaPackages = javaAPI.javaModules.values().stream()
+                        .flatMap(m -> m.getJavaPackages().stream())
+                        .sorted(Comparator.comparing(JavaPackage::getName))
+                        .collect(Collectors.toList());
+                if (!javaPackages.isEmpty()) {
+                    packagesPerVersion.put(current.getKey(), javaPackages);
+                }
+            }
+            // else current contains actual modules - use getNewModulesPerVersion
+            current = previous;
+        }
+        return packagesPerVersion;
+    }
+
+    private static void collectNewModules(JavaAPI current, JavaAPI previous, JavaVersion since, JavaAPI dest) {
+        for (JavaModule currentModule : current.getJavaModules()) {
+            JavaModule previousModule = previous.findJavaModule(currentModule.getName());
+            if (previousModule == null) {
+                // the entire module is new
+                dest.addModule(currentModule.getName(), since, currentModule.isDeprecated());
+            } else {
+                // check packages
+                collectNewPackages(currentModule, previousModule, since, dest);
+            }
+        }
+    }
+
+    private static void collectNewPackages(JavaAPI current, JavaAPI previous, JavaVersion since, JavaAPI dest) {
+        for (JavaPackage currentPackage : current.getJavaPackages()) {
+            JavaPackage previousPackage = previous.findJavaPackage(currentPackage.getName());
+            if (previousPackage == null) {
+                // the entire package is new
+                JavaModule currentModule = currentPackage.getJavaModule();
+                String moduleName = currentModule.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackage(moduleName, currentPackage.getName(), since, currentPackage.isDeprecated());
+            } else {
+                // check classes
+                collectNewClasses(currentPackage, previousPackage, since, dest);
+            }
+        }
+    }
+
+    private static void collectNewPackages(JavaModule currentModule, JavaModule previousModule, JavaVersion since, JavaAPI dest) {
+        for (JavaPackage currentPackage : currentModule.getJavaPackages()) {
+            JavaPackage previousPackage = previousModule.findJavaPackage(currentPackage.getName());
+            if (previousPackage == null) {
+                // the entire package was added
+                String moduleName = currentModule.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackage(moduleName, currentPackage.getName(), since, currentPackage.isDeprecated());
+            } else {
+                // check classes
+                collectNewClasses(currentPackage, previousPackage, since, dest);
+            }
+        }
+    }
+
+    private static void collectNewClasses(JavaPackage currentPackage, JavaPackage previousPackage, JavaVersion since, JavaAPI dest) {
+        for (JavaClass currentClass : currentPackage.getJavaClasses()) {
+            JavaClass previousClass = previousPackage.findJavaClass(currentClass.getName());
+            if (previousClass == null) {
+                // the entire class is new
+                JavaModule currentModule = currentPackage.getJavaModule();
+                String moduleName = currentModule.getName();
+                String packageName = currentPackage.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+                dest.addClass(moduleName, packageName, currentClass.getName(), since, true, currentClass.getInheritedMethodSignatures());
+            } else {
+                // check members
+                collectNewMembers(currentPackage, currentClass, previousClass, since, dest);
+            }
+        }
+    }
+
+    private static void collectNewMembers(JavaPackage currentPackage, JavaClass currentClass, JavaClass previousClass, JavaVersion since, JavaAPI dest) {
+        for (JavaMember currentMember : currentClass.getJavaMembers()) {
+            JavaMember previousMember = previousClass.findJavaMember(currentMember.getType(), currentMember.getSignature());
+            if (previousMember == null && (currentMember.getType() != JavaMember.Type.METHOD || !previousClass.isInheritedMethod(currentMember.getSignature()))) {
+                 // the member was added
+                JavaModule currentModule = currentPackage.getJavaModule();
+                String moduleName = currentModule.getName();
+                String packageName = currentPackage.getName();
+                String className = currentClass.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getSignature(), since, currentMember.isDeprecated());
+            }
+            // else currentMember already existed
+        }
+    }
+
+    public static Map<JavaVersion, List<JavaModule>> getDeprecatedModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+        Comparator<JavaVersion> comparator = Comparator.reverseOrder();
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
 
         Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
         Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
@@ -361,10 +529,12 @@ public final class JavaAPI {
                     // both current and previous use modules, use collectDeprecatedModules
                     collectDeprecatedModules(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
                 }
-                Collection<JavaModule> javaModules = javaAPI.javaModules.values().stream()
+                List<JavaModule> javaModules = javaAPI.javaModules.values().stream()
                         .sorted(Comparator.comparing(JavaModule::getName))
                         .collect(Collectors.toList());
-                modulesPerVersion.put(current.getKey(), javaModules);
+                if (!javaModules.isEmpty()) {
+                    modulesPerVersion.put(current.getKey(), javaModules);
+                }
             }
             // else current does not contain actual modules - use getDeprecatedPackagesPerVersion
             current = previous;
@@ -372,9 +542,9 @@ public final class JavaAPI {
         return modulesPerVersion;
     }
 
-    public static Map<JavaVersion, Collection<JavaPackage>> getDeprecatedPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+    public static Map<JavaVersion, List<JavaPackage>> getDeprecatedPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
 
         Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
         Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
@@ -383,11 +553,13 @@ public final class JavaAPI {
             if (current.getValue().javaModules.containsKey(null)) {
                 JavaAPI javaAPI = new JavaAPI(current.getValue().getJavadoc());
                 collectDeprecatedPackages(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
-                Collection<JavaPackage> javaPackages = javaAPI.javaModules.values().stream()
+                List<JavaPackage> javaPackages = javaAPI.javaModules.values().stream()
                         .flatMap(m -> m.getJavaPackages().stream())
                         .sorted(Comparator.comparing(JavaPackage::getName))
                         .collect(Collectors.toList());
-                packagesPerVersion.put(current.getKey(), javaPackages);
+                if (!javaPackages.isEmpty()) {
+                    packagesPerVersion.put(current.getKey(), javaPackages);
+                }
             }
             // else current contains actual modules - use getDeprecatedModulesPerVersion
             current = previous;
@@ -486,14 +658,25 @@ public final class JavaAPI {
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
                 dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getSignature(), since, true);
+            } else if (currentMember.isDeprecated() && currentMember.getType() == JavaMember.Type.METHOD && previousClass.isInheritedMethod(currentMember.getSignature())) {
+                // the member was inherited before but now became deprecated
+                JavaModule currentModule = currentPackage.getJavaModule();
+                String moduleName = currentModule.getName();
+                String packageName = currentPackage.getName();
+                String className = currentClass.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getSignature(), since, true);
             }
             // else currentMember is new, or the member's deprecation status has not change, or it became non-deprecated
         }
     }
 
-    public static Map<JavaVersion, Collection<JavaModule>> getRemovedModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+    public static Map<JavaVersion, List<JavaModule>> getRemovedModulesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = new TreeMap<>(comparator);
 
         Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
         Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
@@ -508,10 +691,12 @@ public final class JavaAPI {
                     // both current and previous use modules, use collectRemovedModules
                     collectRemovedModules(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
                 }
-                Collection<JavaModule> javaModules = javaAPI.javaModules.values().stream()
+                List<JavaModule> javaModules = javaAPI.javaModules.values().stream()
                         .sorted(Comparator.comparing(JavaModule::getName))
                         .collect(Collectors.toList());
-                modulesPerVersion.put(current.getKey(), javaModules);
+                if (!javaModules.isEmpty()) {
+                    modulesPerVersion.put(current.getKey(), javaModules);
+                }
             }
             // else current does not contain actual modules - use getRemovedPackagesPerVersion
             current = previous;
@@ -519,9 +704,9 @@ public final class JavaAPI {
         return modulesPerVersion;
     }
 
-    public static Map<JavaVersion, Collection<JavaPackage>> getRemovedPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
+    public static Map<JavaVersion, List<JavaPackage>> getRemovedPackagesPerVersion(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
         Comparator<JavaVersion> comparator = Comparator.reverseOrder();
-        Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = new TreeMap<>(comparator);
 
         Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
         Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
@@ -530,11 +715,13 @@ public final class JavaAPI {
             if (current.getValue().javaModules.containsKey(null)) {
                 JavaAPI javaAPI = new JavaAPI(previous.getValue().getJavadoc());
                 collectRemovedPackages(current.getValue(), previous.getValue(), current.getKey(), javaAPI);
-                Collection<JavaPackage> javaPackages = javaAPI.javaModules.values().stream()
+                List<JavaPackage> javaPackages = javaAPI.javaModules.values().stream()
                         .flatMap(m -> m.getJavaPackages().stream())
                         .sorted(Comparator.comparing(JavaPackage::getName))
                         .collect(Collectors.toList());
-                packagesPerVersion.put(current.getKey(), javaPackages);
+                if (!javaPackages.isEmpty()) {
+                    packagesPerVersion.put(current.getKey(), javaPackages);
+                }
             }
             // else current contains actual modules - use getRemovedModulesPerVersion
             current = previous;

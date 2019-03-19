@@ -2,6 +2,9 @@ package com.github.robtimus.whatsnewinjava.domain;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -131,6 +134,28 @@ public final class JavaModule extends VersionableJavaObject {
                 javaPackage.merge(otherPackage);
             }
         }
+    }
+
+    static void mergeAll(List<JavaModule> javaModules, List<JavaModule> toMerge) {
+        for (JavaModule javaModule : javaModules) {
+            JavaModule moduleToMerge = remove(toMerge, javaModule.name);
+            if (moduleToMerge != null) {
+                javaModule.merge(moduleToMerge);
+            }
+        }
+        javaModules.addAll(toMerge);
+        javaModules.sort(Comparator.comparing(JavaModule::getName));
+    }
+
+    private static JavaModule remove(List<JavaModule> javaModules, String name) {
+        for (Iterator<JavaModule> i = javaModules.iterator(); i.hasNext(); ) {
+            JavaModule javaModule = i.next();
+            if (javaModule.name.equals(name)) {
+                i.remove();
+                return javaModule;
+            }
+        }
+        return null;
     }
 
     @Override

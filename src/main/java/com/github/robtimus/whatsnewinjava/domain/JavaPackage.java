@@ -2,6 +2,9 @@ package com.github.robtimus.whatsnewinjava.domain;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -16,7 +19,7 @@ public final class JavaPackage extends VersionableJavaObject {
     private final String name;
     private final Map<String, JavaClass> javaClasses;
 
-    private final Javadoc  javadoc;
+    private final Javadoc javadoc;
 
     JavaPackage(JavaModule javaModule, String name, JavaVersion since, boolean deprecated) {
         super(since, deprecated);
@@ -123,6 +126,28 @@ public final class JavaPackage extends VersionableJavaObject {
                 javaClass.merge(otherClass);
             }
         }
+    }
+
+    static void mergeAll(List<JavaPackage> javaPackages, List<JavaPackage> toMerge) {
+        for (JavaPackage javaPackage : javaPackages) {
+            JavaPackage packageToMerge = remove(toMerge, javaPackage.name);
+            if (packageToMerge != null) {
+                javaPackage.merge(packageToMerge);
+            }
+        }
+        javaPackages.addAll(toMerge);
+        javaPackages.sort(Comparator.comparing(JavaPackage::getName));
+    }
+
+    private static JavaPackage remove(List<JavaPackage> javaPackages, String name) {
+        for (Iterator<JavaPackage> i = javaPackages.iterator(); i.hasNext(); ) {
+            JavaPackage javaPackage = i.next();
+            if (javaPackage.name.equals(name)) {
+                i.remove();
+                return javaPackage;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.github.robtimus.whatsnewinjava.renderer;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 import org.thymeleaf.TemplateEngine;
@@ -49,7 +49,7 @@ public final class PageRenderer {
         return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(JavaAPI.getRemovedModulesPerVersion(javaAPIs), JavaAPI.getRemovedPackagesPerVersion(javaAPIs)));
     }
 
-    private IContext createContext(Map<JavaVersion, Collection<JavaModule>> modulesPerVersion, Map<JavaVersion, Collection<JavaPackage>> packagesPerVersion) {
+    private IContext createContext(Map<JavaVersion, List<JavaModule>> modulesPerVersion, Map<JavaVersion, List<JavaPackage>> packagesPerVersion) {
         Context context = new Context();
         context.setVariable("modulesPerVersion", modulesPerVersion);
         context.setVariable("packagesPerVersion", packagesPerVersion);
