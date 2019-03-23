@@ -1,0 +1,12 @@
+<head th:fragment="header (title)">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title th:text="${title}"></title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/whats-new.css">
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/whats-new.js"></script>
+  <script type="text/javascript">
+    var latestBaseURL = '[[${linkGenerator.latestBaseURL}]]';
+  </script>
+</head>
