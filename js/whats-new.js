@@ -55,7 +55,9 @@
     };
 
     $(function () {
-        $('a[rel=external').attr('target', '_blank');
+        $('a[rel=external').attr('target', '_blank').attr('href', function (index, href) {
+            return href.indexOf('http') === 0 ? href : latestBaseURL + href;
+        });
 
         $('#collapse-all').click(function () {
             $('a[data-toggle=collapse][role=button][aria-expanded=true]').click();
