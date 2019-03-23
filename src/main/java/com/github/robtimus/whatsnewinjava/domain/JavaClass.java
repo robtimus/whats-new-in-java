@@ -118,17 +118,17 @@ public final class JavaClass extends VersionableJavaObject {
         JavaClass copy = new JavaClass(copyPackage, name, getSince(), isDeprecated(), inheritedMethodSignatures.keySet());
         for (JavaMember javaMember : javaMembers.values()) {
             JavaMember memberCopy = javaMember.copy(copy);
-            copy.javaMembers.put(new MemberMapKey(memberCopy.getType(), memberCopy.getSignature()), memberCopy);
+            copy.javaMembers.put(new MemberMapKey(memberCopy.getType(), memberCopy.getOriginalSignature()), memberCopy);
         }
         return copy;
     }
 
     void merge(JavaClass other) {
         for (JavaMember otherMember : other.javaMembers.values()) {
-            final MemberMapKey key = new MemberMapKey(otherMember.getType(), otherMember.getSignature());
+            final MemberMapKey key = new MemberMapKey(otherMember.getType(), otherMember.getOriginalSignature());
 
             JavaMember javaMember = javaMembers.get(key);
-            if (javaMember == null && (otherMember.getType() != JavaMember.Type.METHOD || !isInheritedMethod(otherMember.getSignature()))) {
+            if (javaMember == null && (otherMember.getType() != JavaMember.Type.METHOD || !isInheritedMethod(otherMember.getOriginalSignature()))) {
                 javaMembers.put(key, otherMember);
             }
         }
@@ -153,7 +153,7 @@ public final class JavaClass extends VersionableJavaObject {
     private void addMembers(String propertyName, JavaMember.Type type, JsonObject json) {
         JsonObject members = javaMembers.values().stream()
                 .filter(m -> m.getType() == type)
-                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.getSignature(), m.toJSON()), (x, y) -> { throw new IllegalStateException(); }));
+                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.getOriginalSignature(), m.toJSON()), (x, y) -> { throw new IllegalStateException(); }));
 
         json.add(propertyName, members);
     }
@@ -182,7 +182,7 @@ public final class JavaClass extends VersionableJavaObject {
         for (String signature : members.keySet()) {
             JsonObject memberJSON = members.get(signature).getAsJsonObject();
             JavaMember javaMember = JavaMember.fromJSON(memberJSON, javaClass, type, signature);
-            final MemberMapKey key = new MemberMapKey(type, javaMember.getSignature());
+            final MemberMapKey key = new MemberMapKey(type, javaMember.getOriginalSignature());
             javaClass.javaMembers.put(key, javaMember);
         }
     }

@@ -97,7 +97,7 @@
                                   th:each="javaMember : ${javaMembers}">
                                 <div class="title">
                                   <a class="btn btn-link" th:href="${linkGenerator.generateLink(javaMember)}" rel="external">
-                                    [[${javaMember.prettySignature}]]
+                                    [[${javaMember.prettifiedSignature}]]
                                   </a>
                                 </div>
                               </li>
@@ -190,7 +190,7 @@
                             th:each="javaMember : ${javaMembers}">
                           <div class="title">
                             <a class="btn btn-link" th:href="${linkGenerator.generateLink(javaMember)}" rel="external">
-                              [[${javaMember.prettySignature}]]
+                              [[${javaMember.prettifiedSignature}]]
                             </a>
                           </div>
                         </li>

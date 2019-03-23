@@ -1,5 +1,6 @@
 package com.github.robtimus.whatsnewinjava.renderer;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -25,7 +26,6 @@ public final class PageRenderer {
     private static final TemplateSpec TEMPLATE_SPEC_REMOVED_ = new TemplateSpec(PAGE_TEMPLATE_REMOVED, TemplateMode.HTML);
 
     private final TemplateEngine templateEngine;
-    private final LinkGenerator linkGenerator;
 
     public PageRenderer() {
         templateEngine = new TemplateEngine();
@@ -33,23 +33,33 @@ public final class PageRenderer {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setSuffix(".html");
         templateEngine.addTemplateResolver(templateResolver);
-
-        linkGenerator = new LinkGenerator();
     }
 
     public String renderNewPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
-        return renderPage(TEMPLATE_SPEC_NEW, createContext(JavaAPI.getNewModulesPerVersion(javaAPIs, minimalJavaVersion), JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion)));
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getNewModulesPerVersion(javaAPIs, minimalJavaVersion);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion);
+        LinkGenerator linkGenerator = new LinkGenerator(javaAPIs);
+        return renderPage(TEMPLATE_SPEC_NEW, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
     }
 
     public String renderDeprecatedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(JavaAPI.getDeprecatedModulesPerVersion(javaAPIs), JavaAPI.getDeprecatedPackagesPerVersion(javaAPIs)));
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getDeprecatedModulesPerVersion(javaAPIs);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getDeprecatedPackagesPerVersion(javaAPIs);
+        LinkGenerator linkGenerator = new LinkGenerator(javaAPIs);
+        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
     }
 
     public String renderRemovedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(JavaAPI.getRemovedModulesPerVersion(javaAPIs), JavaAPI.getRemovedPackagesPerVersion(javaAPIs)));
+        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getRemovedModulesPerVersion(javaAPIs);
+        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getRemovedPackagesPerVersion(javaAPIs);
+        // don't use the actual JavaAPIs here as the removal already links to the latest version that has the module / package / class / member
+        LinkGenerator linkGenerator = new LinkGenerator(Collections.emptyNavigableMap());
+        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
     }
 
-    private IContext createContext(Map<JavaVersion, List<JavaModule>> modulesPerVersion, Map<JavaVersion, List<JavaPackage>> packagesPerVersion) {
+    private IContext createContext(Map<JavaVersion, List<JavaModule>> modulesPerVersion, Map<JavaVersion, List<JavaPackage>> packagesPerVersion,
+            LinkGenerator linkGenerator) {
+
         Context context = new Context();
         context.setVariable("modulesPerVersion", modulesPerVersion);
         context.setVariable("packagesPerVersion", packagesPerVersion);

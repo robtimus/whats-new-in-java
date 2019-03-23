@@ -7,7 +7,8 @@ import com.google.gson.JsonObject;
 public final class JavaMember extends VersionableJavaObject {
 
     private final JavaClass javaClass;
-    private final String signature;
+    private final String originalSignature;
+    private final String prettifiedSignature;
     private final Type type;
 
     private final Javadoc javadoc;
@@ -16,7 +17,8 @@ public final class JavaMember extends VersionableJavaObject {
         super(since, deprecated);
         this.javaClass = javaClass;
         this.type = type;
-        this.signature = signature;
+        this.originalSignature = signature;
+        this.prettifiedSignature = prettifySignature(signature).replace("<init>", javaClass.getName());
         this.javadoc = javaClass.getJavadoc();
     }
 
@@ -28,12 +30,12 @@ public final class JavaMember extends VersionableJavaObject {
         return type;
     }
 
-    public String getSignature() {
-        return signature;
+    public String getOriginalSignature() {
+        return originalSignature;
     }
 
-    public String getPrettySignature() {
-        return prettifySignature(signature).replace("<init>", javaClass.getName());
+    public String getPrettifiedSignature() {
+        return prettifiedSignature;
     }
 
     public Javadoc getJavadoc() {
@@ -58,11 +60,11 @@ public final class JavaMember extends VersionableJavaObject {
 
     @Override
     public String toString() {
-        return javaClass + "." + getPrettySignature();
+        return javaClass + "." + getPrettifiedSignature();
     }
 
     JavaMember copy(JavaClass copyClass) {
-        return new JavaMember(copyClass, type, signature, getSince(), isDeprecated());
+        return new JavaMember(copyClass, type, originalSignature, getSince(), isDeprecated());
     }
 
     static JavaMember fromJSON(JsonObject json, JavaClass javaClass, Type type, String signature) {
