@@ -63,15 +63,15 @@
     <version.gson>2.8.5</version.gson>
     <version.io-functions>1.0</version.io-functions>
     <version.junit>4.12</version.junit>
-    <version.jsoup>1.11.3</version.jsoup>
+    <version.jsoup>1.12.1</version.jsoup>
     <version.mockito>1.10.19</version.mockito>
     <version.slf4j>1.7.25</version.slf4j>
-    <version.thymeleaf>3.0.9.RELEASE</version.thymeleaf>
+    <version.thymeleaf>3.0.11.RELEASE</version.thymeleaf>
 
     <version.plugin.clean>3.1.0</version.plugin.clean>
-    <version.plugin.compiler>3.7.0</version.plugin.compiler>
+    <version.plugin.compiler>3.8.1</version.plugin.compiler>
     <version.plugin.dependency>3.1.1</version.plugin.dependency>
-    <version.plugin.jar>3.1.0</version.plugin.jar>
+    <version.plugin.jar>3.1.1</version.plugin.jar>
     <version.plugin.resources>3.1.0</version.plugin.resources>
     <version.plugin.surefire>2.22.0</version.plugin.surefire>
   </properties>
