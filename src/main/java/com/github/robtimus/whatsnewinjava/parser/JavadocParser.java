@@ -30,7 +30,7 @@ public final class JavadocParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavadocParser.class);
 
-    public JavaAPI parseJavadoc(Path rootFolder, Set<String> packagesToIgnore, String javadocBaseURL) throws IOException {
+    public JavaAPI parseJavadoc(Path rootFolder, Set<String> packagesToIgnore, String javadocBaseURL, int javaVersion) throws IOException {
         JavaAPI javaAPI;
         if (Files.isDirectory(rootFolder.resolve("java.base"))) {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, true));
@@ -39,12 +39,12 @@ public final class JavadocParser {
                     .filter(p -> Files.isDirectory(p) && Files.isRegularFile(p.resolve("module-summary.html")))
                     .forEach(IOConsumer.unchecked(subFolder -> {
                         String moduleName = subFolder.getFileName().toString();
-                        Parser parser = new Parser(subFolder, packagesToIgnore, moduleName, javaAPI);
+                        Parser parser = new Parser(subFolder, packagesToIgnore, javaVersion, moduleName, javaAPI);
                         parser.parse();
                     }));
         } else {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, false));
-            Parser parser = new Parser(rootFolder, packagesToIgnore, null, javaAPI);
+            Parser parser = new Parser(rootFolder, packagesToIgnore, javaVersion, null, javaAPI);
             parser.parse();
         }
 
@@ -60,15 +60,17 @@ public final class JavadocParser {
 
         private final Path rootFolder;
         private final Set<String> packagesToIgnore;
+        private final int javaVersion;
 
         private final String moduleName;
         private final JavaAPI javaAPI;
 
         private final Map<String, String> packageNamesToModuleNames = new HashMap<>();
 
-        private Parser(Path rootFolder, Set<String> packagesToIgnore, String moduleName, JavaAPI javaAPI) {
+        private Parser(Path rootFolder, Set<String> packagesToIgnore, int javaVersion, String moduleName, JavaAPI javaAPI) {
             this.rootFolder = rootFolder;
             this.packagesToIgnore = packagesToIgnore;
+            this.javaVersion = javaVersion;
             this.moduleName = moduleName;
             this.javaAPI = javaAPI;
         }
@@ -271,12 +273,10 @@ public final class JavadocParser {
         }
 
         private Element classDeprecatedBlockElement(Document document) {
-            Element element = document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
-            if (element == null && javaAPI.getJavadoc().getBaseURL().contains("/7/")) {
-                // Java 7 workaround
-                element = document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > strong:contains(Deprecated)");
+            if (javaVersion == 7) {
+                return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > strong:contains(Deprecated)");
             }
-            return element;
+            return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
         }
 
         private Set<String> inheritedMethodSignatures(Document document) {
@@ -366,12 +366,10 @@ public final class JavadocParser {
         }
 
         private Element memberDeprecatedBlockElement(Element memberElement) {
-            Element element = memberElement.selectFirst("li > div > span.deprecatedLabel");
-            if (element == null && javaAPI.getJavadoc().getBaseURL().contains("/7/")) {
-                // Java 7 workaround
-                element = memberElement.selectFirst("li > div > span.strong:contains(Deprecated)");
+            if (javaVersion == 7) {
+                return memberElement.selectFirst("li > div > span.strong:contains(Deprecated)");
             }
-            return element;
+            return memberElement.selectFirst("li > div > span.deprecatedLabel");
         }
 
         private String extractPackageName(Path file) {
