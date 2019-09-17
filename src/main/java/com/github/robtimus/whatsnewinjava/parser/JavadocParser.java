@@ -380,6 +380,13 @@ public final class JavadocParser {
         }
 
         private Element memberDetailElement(Document document, String memberType) {
+            if (javaVersion == 7 || javaVersion == 8) {
+                Element element = document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
+                if (element == null) {
+                    element = document.selectFirst("div.details h3:contains(" + memberType + " Detail)");
+                }
+                return element;
+            }
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
             }
@@ -387,6 +394,13 @@ public final class JavadocParser {
         }
 
         private Elements memberElements(Element memberDetailElement) {
+            if (javaVersion == 7) {
+                // go one level up to find the <ul> with the members
+                // also, add any of these inside a code element (e.g. in ByteArrayOutputStream)
+                Elements memberElements = memberDetailElement.parent().select("> ul");
+                memberElements.addAll(memberDetailElement.parent().select("> code > ul"));
+                return memberElements;
+            }
             if (javaVersion <= 12) {
                 // go one level up to find the <ul> with the members
                 return memberDetailElement.parent().select("> ul");

@@ -679,8 +679,19 @@ public final class JavaAPI {
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
                 dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, true);
+            } else if (currentMember.isDeprecated() && previousMember == null && (currentMember.getType() != JavaMember.Type.METHOD || !previousClass.isInheritedMethod(currentMember.getOriginalSignature()))) {
+                // the member is new but immediately became deprecated (e.g. Java 13's String.formatted)
+                JavaModule currentModule = currentPackage.getJavaModule();
+                String moduleName = currentModule.getName();
+                String packageName = currentPackage.getName();
+                String className = currentClass.getName();
+
+                dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+                dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, true);
             }
-            // else currentMember is new, or the member's deprecation status has not change, or it became non-deprecated
+            // else currentMember is new (and not deprecated), or the member's deprecation status has not change, or it became non-deprecated
         }
     }
 
