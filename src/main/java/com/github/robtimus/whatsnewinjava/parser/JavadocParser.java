@@ -160,16 +160,22 @@ public final class JavadocParser {
 
         private Element moduleSinceTagElement(Document document) {
             // No Java 7/8 equivalent
-            return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("div.contentContainer > section.moduleTags > dl > dt > span:contains(Since:)");
         }
 
         private Element moduleDeprecatedBlockElement(Document document) {
             // No Java 7/8 equivalent
-            return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
+            }
+            return document.selectFirst("div.contentContainer > section.moduleDescription > div.deprecationBlock");
         }
 
         private Elements modulePackageLinks(Document document) {
-            // No Java 7/8 equivalent
+            // No Java 7/8 equivalent, but is this actually possible for Java 9+?
             return document.select("div.contentContainer table.packagesSummary:first-of-type tr > th > a");
         }
 
@@ -218,12 +224,18 @@ public final class JavadocParser {
 
         private Element packageSinceTagElement(Document document) {
             // No Java 7/8 equivalent
-            return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("div.contentContainer > section.packageDescription > dl > dt > span:contains(Since:)");
         }
 
         private Element packageDeprecatedBlockElement(Document document) {
             // No Java 7/8 equivalent
-            return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
+            }
+            return document.selectFirst("div.contentContainer > section.packageDescription > div.deprecationBlock");
         }
 
         private void handleClassFile(Path file) {
@@ -269,24 +281,46 @@ public final class JavadocParser {
         }
 
         private Element classSinceTagElement(Document document) {
-            return document.selectFirst("div.contentContainer > div.description dl > dt > span:contains(Since:)");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > div.description dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("div.contentContainer > section.description dl > dt > span:contains(Since:)");
         }
 
         private Element classDeprecatedBlockElement(Document document) {
             if (javaVersion == 7) {
                 return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > strong:contains(Deprecated)");
             }
-            return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
+            }
+            return document.selectFirst("div.contentContainer > section.description > div.deprecationBlock");
+        }
+
+        private Elements classInheritedMethodsElements(Document document) {
+            if (javaVersion <= 12) {
+                Elements elements = document.select("div.contentContainer > div.summary h3:contains(Methods declared in)");
+                if (elements.size() == 0) {
+                    elements = document.select("div.contentContainer > div.summary h3:contains(Methods inherited from)");
+                }
+                return elements;
+            }
+            return document.select("div.contentContainer > section.summary h3:contains(Methods declared in)");
+        }
+
+        private Element classMethodLinkParent(Element inheritedMethodsElement) {
+            Element candidate = inheritedMethodsElement.nextElementSibling();
+            while (candidate != null && !"code".equalsIgnoreCase(candidate.tagName())) {
+                candidate = candidate.nextElementSibling();
+            }
+            return candidate;
         }
 
         private Set<String> inheritedMethodSignatures(Document document) {
             Set<String> signatures = new TreeSet<>();
-            Elements elements = document.select("div.contentContainer > div.summary h3:contains(Methods declared in)");
-            if (elements.size() == 0) {
-                elements = document.select("div.contentContainer > div.summary h3:contains(Methods inherited from)");
-            }
+            Elements elements = classInheritedMethodsElements(document);
             for (Element element : elements) {
-                Element methodLinkParent = element.nextElementSibling();
+                Element methodLinkParent = classMethodLinkParent(element);
                 // methodLinkParent can be null if no methods are inherited
                 if (methodLinkParent != null) {
                     Elements methodLinks = methodLinkParent.select("a");
@@ -346,30 +380,49 @@ public final class JavadocParser {
         }
 
         private Element memberDetailElement(Document document, String memberType) {
-            return document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
+            }
+            return document.selectFirst("div.contentContainer > section.details h2:contains(" + memberType + " Detail)");
         }
 
         private Elements memberElements(Element memberDetailElement) {
-            // go one level up to find the <ul> with the members
-            return memberDetailElement.parent().select("> ul");
+            if (javaVersion <= 12) {
+                // go one level up to find the <ul> with the members
+                return memberDetailElement.parent().select("> ul");
+            }
+            // go one level up to find the sections with the members
+            return memberDetailElement.parent().select("> ul > li > section.detail");
         }
 
         private String signature(Element memberElement) {
-            Element signatureElement = memberElement.previousElementSibling();
-            String id = signatureElement.attr("id");
-            String name = signatureElement.attr("name");
-            return id.isEmpty() ? name : id;
+            if (javaVersion <= 12) {
+                Element signatureElement = memberElement.previousElementSibling();
+                String id = signatureElement.attr("id");
+                String name = signatureElement.attr("name");
+                return id.isEmpty() ? name : id;
+            }
+            // sometimes multiple anchors exist,
+            // e.g. Comparable.compareTo(java.lang.Object) and Comparable.compareTo(T)
+            // take the last one
+            return memberElement.select("h3 > a").last().attr("id");
         }
 
         private Element memberSinceTagElement(Element memberElement) {
-            return memberElement.selectFirst("li dl > dt > span:contains(Since:)");
+            if (javaVersion <= 12) {
+                return memberElement.selectFirst("li dl > dt > span:contains(Since:)");
+            }
+            return memberElement.selectFirst("dl > dt > span:contains(Since:)");
         }
 
         private Element memberDeprecatedBlockElement(Element memberElement) {
             if (javaVersion == 7) {
                 return memberElement.selectFirst("li > div > span.strong:contains(Deprecated)");
             }
-            return memberElement.selectFirst("li > div > span.deprecatedLabel");
+            if (javaVersion <= 12) {
+                return memberElement.selectFirst("li > div > span.deprecatedLabel");
+            }
+            return memberElement.selectFirst("div.deprecationBlock > span.deprecatedLabel");
         }
 
         private String extractPackageName(Path file) {
