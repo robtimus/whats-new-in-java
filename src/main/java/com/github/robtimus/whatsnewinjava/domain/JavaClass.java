@@ -16,23 +16,31 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import com.github.robtimus.whatsnewinjava.domain.JavaMember.Type;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public final class JavaClass extends VersionableJavaObject {
 
     private final JavaPackage javaPackage;
     private final String name;
+    private final Type type;
+    private final JavaSuperClass superClass;
+    private final JavaInterfaceList interfaceList;
     private final Map<MemberMapKey, JavaMember> javaMembers;
     private final Map<String, Signature> inheritedMethodSignatures;
 
     private final Javadoc javadoc;
 
-    JavaClass(JavaPackage javaPackage, String name, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
+    JavaClass(JavaPackage javaPackage, String name, Type type, JavaVersion since, boolean deprecated,
+            JavaSuperClass superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures) {
+
         super(since, deprecated);
         this.javaPackage = Objects.requireNonNull(javaPackage);
         this.name = Objects.requireNonNull(name);
+        this.type = Objects.requireNonNull(type);
+        this.superClass = superClass;
+        this.interfaceList = Objects.requireNonNull(interfaceList);
         this.javaMembers = new TreeMap<>();
         this.inheritedMethodSignatures = inheritedMethodSignatures.stream()
                 .collect(Collectors.toMap(Function.identity(), Signature::new, (x, y) -> { throw new IllegalStateException(); }, TreeMap::new));
@@ -45,6 +53,26 @@ public final class JavaClass extends VersionableJavaObject {
 
     public String getName() {
         return name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public JavaSuperClass getSuperClass() {
+        return superClass;
+    }
+
+    public boolean hasPreviousSuperClass() {
+        return superClass != null && superClass.hasPrevious();
+    }
+
+    public JavaInterfaceList getInterfaceList() {
+        return interfaceList;
+    }
+
+    public boolean hasInterfaceListDifferences() {
+        return interfaceList.hasDifferences();
     }
 
     public Javadoc getJavadoc() {
@@ -115,7 +143,7 @@ public final class JavaClass extends VersionableJavaObject {
     }
 
     JavaClass copy(JavaPackage copyPackage) {
-        JavaClass copy = new JavaClass(copyPackage, name, getSince(), isDeprecated(), inheritedMethodSignatures.keySet());
+        JavaClass copy = new JavaClass(copyPackage, name, type, getSince(), isDeprecated(), superClass, interfaceList, inheritedMethodSignatures.keySet());
         for (JavaMember javaMember : javaMembers.values()) {
             JavaMember memberCopy = javaMember.copy(copy);
             copy.javaMembers.put(new MemberMapKey(memberCopy.getType(), memberCopy.getOriginalSignature()), memberCopy);
@@ -139,7 +167,16 @@ public final class JavaClass extends VersionableJavaObject {
 
     @Override
     void appendToJSON(JsonObject json) {
+        json.addProperty("type", type.name().toLowerCase());
+
         super.appendToJSON(json);
+
+        if (superClass != null) {
+            json.addProperty("superClass", superClass.getFullName());
+        }
+        JsonArray interfaces = interfaceList.getInterfaceNames().stream()
+                .collect(Collector.of(JsonArray::new, (a, i) -> a.add(i), (x, y) -> { throw new IllegalStateException(); }));
+        json.add("interfaces", interfaces);
 
         addMembers("constructors", JavaMember.Type.CONSTRUCTOR, json);
         addMembers("fields", JavaMember.Type.FIELD, json);
@@ -159,8 +196,18 @@ public final class JavaClass extends VersionableJavaObject {
     }
 
     static JavaClass fromJSON(JsonObject json, JavaPackage javaPackage, String name) {
+        Type type = Type.valueOf(json.get("type").getAsString().toUpperCase());
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
+
+        JavaSuperClass superClass = readSuperClass(json);
+
+        JsonArray interfaces = json.get("interfaces").getAsJsonArray();
+        Set<String> interfaceNames = new TreeSet<>();
+        for (int i = 0, size = interfaces.size(); i < size; i++) {
+            interfaceNames.add(interfaces.get(i).getAsString());
+        }
+        JavaInterfaceList interfaceList = new JavaInterfaceList(interfaceNames);
 
         JsonArray inheritedMethods = json.get("inheritedMethods").getAsJsonArray();
         Set<String> inheritedMethodSignatures = new TreeSet<>();
@@ -168,13 +215,18 @@ public final class JavaClass extends VersionableJavaObject {
             inheritedMethodSignatures.add(inheritedMethods.get(i).getAsString());
         }
 
-        JavaClass javaClass = new JavaClass(javaPackage, name, since, deprecated, inheritedMethodSignatures);
+        JavaClass javaClass = new JavaClass(javaPackage, name, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures);
 
         addMembers(json, "constructors", JavaMember.Type.CONSTRUCTOR, javaClass);
         addMembers(json, "fields", JavaMember.Type.FIELD, javaClass);
         addMembers(json, "methods", JavaMember.Type.METHOD, javaClass);
 
         return javaClass;
+    }
+
+    private static JavaSuperClass readSuperClass(JsonObject json) {
+        JsonElement superClass = json.get("superClass");
+        return superClass == null ? null : new JavaSuperClass(superClass.getAsString());
     }
 
     private static void addMembers(JsonObject json, String propertyName, JavaMember.Type type, JavaClass javaClass) {
@@ -195,12 +247,12 @@ public final class JavaClass extends VersionableJavaObject {
         private final JavaMember.Type type;
         private final String signature;
 
-        private MemberMapKey(Type type, String signature) {
+        private MemberMapKey(JavaMember.Type type, String signature) {
             this.type = type;
             this.signature = normalizeSignature(signature, type);
         }
 
-        private String normalizeSignature(String signature, Type type) {
+        private String normalizeSignature(String signature, JavaMember.Type type) {
             String prettified = JavaMember.prettifySignature(signature);
             if (type != JavaMember.Type.CONSTRUCTOR) {
                 return prettified;
@@ -299,6 +351,24 @@ public final class JavaClass extends VersionableJavaObject {
 
         private boolean isGenericType(String argumentType) {
             return GENERIC_TYPE_PATTERN.matcher(argumentType).matches();
+        }
+    }
+
+    public enum Type {
+        CLASS(false),
+        ENUM(false),
+        INTERFACE(true),
+        ANNOTATION(true),
+        ;
+
+        private final boolean isInterface;
+
+        Type(boolean isInterface) {
+            this.isInterface = isInterface;
+        }
+
+        public boolean isInterface() {
+            return isInterface;
         }
     }
 }

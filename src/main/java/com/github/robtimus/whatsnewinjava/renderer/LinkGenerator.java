@@ -77,7 +77,7 @@ final class LinkGenerator {
                 .map(api -> api.findJavaPackage(javaClass.getJavaPackage().getName()))
                 .filter(Objects::nonNull)
                 .flatMap(p -> p.getJavaClasses().stream())
-                .filter(c -> c.getName().equals(javaClass.getName()))
+                .filter(c -> javaClass.getName().equals(c.getName()))
                 .findFirst()
                 .orElse(javaClass);
     }
@@ -87,7 +87,7 @@ final class LinkGenerator {
                 .map(api -> api.findJavaPackage(javaMember.getJavaClass().getJavaPackage().getName()))
                 .filter(Objects::nonNull)
                 .flatMap(p -> p.getJavaClasses().stream())
-                .filter(c -> c.getName().equals(javaMember.getJavaClass().getName()))
+                .filter(c -> javaMember.getJavaClass().getName().equals(c.getName()))
                 .filter(Objects::nonNull)
                 .flatMap(c -> c.getJavaMembers().stream())
                 .filter(m -> matches(m, javaMember))

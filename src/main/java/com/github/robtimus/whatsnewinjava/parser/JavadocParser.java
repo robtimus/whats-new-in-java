@@ -7,22 +7,33 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.robtimus.io.function.IOConsumer;
 import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
+import com.github.robtimus.whatsnewinjava.domain.JavaClass;
+import com.github.robtimus.whatsnewinjava.domain.JavaInterfaceList;
 import com.github.robtimus.whatsnewinjava.domain.JavaMember;
+import com.github.robtimus.whatsnewinjava.domain.JavaSuperClass;
 import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
 import com.github.robtimus.whatsnewinjava.domain.Javadoc;
 
@@ -57,6 +68,7 @@ public final class JavadocParser {
 
         private static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*,\\s*");
         private static final Pattern SINCE_PATTERN = Pattern.compile("^(?:(?:JDK|J2SE|JSE)\\s*)?([\\d.u]+)$");
+        private static final Pattern INTERFACE_TITLE_PATTERN = Pattern.compile("(class|enum|interface|annotation) in (.*)");
 
         private final Path rootFolder;
         private final Set<String> packagesToIgnore;
@@ -260,6 +272,14 @@ public final class JavadocParser {
         }
 
         private void parseClassInfo(Document document, String packageName, String className) {
+            JavaClass.Type type = classType(document);
+            JavaSuperClass superClass = classSuperClass(document);
+            JavaInterfaceList interfaceList = classInterfaceList(document, type);
+
+            if (superClass == null && !type.isInterface() && !("java.lang".equals(packageName) && "Object".equals(className))) {
+                throw new IllegalStateException("Could not find super class for class " + packageName + "." + className);
+            }
+
             JavaVersion since = null;
             boolean deprecated = false;
 
@@ -277,7 +297,83 @@ public final class JavadocParser {
 
             Set<String> inheritedMethodSignatures = inheritedMethodSignatures(document);
 
-            javaAPI.addClass(getModuleName(packageName), packageName, className, since, deprecated, inheritedMethodSignatures);
+            javaAPI.addClass(getModuleName(packageName), packageName, className, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures);
+        }
+
+        private JavaClass.Type classType(Document document) {
+            Element headerElement = classHeaderElement(document);
+            String type = headerElement.text().replaceAll("\\s.*", "").toUpperCase();
+            return JavaClass.Type.valueOf(type);
+        }
+
+        private Element classHeaderElement(Document document) {
+            if (javaVersion <= 12) {
+                return document.selectFirst("div.header h2.title");
+            }
+            return document.selectFirst("div.header h1.title");
+        }
+
+        private JavaSuperClass classSuperClass(Document document) {
+            Element superClassElement = classSuperClassElement(document);
+            return superClassElement == null ? null : new JavaSuperClass(superClassElement.text());
+        }
+
+        private Element classSuperClassElement(Document document) {
+            if (javaVersion <= 12) {
+                return document.select("div.contentContainer ul.inheritance > li > a").last();
+            }
+            return document.select("div.contentContainer div.inheritance > a").last();
+        }
+
+        private JavaInterfaceList classInterfaceList(Document document, JavaClass.Type type) {
+            String label = classInterfaceListLabel(type);
+            String text = classInterfaceListNodes(document, label).stream()
+                    .map(this::extractInterfaceListText)
+                    .collect(Collectors.joining());
+            if (text.isEmpty()) {
+                return JavaInterfaceList.EMPTY;
+            }
+            Set<String> interfaceNames = COMMA_SPLIT_PATTERN.splitAsStream(text)
+                    .collect(Collector.of(InterfaceListCollector::new, InterfaceListCollector::add, InterfaceListCollector::combine, InterfaceListCollector::finish));
+            return new JavaInterfaceList(interfaceNames);
+        }
+
+        private String classInterfaceListLabel(JavaClass.Type type) {
+            switch (type) {
+            case CLASS:
+            case ENUM:
+                return "All Implemented Interfaces:";
+            case ANNOTATION:
+            case INTERFACE:
+                return "All Superinterfaces:";
+            default:
+                throw new IllegalArgumentException("Unsupported Java class type: " + type);
+            }
+        }
+
+        private List<Node> classInterfaceListNodes(Document document, String label) {
+            if (javaVersion <= 12) {
+                Element labelElement = document.selectFirst("div.contentContainer > div.description dl > dt:contains(" + label + ")");
+                return labelElement == null ? Collections.emptyList() : labelElement.nextElementSibling().childNodes();
+            }
+            Element labelElement = document.selectFirst("div.contentContainer > section.description dl > dt:contains(" + label + ")");
+            return labelElement == null ? Collections.emptyList() : labelElement.nextElementSibling().childNodes();
+        }
+
+        private String extractInterfaceListText(Node node) {
+            if (node instanceof Element) {
+                Element link = ((Element) node).selectFirst("a");
+                String title = link.attr("title");
+                Matcher matcher = title == null ? null : INTERFACE_TITLE_PATTERN.matcher(title);
+                if (matcher == null || !matcher.matches()) {
+                    throw new IllegalStateException("Missing or unexpected title: " + title);
+                }
+                return matcher.group(2) + "." + ((Element) node).text();
+            }
+            if (node instanceof TextNode) {
+                return ((TextNode) node).text();
+            }
+            throw new IllegalStateException("Unexpected node type: " + node.getClass());
         }
 
         private Element classSinceTagElement(Document document) {
@@ -505,6 +601,44 @@ public final class JavadocParser {
                     && !"package-summary.html".equals(fileName)
                     && !fileName.contains("-package-")
                     && !fileName.matches("compact\\d+-summary\\.html");
+        }
+    }
+
+    private static final class InterfaceListCollector {
+
+        private final List<String> interfaceNames = new ArrayList<>();
+        private final StringBuilder current = new StringBuilder();
+
+        private void add(String part) {
+            if (current.length() == 0) {
+                // no previously opened generic type list
+                if (part.indexOf('<') == -1 || part.indexOf('>') != -1) {
+                    // no new generic type list, or one that is immediately ended; just add the part
+                    interfaceNames.add(part);
+                } else {
+                    // a new generic type list that is not yet ended
+                    current.append(part);
+                }
+            } else {
+                // a previously opened generic type list; append the current part anyway
+                current.append(',').append(part);
+                if (part.indexOf('>') != -1) {
+                    // end the current opened generic type list
+                    interfaceNames.add(current.toString());
+                    current.delete(0, current.length());
+                }
+            }
+        }
+
+        private InterfaceListCollector combine(@SuppressWarnings("unused") InterfaceListCollector collector) {
+            throw new IllegalStateException("No parallel collecting supported");
+        }
+
+        private Set<String> finish() {
+            if (current.length() > 0) {
+                throw new IllegalStateException("Contains an opened generic type list: " + current);
+            }
+            return new LinkedHashSet<>(interfaceNames);
         }
     }
 }

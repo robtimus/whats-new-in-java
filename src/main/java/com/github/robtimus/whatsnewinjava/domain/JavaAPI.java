@@ -20,6 +20,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.github.robtimus.whatsnewinjava.domain.JavaInterfaceList.ChangeType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -77,20 +78,24 @@ public final class JavaAPI {
         }
     }
 
-    public void addClass(String moduleName, String packageName, String className, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
+    public void addClass(String moduleName, String packageName, String className, JavaClass.Type type, JavaVersion since, boolean deprecated,
+            JavaSuperClass superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures) {
+
         JavaModule javaModule = getJavaModule(moduleName);
         JavaPackage javaPackage = javaModule.getJavaPackage(packageName);
-        javaPackage.addJavaClass(className, since, deprecated, inheritedMethodSignatures);
+        javaPackage.addJavaClass(className, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures);
         if (since != null) {
             javaVersions.add(since);
         }
     }
 
-    private void addClassIfNotExists(String moduleName, String packageName, String className, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
+    private void addClassIfNotExists(String moduleName, String packageName, String className, JavaClass.Type type, JavaVersion since, boolean deprecated,
+            JavaSuperClass superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures) {
+
         JavaModule javaModule = getJavaModule(moduleName);
         JavaPackage javaPackage = javaModule.getJavaPackage(packageName);
         if (javaPackage.findJavaClass(className) == null) {
-            javaPackage.addJavaClass(className, since, deprecated, inheritedMethodSignatures);
+            javaPackage.addJavaClass(className, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures);
         }
     }
 
@@ -492,12 +497,34 @@ public final class JavaAPI {
 
                     dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                     dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                    dest.addClass(moduleName, packageName, currentClass.getName(), since, true, currentClass.getInheritedMethodSignatures());
+                    dest.addClass(moduleName, packageName, currentClass.getName(), currentClass.getType(), since, true,
+                            currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 }
             } else {
-                // check members
+                // check super class, interfaces and members
+                //collectNewSuperClassAndInterfaces(currentPackage, currentClass, previousClass, since, dest);
                 collectNewMembers(currentPackage, currentClass, previousClass, since, dest, minimalJavaVersion);
             }
+        }
+    }
+
+    private static void collectNewSuperClassAndInterfaces(JavaPackage currentPackage, JavaClass currentClass, JavaClass previousClass, JavaVersion since, JavaAPI dest) {
+        if (currentClass.getSuperClass() == null) {
+            return;
+        }
+        JavaSuperClass superClass = currentClass.getSuperClass().fromPrevious(previousClass.getSuperClass());
+        JavaInterfaceList interfaceList = currentClass.getInterfaceList().fromPrevious(previousClass.getInterfaceList(), ChangeType.ADDED);
+
+        if (superClass.hasPrevious() || interfaceList.hasDifferences()) {
+            JavaModule currentModule = currentPackage.getJavaModule();
+            String moduleName = currentModule.getName();
+            String packageName = currentPackage.getName();
+            String className = currentClass.getName();
+
+            dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+            dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+            dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), since, currentClass.isDeprecated(),
+                    superClass, interfaceList, currentClass.getInheritedMethodSignatures());
         }
     }
 
@@ -514,7 +541,8 @@ public final class JavaAPI {
 
                     dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                     dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                    dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                    dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), null, currentClass.isDeprecated(),
+                            currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                     dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, currentMember.isDeprecated());
                 }
             }
@@ -644,7 +672,8 @@ public final class JavaAPI {
 
                     dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                     dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                    dest.addClass(moduleName, packageName, currentClass.getName(), since, true, currentClass.getInheritedMethodSignatures());
+                    dest.addClass(moduleName, packageName, currentClass.getName(), currentClass.getType(), since, true,
+                            currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 } else {
                     // either the package's deprecation status has not changed, or it became non-deprecated; check members
                     collectDeprecatedMembers(currentPackage, currentClass, previousClass, since, dest);
@@ -666,7 +695,8 @@ public final class JavaAPI {
 
                 dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), null, currentClass.isDeprecated(),
+                        currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, true);
             } else if (currentMember.isDeprecated() && currentMember.getType() == JavaMember.Type.METHOD && previousClass.isInheritedMethod(currentMember.getOriginalSignature())) {
                 // the member was inherited before but now became deprecated
@@ -677,7 +707,8 @@ public final class JavaAPI {
 
                 dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), null, currentClass.isDeprecated(),
+                        currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, true);
             } else if (currentMember.isDeprecated() && previousMember == null && (currentMember.getType() != JavaMember.Type.METHOD || !previousClass.isInheritedMethod(currentMember.getOriginalSignature()))) {
                 // the member is new but immediately became deprecated (e.g. Java 13's String.formatted)
@@ -688,7 +719,8 @@ public final class JavaAPI {
 
                 dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), null, currentClass.isDeprecated(),
+                        currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, currentMember.getType(), currentMember.getOriginalSignature(), since, true);
             }
             // else currentMember is new (and not deprecated), or the member's deprecation status has not change, or it became non-deprecated
@@ -807,11 +839,29 @@ public final class JavaAPI {
 
                 dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                dest.addClass(moduleName, packageName, previousClass.getName(), since, previousClass.isDeprecated(), previousClass.getInheritedMethodSignatures());
+                dest.addClass(moduleName, packageName, previousClass.getName(), previousClass.getType(), since, previousClass.isDeprecated(),
+                        previousClass.getSuperClass(), previousClass.getInterfaceList(), previousClass.getInheritedMethodSignatures());
             } else {
-                // check members
+                // check interfaces and members
+                //collectRemovedInterfaces(currentPackage, currentClass, previousClass, since, dest);
                 collectRemovedMembers(currentPackage, currentClass, previousClass, since, dest);
             }
+        }
+    }
+
+    private static void collectRemovedInterfaces(JavaPackage currentPackage, JavaClass currentClass, JavaClass previousClass, JavaVersion since, JavaAPI dest) {
+        JavaInterfaceList interfaceList = currentClass.getInterfaceList().fromPrevious(previousClass.getInterfaceList(), ChangeType.REMOVED);
+
+        if (interfaceList.hasDifferences()) {
+            JavaModule currentModule = currentPackage.getJavaModule();
+            String moduleName = currentModule.getName();
+            String packageName = currentPackage.getName();
+            String className = currentClass.getName();
+
+            dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
+            dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
+            dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), since, currentClass.isDeprecated(),
+                    currentClass.getSuperClass(), interfaceList, currentClass.getInheritedMethodSignatures());
         }
     }
 
@@ -827,7 +877,8 @@ public final class JavaAPI {
 
                 dest.addModuleIfNotExists(moduleName, null, currentModule.isDeprecated());
                 dest.addPackageIfNotExists(moduleName, packageName, null, currentPackage.isDeprecated());
-                dest.addClassIfNotExists(moduleName, packageName, className, null, currentClass.isDeprecated(), currentClass.getInheritedMethodSignatures());
+                dest.addClassIfNotExists(moduleName, packageName, className, currentClass.getType(), null, currentClass.isDeprecated(),
+                        currentClass.getSuperClass(), currentClass.getInterfaceList(), currentClass.getInheritedMethodSignatures());
                 dest.addMember(moduleName, packageName, className, previousMember.getType(), previousMember.getOriginalSignature(), since, previousMember.isDeprecated());
             }
             // else currentMember still exists

@@ -1,6 +1,7 @@
 package com.github.robtimus.whatsnewinjava.renderer;
 
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -11,6 +12,7 @@ import org.thymeleaf.context.IContext;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
+import com.github.robtimus.whatsnewinjava.domain.JavaClass;
 import com.github.robtimus.whatsnewinjava.domain.JavaModule;
 import com.github.robtimus.whatsnewinjava.domain.JavaPackage;
 import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
@@ -24,6 +26,16 @@ public final class PageRenderer {
     private static final TemplateSpec TEMPLATE_SPEC_NEW = new TemplateSpec(PAGE_TEMPLATE_NEW, TemplateMode.HTML);
     private static final TemplateSpec TEMPLATE_SPEC_DEPRECATED = new TemplateSpec(PAGE_TEMPLATE_DEPRECATED, TemplateMode.HTML);
     private static final TemplateSpec TEMPLATE_SPEC_REMOVED_ = new TemplateSpec(PAGE_TEMPLATE_REMOVED, TemplateMode.HTML);
+
+    private static final Map<JavaClass.Type, String> INTERFACE_PREFIXES;
+    static {
+        Map<JavaClass.Type, String> interfacePrefixes = new EnumMap<>(JavaClass.Type.class);
+        for (JavaClass.Type type : JavaClass.Type.values()) {
+            String prefix = type.isInterface() ? "extends" : "implements";
+            interfacePrefixes.put(type, prefix);
+        }
+        INTERFACE_PREFIXES = Collections.unmodifiableMap(interfacePrefixes);
+    }
 
     private final TemplateEngine templateEngine;
 
@@ -64,6 +76,7 @@ public final class PageRenderer {
         context.setVariable("modulesPerVersion", modulesPerVersion);
         context.setVariable("packagesPerVersion", packagesPerVersion);
         context.setVariable("linkGenerator", linkGenerator);
+        context.setVariable("interfacePrefixes", INTERFACE_PREFIXES);
         return context;
     }
 

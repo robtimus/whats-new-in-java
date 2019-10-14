@@ -69,11 +69,13 @@ public final class JavaPackage extends VersionableJavaObject {
         return c -> (c.isSince(since) && !isSince(since)) || c.hasJavaMembers(since);
     }
 
-    void addJavaClass(String className, JavaVersion since, boolean deprecated, Collection<String> inheritedMethodSignatures) {
+    void addJavaClass(String className, JavaClass.Type type, JavaVersion since, boolean deprecated,
+            JavaSuperClass superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures) {
+
         if (javaClasses.containsKey(className)) {
             throw new IllegalStateException(String.format("Duplicate class: %s.%s", name, className));
         }
-        javaClasses.put(className, new JavaClass(this, className, since, deprecated, inheritedMethodSignatures));
+        javaClasses.put(className, new JavaClass(this, className, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures));
     }
 
     JavaClass getJavaClass(String className) {
