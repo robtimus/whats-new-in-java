@@ -1,8 +1,7 @@
 package com.github.robtimus.whatsnewinjava.renderer;
 
-import java.util.Collections;
+import static java.util.Collections.unmodifiableMap;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 import org.thymeleaf.TemplateEngine;
@@ -11,11 +10,10 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
-import com.github.robtimus.whatsnewinjava.domain.JavaClass;
-import com.github.robtimus.whatsnewinjava.domain.JavaModule;
-import com.github.robtimus.whatsnewinjava.domain.JavaPackage;
-import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
+import com.github.robtimus.whatsnewinjava.renderer.model.PageModel;
 
 public final class PageRenderer {
 
@@ -34,7 +32,7 @@ public final class PageRenderer {
             String prefix = type.isInterface() ? "extends" : "implements";
             interfacePrefixes.put(type, prefix);
         }
-        INTERFACE_PREFIXES = Collections.unmodifiableMap(interfacePrefixes);
+        INTERFACE_PREFIXES = unmodifiableMap(interfacePrefixes);
     }
 
     private final TemplateEngine templateEngine;
@@ -48,33 +46,28 @@ public final class PageRenderer {
     }
 
     public String renderNewPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
-        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getNewModulesPerVersion(javaAPIs, minimalJavaVersion);
-        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getNewPackagesPerVersion(javaAPIs, minimalJavaVersion);
+        PageModel pageModel = PageModel.forNew(javaAPIs, minimalJavaVersion);
         LinkGenerator linkGenerator = new LinkGenerator(javaAPIs);
-        return renderPage(TEMPLATE_SPEC_NEW, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
+        return renderPage(TEMPLATE_SPEC_NEW, createContext(pageModel, linkGenerator));
     }
 
     public String renderDeprecatedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getDeprecatedModulesPerVersion(javaAPIs);
-        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getDeprecatedPackagesPerVersion(javaAPIs);
+        PageModel pageModel = PageModel.forDeprecated(javaAPIs);
         LinkGenerator linkGenerator = new LinkGenerator(javaAPIs);
-        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
+        return renderPage(TEMPLATE_SPEC_DEPRECATED, createContext(pageModel, linkGenerator));
     }
 
     public String renderRemovedPage(NavigableMap<JavaVersion, JavaAPI> javaAPIs) {
-        Map<JavaVersion, List<JavaModule>> modulesPerVersion = JavaAPI.getRemovedModulesPerVersion(javaAPIs);
-        Map<JavaVersion, List<JavaPackage>> packagesPerVersion = JavaAPI.getRemovedPackagesPerVersion(javaAPIs);
+        PageModel pageModel = PageModel.forRemoved(javaAPIs);
         // don't use the actual JavaAPIs here as the removal already links to the latest version that has the module / package / class / member
-        LinkGenerator linkGenerator = new LinkGenerator(Collections.emptyNavigableMap());
-        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(modulesPerVersion, packagesPerVersion, linkGenerator));
+        LinkGenerator linkGenerator = new LinkGenerator(javaAPIs, true);
+        return renderPage(TEMPLATE_SPEC_REMOVED_, createContext(pageModel, linkGenerator));
     }
 
-    private IContext createContext(Map<JavaVersion, List<JavaModule>> modulesPerVersion, Map<JavaVersion, List<JavaPackage>> packagesPerVersion,
-            LinkGenerator linkGenerator) {
+    private IContext createContext(PageModel pageModel, LinkGenerator linkGenerator) {
 
         Context context = new Context();
-        context.setVariable("modulesPerVersion", modulesPerVersion);
-        context.setVariable("packagesPerVersion", packagesPerVersion);
+        context.setVariable("pageModel", pageModel);
         context.setVariable("linkGenerator", linkGenerator);
         context.setVariable("interfacePrefixes", INTERFACE_PREFIXES);
         return context;

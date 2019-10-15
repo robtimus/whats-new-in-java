@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.robtimus.whatsnewinjava.domain.JavaInterfaceList.ChangeType;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.Javadoc;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;

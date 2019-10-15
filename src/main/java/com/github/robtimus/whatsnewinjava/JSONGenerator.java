@@ -6,8 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
-import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
 import com.github.robtimus.whatsnewinjava.parser.JavadocParser;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
 
 public final class JSONGenerator {
 

@@ -11,6 +11,9 @@ import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.Javadoc;
+import com.github.robtimus.whatsnewinjava.parser.model.VersionableJavaObject;
 import com.google.gson.JsonObject;
 
 public final class JavaPackage extends VersionableJavaObject {

@@ -1,5 +1,8 @@
 package com.github.robtimus.whatsnewinjava.parser;
 
+import static java.util.Collections.emptyList;
+import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.joining;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -8,7 +11,6 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,13 +30,13 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.robtimus.io.function.IOConsumer;
-import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
-import com.github.robtimus.whatsnewinjava.domain.JavaClass;
-import com.github.robtimus.whatsnewinjava.domain.JavaInterfaceList;
-import com.github.robtimus.whatsnewinjava.domain.JavaMember;
-import com.github.robtimus.whatsnewinjava.domain.JavaSuperClass;
-import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
-import com.github.robtimus.whatsnewinjava.domain.Javadoc;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaInterfaceList;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaMember;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaModule;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.Javadoc;
 
 public final class JavadocParser {
 
@@ -87,18 +88,18 @@ public final class JavadocParser {
             this.javaAPI = javaAPI;
         }
 
-        private String getModuleName(String packageName) {
+        private JavaModule getJavaModule(String packageName) {
             if (moduleName != null) {
-                return moduleName;
+                return javaAPI.getJavaModule(moduleName);
             }
             if (packageNamesToModuleNames.isEmpty()) {
-                return null;
+                return javaAPI.getAutomaticJavaModule();
             }
             String moduleNameForPackage = packageNamesToModuleNames.get(packageName);
             if (moduleNameForPackage == null) {
                 throw new IllegalStateException("Could not find module for package " + packageName);
             }
-            return moduleNameForPackage;
+            return javaAPI.getJavaModule(moduleNameForPackage);
         }
 
         private void parse() throws IOException {
@@ -114,7 +115,7 @@ public final class JavadocParser {
                         .forEach(this::parseModuleFile);
 
                 if (packageNamesToModuleNames.isEmpty()) {
-                    javaAPI.addModule(null, null, false);
+                    javaAPI.addAutomaticJavaModule();
                 }
             }
 
@@ -149,7 +150,7 @@ public final class JavadocParser {
                 deprecated = deprecatedBlockElement != null;
 
                 if (moduleName != null) {
-                    javaAPI.addModule(moduleName, since, deprecated);
+                    javaAPI.addJavaModule(moduleName, since, deprecated);
                 } else {
                     String moduleNameFromFile = file.getFileName().toString().replace("-summary.html", "");
                     Elements modulePackageLinks = modulePackageLinks(document);
@@ -162,7 +163,7 @@ public final class JavadocParser {
                             packageNamesToModuleNames.put(packageName, moduleNameFromFile);
                         }
                     }
-                    javaAPI.addModule(moduleNameFromFile, since, deprecated);
+                    javaAPI.addJavaModule(moduleNameFromFile, since, deprecated);
                 }
 
             } catch (IOException e) {
@@ -193,7 +194,7 @@ public final class JavadocParser {
 
         private void handlePackageFile(Path file) {
             parsePackageFile(file);
-            Path packageDir = Objects.requireNonNull(file.getParent());
+            Path packageDir = requireNonNull(file.getParent());
             try {
                 Files.walk(packageDir, 1)
                         .filter(Files::isRegularFile)
@@ -227,7 +228,8 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = packageDeprecatedBlockElement(document);
                 deprecated = deprecatedBlockElement != null;
 
-                javaAPI.addPackage(getModuleName(packageName), packageName, since, deprecated);
+                getJavaModule(packageName)
+                        .addJavaPackage(packageName, since, deprecated);
 
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
@@ -273,7 +275,7 @@ public final class JavadocParser {
 
         private void parseClassInfo(Document document, String packageName, String className) {
             JavaClass.Type type = classType(document);
-            JavaSuperClass superClass = classSuperClass(document);
+            String superClass = classSuperClass(document);
             JavaInterfaceList interfaceList = classInterfaceList(document, type);
 
             if (superClass == null && !type.isInterface() && !("java.lang".equals(packageName) && "Object".equals(className))) {
@@ -297,7 +299,9 @@ public final class JavadocParser {
 
             Set<String> inheritedMethodSignatures = inheritedMethodSignatures(document);
 
-            javaAPI.addClass(getModuleName(packageName), packageName, className, type, since, deprecated, superClass, interfaceList, inheritedMethodSignatures);
+            getJavaModule(packageName)
+                    .getJavaPackage(packageName)
+                    .addJavaClass(className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated);
         }
 
         private JavaClass.Type classType(Document document) {
@@ -313,9 +317,9 @@ public final class JavadocParser {
             return document.selectFirst("div.header h1.title");
         }
 
-        private JavaSuperClass classSuperClass(Document document) {
+        private String classSuperClass(Document document) {
             Element superClassElement = classSuperClassElement(document);
-            return superClassElement == null ? null : new JavaSuperClass(superClassElement.text());
+            return superClassElement == null ? null : superClassElement.text();
         }
 
         private Element classSuperClassElement(Document document) {
@@ -329,7 +333,7 @@ public final class JavadocParser {
             String label = classInterfaceListLabel(type);
             String text = classInterfaceListNodes(document, label).stream()
                     .map(this::extractInterfaceListText)
-                    .collect(Collectors.joining());
+                    .collect(joining());
             if (text.isEmpty()) {
                 return JavaInterfaceList.EMPTY;
             }
@@ -354,10 +358,10 @@ public final class JavadocParser {
         private List<Node> classInterfaceListNodes(Document document, String label) {
             if (javaVersion <= 12) {
                 Element labelElement = document.selectFirst("div.contentContainer > div.description dl > dt:contains(" + label + ")");
-                return labelElement == null ? Collections.emptyList() : labelElement.nextElementSibling().childNodes();
+                return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
             }
             Element labelElement = document.selectFirst("div.contentContainer > section.description dl > dt:contains(" + label + ")");
-            return labelElement == null ? Collections.emptyList() : labelElement.nextElementSibling().childNodes();
+            return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
         }
 
         private String extractInterfaceListText(Node node) {
@@ -471,7 +475,10 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = memberDeprecatedBlockElement(memberElement);
                 deprecated = deprecatedBlockElement != null;
 
-                javaAPI.addMember(getModuleName(packageName), packageName, className, memberType, signature, since, deprecated);
+                getJavaModule(packageName)
+                        .getJavaPackage(packageName)
+                        .getJavaClass(className)
+                        .addJavaMember(memberType, signature, since, deprecated);
             }
         }
 
@@ -536,12 +543,12 @@ public final class JavadocParser {
         }
 
         private String extractPackageName(Path file) {
-            Path parent = Objects.requireNonNull(file.getParent());
+            Path parent = requireNonNull(file.getParent());
             return rootFolder.relativize(parent).toString().replace('\\', '/').replace('/', '.');
         }
 
         private String extractClassName(Path file) {
-            Path fileName = Objects.requireNonNull(file.getFileName());
+            Path fileName = requireNonNull(file.getFileName());
             return fileName.toString().replaceAll("\\.html$", "");
         }
 

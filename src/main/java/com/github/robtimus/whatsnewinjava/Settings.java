@@ -1,14 +1,14 @@
 package com.github.robtimus.whatsnewinjava;
 
+import static java.util.Collections.unmodifiableSet;
+import static java.util.stream.Collectors.toSet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
-import java.util.Collections;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 
 public final class Settings {
 
@@ -24,8 +24,8 @@ public final class Settings {
         }
 
         MINIMAL_JAVA_VERSION = JavaVersion.parse(properties.getProperty("minimal-java-version"));
-        PACKAGES_TO_IGNORE = Collections.unmodifiableSet(Pattern.compile("\\s*,\\s*").splitAsStream(properties.getProperty("ignore-packages"))
-                .collect(Collectors.toSet()));
+        PACKAGES_TO_IGNORE = unmodifiableSet(Pattern.compile("\\s*,\\s*").splitAsStream(properties.getProperty("ignore-packages"))
+                .collect(toSet()));
     }
 
     private Settings() {

@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.util.NavigableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.robtimus.whatsnewinjava.domain.JavaAPI;
-import com.github.robtimus.whatsnewinjava.domain.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 import com.github.robtimus.whatsnewinjava.renderer.PageRenderer;
 
 public final class PageGenerator {

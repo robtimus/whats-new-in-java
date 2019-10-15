@@ -2,6 +2,9 @@ package com.github.robtimus.whatsnewinjava.domain;
 
 import java.util.Objects;
 import java.util.stream.Stream;
+import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
+import com.github.robtimus.whatsnewinjava.parser.model.Javadoc;
+import com.github.robtimus.whatsnewinjava.parser.model.VersionableJavaObject;
 import com.google.gson.JsonObject;
 
 public final class JavaMember extends VersionableJavaObject {
