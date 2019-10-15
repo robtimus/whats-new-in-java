@@ -1,15 +1,22 @@
 package com.github.robtimus.whatsnewinjava.renderer.model;
 
+import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.reverseOrder;
+import static java.util.stream.Collectors.toSet;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Objects;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaInterfaceList;
@@ -19,6 +26,8 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaPackage;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 
 public final class PageModel {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageModel.class);
 
     private final Map<JavaVersion, Map<String, PageModule>> modulesPerVersion;
     private final Map<JavaVersion, Map<String, PagePackage>> packagesPerVersion;
@@ -64,6 +73,7 @@ public final class PageModel {
 
     public static PageModel forNew(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
         PageModel pageModel = new PageModel();
+        SinceHelper sinceHelper = new SinceHelper(javaAPIs, minimalJavaVersion);
 
         Iterator<Map.Entry<JavaVersion, JavaAPI>> iterator = javaAPIs.descendingMap().entrySet().iterator();
         Map.Entry<JavaVersion, JavaAPI> current = iterator.next();
@@ -74,40 +84,40 @@ public final class PageModel {
             JavaVersion version = current.getKey();
             // collect based on @since
             if (currentAPI.hasAutomaticModule()) {
-                collectPackagesForNew(currentAPI, minimalJavaVersion, pageModel);
+                collectPackagesForNew(currentAPI, minimalJavaVersion, pageModel, sinceHelper);
             } else {
-                collectModulesForNew(currentAPI, minimalJavaVersion, pageModel);
+                collectModulesForNew(currentAPI, minimalJavaVersion, pageModel, sinceHelper);
             }
             // collect based on differences
             if (currentAPI.hasAutomaticModule() || previousAPI.hasAutomaticModule()) {
                 // current, previous or both don't use modules, use collectPackagesForRemoved
-                collectPackagesForNew(currentAPI, previousAPI, minimalJavaVersion, version, pageModel);
+                collectPackagesForNew(currentAPI, previousAPI, minimalJavaVersion, version, pageModel, sinceHelper);
             } else {
                 // both current and previous use modules, use collectModulesForRemoved
-                collectModulesForNew(currentAPI, previousAPI, minimalJavaVersion, version, pageModel);
+                collectModulesForNew(currentAPI, previousAPI, minimalJavaVersion, version, pageModel, sinceHelper);
             }
             current = previous;
         }
         return pageModel;
     }
 
-    private static void collectPackagesForNew(JavaAPI currentAPI, JavaVersion minimalJavaVersion, PageModel pageModel) {
+    private static void collectPackagesForNew(JavaAPI currentAPI, JavaVersion minimalJavaVersion, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaPackage currentPackage : currentAPI.getJavaPackages()) {
             String packageName = currentPackage.getName();
-            JavaVersion since = currentPackage.getSince();
+            JavaVersion since = sinceHelper.getSince(currentPackage);
             if (isMinimalJavaVersion(since, minimalJavaVersion)) {
                 // the package should be included for its own version
                 pageModel.ensurePackageExists(since, currentPackage.getJavaModule().getName(), packageName);
             }
             // collect classes and members as well, except if they share the package's version
-            collectClassesForNew(currentPackage, minimalJavaVersion, since, v -> pageModel.ensurePackageExists(v, currentPackage.getJavaModule().getName(), packageName));
+            collectClassesForNew(currentPackage, minimalJavaVersion, since, sinceHelper, v -> pageModel.ensurePackageExists(v, currentPackage.getJavaModule().getName(), packageName));
         }
     }
 
-    private static void collectModulesForNew(JavaAPI currentAPI, JavaVersion minimalJavaVersion, PageModel pageModel) {
+    private static void collectModulesForNew(JavaAPI currentAPI, JavaVersion minimalJavaVersion, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaModule currentModule : currentAPI.getJavaModules()) {
             String moduleName = currentModule.getName();
-            JavaVersion since = currentModule.getSince();
+            JavaVersion since = sinceHelper.getSince(currentModule);
             // only include the module if !since.introducedModules() (so since > 9), and if it has only packages that were added in the same version
             // currentModule.isSince(since) will return false if since.introducedModules() or any package has a different since
             if (isMinimalJavaVersion(since, minimalJavaVersion) && currentModule.isSince(since)) {
@@ -115,40 +125,40 @@ public final class PageModel {
                 pageModel.ensureModuleExists(since, moduleName);
             }
             // collect packages, classes and members as well, except if they share the module's version
-            collectPackagesForNew(currentModule, minimalJavaVersion, since, pageModel);
+            collectPackagesForNew(currentModule, minimalJavaVersion, since, pageModel, sinceHelper);
         }
     }
 
-    private static void collectPackagesForNew(JavaModule currentModule, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, PageModel pageModel) {
+    private static void collectPackagesForNew(JavaModule currentModule, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaPackage currentPackage : currentModule.getJavaPackages()) {
             String packageName = currentPackage.getName();
-            JavaVersion since = currentPackage.getSince();
+            JavaVersion since = sinceHelper.getSince(currentPackage);
             if (isMinimalJavaVersion(since, minimalJavaVersion) && !since.equals(omitForVersion)) {
                 // the package should be included for its own version
                 pageModel.ensurePackageExists(since, currentModule.getName(), packageName);
             }
             // collect classes and members as well, except if they share the package's version
-            collectClassesForNew(currentPackage, minimalJavaVersion, since, v -> pageModel.ensurePackageExists(v, currentModule.getName(), packageName));
+            collectClassesForNew(currentPackage, minimalJavaVersion, since, sinceHelper, v -> pageModel.ensurePackageExists(v, currentModule.getName(), packageName));
         }
     }
 
-    private static void collectClassesForNew(JavaPackage currentPackage, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, Function<JavaVersion, PagePackage> existingPackage) {
+    private static void collectClassesForNew(JavaPackage currentPackage, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, SinceHelper sinceHelper, Function<JavaVersion, PagePackage> existingPackage) {
         for (JavaClass currentClass : currentPackage.getJavaClasses()) {
             String className = currentClass.getName();
-            JavaVersion since = currentClass.getSince();
+            JavaVersion since = sinceHelper.getSince(currentClass);
             if (isMinimalJavaVersion(since, minimalJavaVersion) && !since.equals(omitForVersion)) {
                 // the class should be included for its own version
                 existingPackage.apply(since)
                         .ensureClassExists(className, currentClass.getType(), currentClass.getSuperClass());
             }
             // collect members as well, except if they share the class's version
-            collectMembersForNew(currentClass, minimalJavaVersion, since, existingPackage);
+            collectMembersForNew(currentClass, minimalJavaVersion, since, sinceHelper, existingPackage);
         }
     }
 
-    private static void collectMembersForNew(JavaClass currentClass, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, Function<JavaVersion, PagePackage> existingPackage) {
+    private static void collectMembersForNew(JavaClass currentClass, JavaVersion minimalJavaVersion, JavaVersion omitForVersion, SinceHelper sinceHelper, Function<JavaVersion, PagePackage> existingPackage) {
         for (JavaMember currentMember : currentClass.getJavaMembers()) {
-            JavaVersion since = currentMember.getSince();
+            JavaVersion since = sinceHelper.getSince(currentMember);
             if (isMinimalJavaVersion(since, minimalJavaVersion) && !since.equals(omitForVersion)) {
                 // the member should be included for its own version
                 existingPackage.apply(since)
@@ -158,49 +168,49 @@ public final class PageModel {
         }
     }
 
-    private static void collectPackagesForNew(JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel) {
+    private static void collectPackagesForNew(JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaPackage currentPackage : currentAPI.getJavaPackages()) {
             String packageName = currentPackage.getName();
             JavaPackage previousPackage = previousAPI.findJavaPackage(packageName);
             if (previousPackage == null) {
                 // the entire package is new
-                JavaVersion since = currentPackage.getSince();
+                JavaVersion since = sinceHelper.getSince(currentPackage);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the package does not have an @since that's too old
                     pageModel.ensurePackageExists(version, currentPackage.getJavaModule().getName(), packageName);
                 }
             } else {
                 // the package is not new; check classes
-                collectClassesForNew(currentPackage, previousPackage, minimalJavaVersion, () -> pageModel.ensurePackageExists(version, currentPackage.getJavaModule().getName(), packageName));
+                collectClassesForNew(currentPackage, previousPackage, minimalJavaVersion, sinceHelper, () -> pageModel.ensurePackageExists(version, currentPackage.getJavaModule().getName(), packageName));
             }
         }
     }
 
-    private static void collectModulesForNew(JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel) {
+    private static void collectModulesForNew(JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaModule currentModule : currentAPI.getJavaModules()) {
             String moduleName = currentModule.getName();
             JavaModule previousModule = previousAPI.findJavaModule(moduleName);
             if (previousModule == null) {
                 // the entire module is new
-                JavaVersion since = currentModule.getSince();
+                JavaVersion since = sinceHelper.getSince(currentModule);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the module does not have an @since that's too old
                     pageModel.ensureModuleExists(version, moduleName);
                 }
             } else {
                 // the module is not new; check packages
-                collectPackagesForNew(currentModule, previousModule, minimalJavaVersion, version, pageModel);
+                collectPackagesForNew(currentModule, previousModule, minimalJavaVersion, version, pageModel, sinceHelper);
             }
         }
     }
 
-    private static void collectPackagesForNew(JavaModule currentModule, JavaModule previousModule, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel) {
+    private static void collectPackagesForNew(JavaModule currentModule, JavaModule previousModule, JavaVersion minimalJavaVersion, JavaVersion version, PageModel pageModel, SinceHelper sinceHelper) {
         for (JavaPackage currentPackage : currentModule.getJavaPackages()) {
             String packageName = currentPackage.getName();
             JavaPackage previousPackage = previousModule.findJavaPackage(packageName);
             if (previousPackage == null) {
                 // the entire package was added
-                JavaVersion since = currentPackage.getSince();
+                JavaVersion since = sinceHelper.getSince(currentPackage);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the package does not have an @since that's too old
                     pageModel.ensureModuleExists(version, currentModule.getName())
@@ -208,19 +218,19 @@ public final class PageModel {
                 }
             } else {
                 // the package is not new; check classes
-                collectClassesForNew(currentPackage, previousPackage, minimalJavaVersion, () -> pageModel.ensureModuleExists(version, currentModule.getName())
+                collectClassesForNew(currentPackage, previousPackage, minimalJavaVersion, sinceHelper, () -> pageModel.ensureModuleExists(version, currentModule.getName())
                         .ensurePackageExists(packageName));
             }
         }
     }
 
-    private static void collectClassesForNew(JavaPackage currentPackage, JavaPackage previousPackage, JavaVersion minimalJavaVersion, Supplier<PagePackage> existingPackage) {
+    private static void collectClassesForNew(JavaPackage currentPackage, JavaPackage previousPackage, JavaVersion minimalJavaVersion, SinceHelper sinceHelper, Supplier<PagePackage> existingPackage) {
         for (JavaClass currentClass : currentPackage.getJavaClasses()) {
             String className = currentClass.getName();
             JavaClass previousClass = previousPackage.findJavaClass(className);
             if (previousClass == null) {
                 // the entire class is new
-                JavaVersion since = currentClass.getSince();
+                JavaVersion since = sinceHelper.getSince(currentClass);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the class does not have an @since that's too old
                     existingPackage.get()
@@ -233,7 +243,7 @@ public final class PageModel {
                 // check interfaces
                 //collectInterfacesForNew(currentClass, previousClass, existingPackage);
                 // check members
-                collectMembersForNew(currentClass, previousClass, minimalJavaVersion, existingPackage);
+                collectMembersForNew(currentClass, previousClass, minimalJavaVersion, sinceHelper, existingPackage);
             }
         }
     }
@@ -265,14 +275,14 @@ public final class PageModel {
         }
     }
 
-    private static void collectMembersForNew(JavaClass currentClass, JavaClass previousClass, JavaVersion minimalJavaVersion, Supplier<PagePackage> existingPackage) {
+    private static void collectMembersForNew(JavaClass currentClass, JavaClass previousClass, JavaVersion minimalJavaVersion, SinceHelper sinceHelper, Supplier<PagePackage> existingPackage) {
         for (JavaMember currentMember : currentClass.getJavaMembers()) {
             JavaMember.Type type = currentMember.getType();
             String originalSignature = currentMember.getOriginalSignature();
             JavaMember previousMember = previousClass.findJavaMember(type, originalSignature);
             if (previousMember == null && !isInheritedMethod(previousClass, type, originalSignature)) {
                 // the method is new, and not just overridden
-                JavaVersion since = currentMember.getSince();
+                JavaVersion since = sinceHelper.getSince(currentMember);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the method does not have an @since that's too old
                     existingPackage.get()
@@ -562,5 +572,92 @@ public final class PageModel {
 
     private static boolean isInheritedMethod(JavaClass javaClass, JavaMember.Type type, String originalSignature) {
         return type == JavaMember.Type.METHOD && javaClass.isInheritedMethod(originalSignature);
+    }
+
+    private static final class SinceHelper {
+
+        private final NavigableMap<JavaVersion, JavaAPI> javaAPIs;
+        private final JavaVersion minimalJavaVersion;
+
+        private SinceHelper(NavigableMap<JavaVersion, JavaAPI> javaAPIs, JavaVersion minimalJavaVersion) {
+            this.javaAPIs = javaAPIs;
+            this.minimalJavaVersion = minimalJavaVersion;
+        }
+
+        private JavaVersion getSince(JavaModule javaModule) {
+            Set<JavaVersion> javaVersions = moduleStream(javaModule)
+                    .map(JavaModule::getSince)
+                    .filter(Objects::nonNull)
+                    .collect(toSet());
+            return extractVersion(javaVersions, javaModule);
+        }
+
+        private JavaVersion getSince(JavaPackage javaPackage) {
+            Set<JavaVersion> javaVersions = packageStream(javaPackage)
+                    .map(JavaPackage::getSince)
+                    .filter(Objects::nonNull)
+                    .collect(toSet());
+            return extractVersion(javaVersions, javaPackage);
+        }
+
+        private JavaVersion getSince(JavaClass javaClass) {
+            Set<JavaVersion> javaVersions = classStream(javaClass)
+                    .map(JavaClass::getSince)
+                    .filter(Objects::nonNull)
+                    .collect(toSet());
+            return extractVersion(javaVersions, javaClass);
+        }
+
+        private JavaVersion getSince(JavaMember javaMember) {
+            Set<JavaVersion> javaVersions = memberStream(javaMember)
+                    .map(JavaMember::getSince)
+                    .filter(Objects::nonNull)
+                    .collect(toSet());
+            return extractVersion(javaVersions, javaMember);
+        }
+
+        private Stream<JavaModule> moduleStream(JavaModule javaModule) {
+            return javaAPIs.values().stream()
+                    .map(api -> api.findJavaModule(javaModule.getName()))
+                    .filter(Objects::nonNull);
+        }
+
+        private Stream<JavaPackage> packageStream(JavaPackage javaPackage) {
+            return javaAPIs.values().stream()
+                    .map(api -> api.findJavaPackage(javaPackage.getName()))
+                    .filter(Objects::nonNull);
+        }
+
+        private Stream<JavaClass> classStream(JavaClass javaClass) {
+            return packageStream(javaClass.getJavaPackage())
+                    .map(p -> p.findJavaClass(javaClass.getName()))
+                    .filter(Objects::nonNull);
+        }
+
+        private Stream<JavaMember> memberStream(JavaMember javaMember) {
+            return classStream(javaMember.getJavaClass())
+                    .map(c -> c.findJavaMember(javaMember.getType(), javaMember.getOriginalSignature()))
+                    .filter(Objects::nonNull);
+        }
+
+        private JavaVersion extractVersion(Set<JavaVersion> javaVersions, Object source) {
+            switch (javaVersions.size()) {
+            case 0:
+                return null;
+            case 1:
+                return javaVersions.iterator().next();
+            default:
+                Set<JavaVersion> uniqueVersions = new TreeSet<>(javaVersions);
+                if (uniqueVersions.size() == 1) {
+                    return javaVersions.iterator().next();
+                }
+                Set<JavaVersion> tooNewJavaVersions = new TreeSet<>(javaVersions);
+                tooNewJavaVersions.removeIf(v -> v.compareTo(minimalJavaVersion) < 0);
+                if (tooNewJavaVersions.isEmpty()) {
+                    LOGGER.warn("Found multiple versions for {} which are smaller than {}: {}", source, minimalJavaVersion, javaVersions);
+                }
+                return javaVersions.stream().max(naturalOrder()).get();
+            }
+        }
     }
 }

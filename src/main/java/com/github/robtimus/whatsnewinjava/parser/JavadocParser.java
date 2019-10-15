@@ -217,8 +217,17 @@ public final class JavadocParser {
                 boolean deprecated = false;
 
                 Element sinceTagElement = packageSinceTagElement(document);
+                String sinceString = null;
                 if (sinceTagElement != null) {
-                    String sinceString = extractSinceString(sinceTagElement);
+                    sinceString = extractSinceString(sinceTagElement);
+                } else if (javaVersion <= 8) {
+                    // some packages in Java 7 and 8 have a differently reported since
+                    Element sinceElement = document.selectFirst("div.contentContainer > div.block > ul > li:contains(Since )");
+                    if (sinceElement != null) {
+                        sinceString = sinceElement.text().replaceAll(".*Since\\s+", "");
+                    }
+                }
+                if (sinceString != null) {
                     since = extractJavaVersion(sinceString);
                     if (since == null) {
                         LOGGER.warn("Package {}: unexpected since: {}", packageName, sinceString);
@@ -237,7 +246,9 @@ public final class JavadocParser {
         }
 
         private Element packageSinceTagElement(Document document) {
-            // No Java 7/8 equivalent
+            if (javaVersion <= 8) {
+                return document.selectFirst("div.contentContainer dl > dt > :contains(Since:)");
+            }
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
             }
@@ -501,7 +512,7 @@ public final class JavadocParser {
                 // go one level up to find the <ul> with the members
                 // also, add any of these inside a code element (e.g. in ByteArrayOutputStream)
                 Elements memberElements = memberDetailElement.parent().select("> ul");
-                memberElements.addAll(memberDetailElement.parent().select("> code > ul"));
+                memberElements.addAll(memberDetailElement.parent().select("code > ul"));
                 return memberElements;
             }
             if (javaVersion <= 12) {

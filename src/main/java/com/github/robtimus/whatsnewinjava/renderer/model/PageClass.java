@@ -41,7 +41,7 @@ public final class PageClass {
         this.interfaceList = new LinkedHashSet<>();
         this.alteredInterfaces = new LinkedHashMap<>();
 
-        this.members = new TreeSet<>(comparing(PageMember::getSignature).thenComparing(PageMember::getType));
+        this.members = new TreeSet<>(comparing(PageMember::getSignatureForCompare).thenComparing(PageMember::getType));
     }
 
     public PagePackage getPagePackage() {

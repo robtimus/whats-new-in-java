@@ -29,6 +29,10 @@ public final class PageMember {
         return signature;
     }
 
+    String getSignatureForCompare() {
+        return type == JavaMember.Type.CONSTRUCTOR ? signature.replaceFirst("^.*\\(", "<init>\\(") : signature;
+    }
+
     @Override
     public String toString() {
         return signature;

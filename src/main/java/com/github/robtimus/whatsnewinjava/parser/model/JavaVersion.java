@@ -78,6 +78,8 @@ public final class JavaVersion implements Comparable<JavaVersion> {
 
     public static JavaVersion parse(String since) {
         String mappedSince = since
+                // a few methods were reported with version 7.0 in Java 7 and 8, change it into 7
+                .replaceFirst("^7\\.0$", "7")
                 .replaceFirst("^1\\.5", "5.0")
                 .replaceFirst("^1\\.6", "6")
                 .replaceFirst("^1\\.7", "7")
@@ -97,6 +99,12 @@ public final class JavaVersion implements Comparable<JavaVersion> {
             int major = Integer.parseInt(majorString);
             int minor = minorString == null ? 0 : Integer.parseInt(minorString);
             int patch = patchString == null ? 0 : Integer.parseInt(patchString);
+
+            if (version.equals(major + ".0" + minor)) {
+                // map 1.02 to 1.0.2
+                patch = minor;
+                minor = 0;
+            }
 
             String displayVersion = version;
             if (major > 1) {
