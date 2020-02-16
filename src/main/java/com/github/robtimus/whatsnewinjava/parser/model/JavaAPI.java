@@ -135,7 +135,7 @@ public final class JavaAPI {
     }
 
     public static JavaAPI fromJSON(Reader reader) {
-        JsonObject json = (JsonObject) new JsonParser().parse(reader);
+        JsonObject json = (JsonObject) JsonParser.parseReader(reader);
 
         Javadoc javadoc = Javadoc.fromJSON(json.get("javadoc").getAsJsonObject());
 
