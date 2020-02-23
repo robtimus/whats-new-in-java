@@ -55,6 +55,8 @@
                     <a class="btn btn-link" th:href="${linkGenerator.generateLink(pagePackage)}" rel="external">
                       [[${pagePackage.name}]]
                     </a>
+                    <span th:if="${pagePackage.movedToNewModule}">(moved to
+                      <a class="btn-link" th:href="${linkGenerator.generateNewModuleLink(pagePackage)}" rel="external">[[${pagePackage.newModuleName}]]</a>)</span>
                   </div>
                   <th:block th:if="${pagePackage.hasContent()}">
                   <div class="panel-heading"

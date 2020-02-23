@@ -40,6 +40,14 @@ final class LinkGenerator {
                 .replace(latestBaseURL, "");
     }
 
+    public String generateNewModuleLink(PagePackage pagePackage) {
+        JavaModule latestModule = findLatestModule(pagePackage.getNewModuleName());
+        Javadoc javadoc = latestModule.getJavaAPI().getJavadoc();
+        String format = javadoc.useModules() ? "%s%s/module-summary.html" : "%s%s-summary.html";
+        return String.format(format, javadoc.getBaseURL(), pagePackage.getNewModuleName())
+                .replace(latestBaseURL, "");
+    }
+
     public String generateLink(PagePackage pagePackage) {
         JavaPackage latestPackage = findLatestPackage(pagePackage);
         return String.format("%s%s/package-summary.html", latestPackage.getJavaAPI().getJavadoc().getBaseURL(), getRelativeBaseURL(latestPackage))
@@ -69,11 +77,15 @@ final class LinkGenerator {
     }
 
     private JavaModule findLatestModule(PageModule pageModule) {
+        return findLatestModule(pageModule.getName());
+    }
+
+    private JavaModule findLatestModule(String moduleName) {
         return javaAPIs.descendingMap().values().stream()
-                .map(api -> api.findJavaModule(pageModule.getName()))
+                .map(api -> api.findJavaModule(moduleName))
                 .filter(Objects::nonNull)
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Could not find module " + pageModule));
+                .orElseThrow(() -> new IllegalStateException("Could not find module " + moduleName));
     }
 
     private JavaPackage findLatestPackage(PagePackage pagePackage) {

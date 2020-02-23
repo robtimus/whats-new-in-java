@@ -15,6 +15,8 @@ public final class PagePackage {
 
     private final Map<String, PageClass> classes;
 
+    private String newModuleName;
+
     PagePackage(PageModule pageModule, String name) {
         this.pageModule = pageModule;
 
@@ -35,8 +37,16 @@ public final class PagePackage {
         return unmodifiableCollection(classes.values());
     }
 
+    public String getNewModuleName() {
+        return newModuleName;
+    }
+
     public boolean hasContent() {
         return !classes.isEmpty();
+    }
+
+    public boolean isMovedToNewModule() {
+        return newModuleName != null;
     }
 
     @Override
@@ -45,11 +55,21 @@ public final class PagePackage {
     }
 
     PageClass ensureClassExists(String className, JavaClass.Type type, String superClass) {
+        if (newModuleName != null) {
+            throw new IllegalStateException(String.format("Cannot add classes to package %s which is marked as moved to new module %s", name, newModuleName));
+        }
         PageClass result = classes.computeIfAbsent(className, k -> new PageClass(this, className, type, superClass));
         if (type != result.getType()) {
             throw new IllegalStateException(String.format("Non-matching Java class encountered for class %s.%s; expected type %s, was %s",
                     name, className, type, result.getType()));
         }
         return result;
+    }
+
+    void movedToNewModule(String newModuleName) {
+        if (!classes.isEmpty()) {
+            throw new IllegalStateException(String.format("Cannot mark package %s as moved to new module if it has nested classes", name));
+        }
+        this.newModuleName = newModuleName;
     }
 }

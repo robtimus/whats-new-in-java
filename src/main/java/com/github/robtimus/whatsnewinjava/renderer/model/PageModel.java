@@ -556,11 +556,12 @@ public final class PageModel {
             if (currentPackage == null) {
                 // the entire package was removed, or possibly moved
                 JavaPackage possiblyMovedPackage = currentModule.getJavaAPI().findJavaPackage(packageName);
+                PagePackage pagePackage = pageModel.ensureModuleExists(version, previousModule.getName())
+                        .ensurePackageExists(packageName);
                 if (possiblyMovedPackage != null) {
                     LOGGER.warn("Package {} has moved from module {} to {}", packageName, previousModule.getName(), possiblyMovedPackage.getJavaModule().getName());
+                    pagePackage.movedToNewModule(possiblyMovedPackage.getJavaModule().getName());
                 }
-                pageModel.ensureModuleExists(version, previousModule.getName())
-                        .ensurePackageExists(packageName);
             } else {
                 // the package was not removed; check classes
                 collectClassesForRemoved(currentPackage, previousPackage, () -> pageModel.ensureModuleExists(version, previousModule.getName())
