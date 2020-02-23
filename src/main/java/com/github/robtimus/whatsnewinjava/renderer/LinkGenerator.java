@@ -33,18 +33,18 @@ final class LinkGenerator {
     }
 
     public String generateLink(PageModule pageModule) {
-        JavaModule latestModule = findLatestModule(pageModule);
-        Javadoc javadoc = latestModule.getJavaAPI().getJavadoc();
-        String format = javadoc.useModules() ? "%s%s/module-summary.html" : "%s%s-summary.html";
-        return String.format(format, javadoc.getBaseURL(), pageModule.getName())
-                .replace(latestBaseURL, "");
+        return generateModuleLink(pageModule.getName());
     }
 
     public String generateNewModuleLink(PagePackage pagePackage) {
-        JavaModule latestModule = findLatestModule(pagePackage.getNewModuleName());
+        return generateModuleLink(pagePackage.getNewModuleName());
+    }
+
+    private String generateModuleLink(String moduleName) {
+        JavaModule latestModule = findLatestModule(moduleName);
         Javadoc javadoc = latestModule.getJavaAPI().getJavadoc();
         String format = javadoc.useModules() ? "%s%s/module-summary.html" : "%s%s-summary.html";
-        return String.format(format, javadoc.getBaseURL(), pagePackage.getNewModuleName())
+        return String.format(format, javadoc.getBaseURL(), moduleName)
                 .replace(latestBaseURL, "");
     }
 
@@ -74,10 +74,6 @@ final class LinkGenerator {
         String packagePath = javaPackage.getName().replace('.', '/');
 
         return javaPackage.getJavaAPI().getJavadoc().useModules() ? javaModule.getName() + "/" + packagePath : packagePath;
-    }
-
-    private JavaModule findLatestModule(PageModule pageModule) {
-        return findLatestModule(pageModule.getName());
     }
 
     private JavaModule findLatestModule(String moduleName) {
