@@ -26,6 +26,10 @@ public final class PageModule {
         return unmodifiableCollection(packages.values());
     }
 
+    public boolean hasContent() {
+        return !packages.isEmpty();
+    }
+
     @Override
     public String toString() {
         return name;

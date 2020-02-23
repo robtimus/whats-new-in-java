@@ -26,12 +26,12 @@
               th:each="pageModule : ${pageModules}">
             <div class="panel-heading"
                  th:attr="id=${pageModuleHeaderId}"
-                 th:if="${pagePackages.empty}">
+                 th:unless="${pageModule.hasContent()}">
               <a class="btn btn-link" th:href="${linkGenerator.generateLink(pageModule)}" rel="external">
                 [[${pageModule.name}]]
               </a>
             </div>
-            <th:block th:unless="${pagePackages.empty}">
+            <th:block th:if="${pageModule.hasContent()}">
             <div class="panel-heading"
                  th:attr="id=${pageModuleHeaderId}">
               <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + pageModuleContentId}"
@@ -51,12 +51,12 @@
                      th:each="pagePackage : ${pagePackages}">
                   <div class="panel-heading"
                        th:attr="id=${pagePackageHeaderId}"
-                       th:if="${pageClasses.empty}">
+                       th:unless="${pagePackage.hasContent()}">
                     <a class="btn btn-link" th:href="${linkGenerator.generateLink(pagePackage)}" rel="external">
                       [[${pagePackage.name}]]
                     </a>
                   </div>
-                  <th:block th:unless="${pageClasses.empty}">
+                  <th:block th:if="${pagePackage.hasContent()}">
                   <div class="panel-heading"
                        th:attr="id=${pagePackageHeaderId}">
                     <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + pagePackageContentId}"
@@ -76,12 +76,12 @@
                            th:each="pageClass : ${pageClasses}">
                         <div class="panel-heading"
                              th:attr="id=${pageClassHeaderId}"
-                             th:if="${pageMembers.empty}">
+                             th:unless="${pageClass.hasContent()}">
                           <a class="btn btn-link" th:href="${linkGenerator.generateLink(pageClass)}" rel="external">
                             [[${pageClass.name}]]
                           </a>
                         </div>
-                        <th:block th:unless="${pageMembers.empty}">
+                        <th:block th:if="${pageClass.hasContent()}">
                         <div class="panel-heading"
                              th:attr="id=${pageClassHeaderId}">
                           <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + pageClassContentId}" 
@@ -144,12 +144,12 @@
                th:each="pagePackage : ${pagePackages}">
             <div class="panel-heading"
                  th:attr="id=${pagePackageHeaderId}"
-                 th:if="${pageClasses.empty}">
+                 th:unless="${pagePackage.hasContent()}">
               <a class="btn btn-link" th:href="${linkGenerator.generateLink(pagePackage)}" rel="external">
                 [[${pagePackage.name}]]
               </a>
             </div>
-            <th:block th:unless="${pageClasses.empty}">
+            <th:block th:if="${pagePackage.hasContent()}">
             <div class="panel-heading"
                  th:attr="id=${pagePackageHeaderId}">
               <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + pagePackageContentId}"
@@ -169,12 +169,12 @@
                      th:each="pageClass : ${pageClasses}">
                   <div class="panel-heading"
                        th:attr="id=${pageClassHeaderId}"
-                       th:if="${pageMembers.empty}">
+                       th:unless="${pageClass.hasContent()}">
                     <a class="btn btn-link" th:href="${linkGenerator.generateLink(pageClass)}" rel="external">
                       [[${pageClass.name}]]
                     </a>
                   </div>
-                  <th:block th:unless="${pageMembers.empty}">
+                  <th:block th:if="${pageClass.hasContent()}">
                   <div class="panel-heading"
                        th:attr="id=${pageClassHeaderId}">
                     <a class="btn btn-link" data-toggle="collapse" aria-expanded="false" role="button" th:href="${'#' + pageClassContentId}" 

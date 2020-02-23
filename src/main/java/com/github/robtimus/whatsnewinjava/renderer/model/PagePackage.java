@@ -35,6 +35,10 @@ public final class PagePackage {
         return unmodifiableCollection(classes.values());
     }
 
+    public boolean hasContent() {
+        return !classes.isEmpty();
+    }
+
     @Override
     public String toString() {
         return name;

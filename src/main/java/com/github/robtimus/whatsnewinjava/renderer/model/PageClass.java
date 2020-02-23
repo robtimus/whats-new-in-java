@@ -80,6 +80,10 @@ public final class PageClass {
         return unmodifiableCollection(members);
     }
 
+    public boolean hasContent() {
+        return !members.isEmpty();
+    }
+
     @Override
     public String toString() {
         return fullName;
