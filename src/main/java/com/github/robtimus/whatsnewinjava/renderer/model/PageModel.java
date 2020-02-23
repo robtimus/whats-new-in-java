@@ -184,7 +184,8 @@ public final class PageModel {
                 JavaVersion since = sinceHelper.getSince(currentPackage);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the package does not have an @since that's too old
-                    pageModel.ensurePackageExists(version, currentPackage.getJavaModule().getName(), packageName);
+                    JavaVersion versionToUse = since != null ? since : version;
+                    pageModel.ensurePackageExists(versionToUse, currentPackage.getJavaModule().getName(), packageName);
                 }
             } else {
                 // the package is not new; check classes
@@ -202,7 +203,8 @@ public final class PageModel {
                 JavaVersion since = sinceHelper.getSince(currentModule);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the module does not have an @since that's too old
-                    pageModel.ensureModuleExists(version, moduleName);
+                    JavaVersion versionToUse = since != null ? since : version;
+                    pageModel.ensureModuleExists(versionToUse, moduleName);
                 }
             } else {
                 // the module is not new; check packages
@@ -220,7 +222,8 @@ public final class PageModel {
                 JavaVersion since = sinceHelper.getSince(currentPackage);
                 if (since == null || isMinimalJavaVersion(since, minimalJavaVersion)) {
                     // the package does not have an @since that's too old
-                    pageModel.ensureModuleExists(version, currentModule.getName())
+                    JavaVersion versionToUse = since != null ? since : version;
+                    pageModel.ensureModuleExists(versionToUse, currentModule.getName())
                             .ensurePackageExists(packageName);
                 }
             } else {
@@ -315,14 +318,15 @@ public final class PageModel {
     }
 
     private static boolean allPackagesAreNew(PageModule pageModule, JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion version) {
-        for (PagePackage pagePackage : pageModule.getPackages()) {
-            String packageName = pagePackage.getName();
-            JavaPackage javaPackage = currentAPI.findJavaPackage(packageName);
+        JavaModule javaModule = currentAPI.findJavaModule(pageModule.getName());
+        for (JavaPackage javaPackage : javaModule.getJavaPackages()) {
+            String packageName = javaPackage.getName();
             if (javaPackage.getSince() != null && !javaPackage.isAtLeastSince(version)) {
                 // the package has a lower since so it's not new
                 return false;
             }
-            if (!pagePackage.getClasses().isEmpty()) {
+            PagePackage pagePackage = pageModule.findPackage(packageName);
+            if (pagePackage != null && !pagePackage.getClasses().isEmpty()) {
                 // the package contains content which needs to be reported separately
                 return false;
             }

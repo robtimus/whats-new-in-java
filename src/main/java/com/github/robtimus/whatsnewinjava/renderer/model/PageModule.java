@@ -34,4 +34,8 @@ public final class PageModule {
     PagePackage ensurePackageExists(String packageName) {
         return packages.computeIfAbsent(packageName, k -> new PagePackage(this, packageName));
     }
+
+    PagePackage findPackage(String packageName) {
+        return packages.get(packageName);
+    }
 }
