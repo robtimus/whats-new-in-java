@@ -3,9 +3,11 @@ package com.github.robtimus.whatsnewinjava.renderer.model;
 import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.toSet;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Objects;
@@ -96,6 +98,11 @@ public final class PageModel {
                 // both current and previous use modules, use collectModulesForRemoved
                 collectModulesForNew(currentAPI, previousAPI, minimalJavaVersion, version, pageModel, sinceHelper);
             }
+            if (version.introducedModules()) {
+                // all packages in modules may be reported as new, in which case the entire module should be reported as new
+                flattenModulesWithAllNewPackages(currentAPI, previousAPI, version, pageModel);
+            }
+
             current = previous;
         }
         return pageModel;
@@ -291,6 +298,40 @@ public final class PageModel {
                 }
             }
         }
+    }
+
+    private static void flattenModulesWithAllNewPackages(JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion version, PageModel pageModel) {
+        Map<String, PageModule> pageModules = pageModel.modulesPerVersion.get(version);
+        List<PageModule> pageModulesToReplace = new ArrayList<>();
+        for (PageModule pageModule : pageModules.values()) {
+            if (allPackagesAreNew(pageModule, currentAPI, previousAPI, version)) {
+                pageModulesToReplace.add(pageModule);
+            }
+        }
+        for (PageModule pageModule : pageModulesToReplace) {
+            String moduleName = pageModule.getName();
+            pageModules.put(moduleName, new PageModule(moduleName));
+        }
+    }
+
+    private static boolean allPackagesAreNew(PageModule pageModule, JavaAPI currentAPI, JavaAPI previousAPI, JavaVersion version) {
+        for (PagePackage pagePackage : pageModule.getPackages()) {
+            String packageName = pagePackage.getName();
+            JavaPackage javaPackage = currentAPI.findJavaPackage(packageName);
+            if (javaPackage.getSince() != null && !javaPackage.isAtLeastSince(version)) {
+                // the package has a lower since so it's not new
+                return false;
+            }
+            if (!pagePackage.getClasses().isEmpty()) {
+                // the package contains content which needs to be reported separately
+                return false;
+            }
+            if (previousAPI.findJavaPackage(packageName) != null) {
+                // the package already existed
+                return false;
+            }
+        }
+        return true;
     }
 
     private static boolean isMinimalJavaVersion(JavaVersion since, JavaVersion minimalJavaVersion) {
