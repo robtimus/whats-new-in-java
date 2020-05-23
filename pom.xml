@@ -19,7 +19,13 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.robtimus</groupId>
+  <parent>
+    <groupId>com.github.robtimus</groupId>
+    <artifactId>robtimus-parent</artifactId>
+    <version>1.0</version>
+    <relativePath />
+  </parent>
+
   <artifactId>whats-new-in-java</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -55,25 +61,10 @@
   </issueManagement>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <version.java>1.8</version.java>
-
-    <version.hamcrest>2.2</version.hamcrest>
     <version.gson>2.8.6</version.gson>
     <version.io-functions>1.1</version.io-functions>
-    <version.junit>5.6.1</version.junit>
     <version.jsoup>1.13.1</version.jsoup>
-    <version.mockito>3.3.3</version.mockito>
-    <version.slf4j>1.7.30</version.slf4j>
     <version.thymeleaf>3.0.11.RELEASE</version.thymeleaf>
-
-    <version.plugin.clean>3.1.0</version.plugin.clean>
-    <version.plugin.compiler>3.8.1</version.plugin.compiler>
-    <version.plugin.dependency>3.1.1</version.plugin.dependency>
-    <version.plugin.jar>3.1.1</version.plugin.jar>
-    <version.plugin.resources>3.1.0</version.plugin.resources>
-    <version.plugin.surefire>2.22.2</version.plugin.surefire>
   </properties>
 
   <dependencies>
@@ -104,7 +95,6 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${version.slf4j}</version>
     </dependency>
 
     <dependency>
@@ -116,21 +106,18 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${version.junit}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>${version.hamcrest}</version>
+      <artifactId>hamcrest</artifactId>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>${version.mockito}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -140,41 +127,31 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${version.plugin.compiler}</version>
-        <configuration>
-          <source>${version.java}</source>
-          <target>${version.java}</target>
-        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>${version.plugin.dependency}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>${version.plugin.jar}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>${version.plugin.resources}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>${version.plugin.clean}</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${version.plugin.surefire}</version>
       </plugin>
     </plugins>
   </build>
