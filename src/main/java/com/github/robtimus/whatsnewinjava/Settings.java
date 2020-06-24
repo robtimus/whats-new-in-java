@@ -29,7 +29,7 @@ public final class Settings {
     }
 
     private Settings() {
-        throw new Error("cannot create instances of " + getClass().getName());
+        throw new IllegalStateException("cannot create instances of " + getClass().getName());
     }
 
     public static JavaVersion getMinimalJavaVersion() {

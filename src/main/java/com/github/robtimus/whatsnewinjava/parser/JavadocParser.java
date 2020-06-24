@@ -21,6 +21,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
+import java.util.stream.Stream;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -47,13 +48,15 @@ public final class JavadocParser {
         if (Files.isDirectory(rootFolder.resolve("java.base"))) {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, true));
             // use modules structure
-            Files.walk(rootFolder, 1)
-                    .filter(p -> Files.isDirectory(p) && Files.isRegularFile(p.resolve("module-summary.html")))
-                    .forEach(IOConsumer.unchecked(subFolder -> {
-                        String moduleName = subFolder.getFileName().toString();
-                        Parser parser = new Parser(subFolder, packagesToIgnore, javaVersion, moduleName, javaAPI);
-                        parser.parse();
-                    }));
+            try (Stream<Path> stream = Files.walk(rootFolder, 1)) {
+                stream
+                        .filter(p -> Files.isDirectory(p) && Files.isRegularFile(p.resolve("module-summary.html")))
+                        .forEach(IOConsumer.unchecked(subFolder -> {
+                            String moduleName = subFolder.getFileName().toString();
+                            Parser parser = new Parser(subFolder, packagesToIgnore, javaVersion, moduleName, javaAPI);
+                            parser.parse();
+                        }));
+            }
         } else {
             javaAPI = new JavaAPI(new Javadoc(javadocBaseURL, false));
             Parser parser = new Parser(rootFolder, packagesToIgnore, javaVersion, null, javaAPI);
@@ -109,20 +112,24 @@ public final class JavadocParser {
                 Path moduleFile = rootFolder.resolve("module-summary.html");
                 parseModuleFile(moduleFile);
             } else {
-                Files.walk(rootFolder, 1)
-                        .filter(Files::isRegularFile)
-                        .filter(this::isModuleFile)
-                        .forEach(this::parseModuleFile);
+                try (Stream<Path> stream = Files.walk(rootFolder, 1)) {
+                    stream
+                            .filter(Files::isRegularFile)
+                            .filter(this::isModuleFile)
+                            .forEach(this::parseModuleFile);
+                }
 
                 if (packageNamesToModuleNames.isEmpty()) {
                     javaAPI.addAutomaticJavaModule();
                 }
             }
 
-            Files.walk(rootFolder)
-                    .filter(Files::isRegularFile)
-                    .filter(this::isNonIgnoredPackageSummaryFile)
-                    .forEach(this::handlePackageFile);
+            try (Stream<Path> stream = Files.walk(rootFolder)) {
+                stream
+                        .filter(Files::isRegularFile)
+                        .filter(this::isNonIgnoredPackageSummaryFile)
+                        .forEach(this::handlePackageFile);
+            }
         }
 
         private void parseModuleFile(Path file) {
@@ -196,10 +203,12 @@ public final class JavadocParser {
             parsePackageFile(file);
             Path packageDir = requireNonNull(file.getParent());
             try {
-                Files.walk(packageDir, 1)
-                        .filter(Files::isRegularFile)
-                        .filter(this::isClassFile)
-                        .forEach(this::handleClassFile);
+                try (Stream<Path> stream = Files.walk(packageDir, 1)) {
+                    stream
+                            .filter(Files::isRegularFile)
+                            .filter(this::isClassFile)
+                            .forEach(this::handleClassFile);
+                }
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
@@ -411,7 +420,7 @@ public final class JavadocParser {
         private Elements classInheritedMethodsElements(Document document) {
             if (javaVersion <= 12) {
                 Elements elements = document.select("div.contentContainer > div.summary h3:contains(Methods declared in)");
-                if (elements.size() == 0) {
+                if (elements.isEmpty()) {
                     elements = document.select("div.contentContainer > div.summary h3:contains(Methods inherited from)");
                 }
                 return elements;

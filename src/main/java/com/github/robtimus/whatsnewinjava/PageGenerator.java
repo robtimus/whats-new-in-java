@@ -17,7 +17,7 @@ public final class PageGenerator {
     private static final Logger LOGGER = LoggerFactory.getLogger(PageGenerator.class);
 
     private PageGenerator() {
-        throw new Error("cannot create instances of " + getClass().getName());
+        throw new IllegalStateException("cannot create instances of " + getClass().getName());
     }
 
     public static void main(String... args) throws IOException {

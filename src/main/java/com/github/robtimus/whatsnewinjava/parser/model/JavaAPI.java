@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
@@ -164,15 +165,17 @@ public final class JavaAPI {
     }
 
     public static NavigableMap<JavaVersion, JavaAPI> allFromJSON(Path baseDir) throws IOException {
-        Map<JavaVersion, JavaAPI> javaAPIs = Files.walk(baseDir, 1)
-                .filter(Files::isRegularFile)
-                .filter(JavaAPI::isJavaAPIFile)
-                .map(JavaAPI::fromJSON)
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
+        try (Stream<Path> stream = Files.walk(baseDir, 1)) {
+            Map<JavaVersion, JavaAPI> javaAPIs = stream
+                    .filter(Files::isRegularFile)
+                    .filter(JavaAPI::isJavaAPIFile)
+                    .map(JavaAPI::fromJSON)
+                    .collect(toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        LOGGER.info("Loaded all Java APIs");
+            LOGGER.info("Loaded all Java APIs");
 
-        return new TreeMap<>(javaAPIs);
+            return new TreeMap<>(javaAPIs);
+        }
     }
 
     private static boolean isJavaAPIFile(Path file) {

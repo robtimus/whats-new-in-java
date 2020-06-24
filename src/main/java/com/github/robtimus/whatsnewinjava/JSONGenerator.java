@@ -12,7 +12,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
 public final class JSONGenerator {
 
     private JSONGenerator() {
-        throw new Error("cannot create instances of " + getClass().getName());
+        throw new IllegalStateException("cannot create instances of " + getClass().getName());
     }
 
     public static void main(String... args) throws IOException {
