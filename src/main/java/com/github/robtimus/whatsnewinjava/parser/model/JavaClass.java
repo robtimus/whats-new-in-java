@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.BinaryOperator;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import com.google.gson.JsonArray;
@@ -54,7 +55,7 @@ public final class JavaClass extends VersionableJavaObject {
 
         this.javaMembers = new TreeMap<>();
         this.inheritedMethodSignatures = inheritedMethodSignatures.stream()
-                .collect(toMap(identity(), Signature::new, (x, y) -> { throw new IllegalStateException(); }, TreeMap::new));
+                .collect(toMap(identity(), Signature::new, throwingMerger(), TreeMap::new));
     }
 
     public JavaAPI getJavaAPI() {
@@ -127,7 +128,7 @@ public final class JavaClass extends VersionableJavaObject {
             json.addProperty("superClass", superClass);
         }
         JsonArray interfaces = interfaceList.getInterfaceNames().stream()
-                .collect(Collector.of(JsonArray::new, (a, i) -> a.add(i), (x, y) -> { throw new IllegalStateException(); }));
+                .collect(Collector.of(JsonArray::new, (a, i) -> a.add(i), throwingMerger()));
         json.add("interfaces", interfaces);
 
         addMembers("constructors", JavaMember.Type.CONSTRUCTOR, json);
@@ -135,14 +136,14 @@ public final class JavaClass extends VersionableJavaObject {
         addMembers("methods", JavaMember.Type.METHOD, json);
 
         JsonArray inheritedMethods = inheritedMethodSignatures.keySet().stream()
-                .collect(Collector.of(JsonArray::new, JsonArray::add, (x, y) -> { throw new IllegalStateException(); }));
+                .collect(Collector.of(JsonArray::new, JsonArray::add, throwingMerger()));
         json.add("inheritedMethods", inheritedMethods);
     }
 
     private void addMembers(String propertyName, JavaMember.Type type, JsonObject json) {
         JsonObject members = javaMembers.values().stream()
                 .filter(m -> m.getType() == type)
-                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.getOriginalSignature(), m.toJSON()), (x, y) -> { throw new IllegalStateException(); }));
+                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.getOriginalSignature(), m.toJSON()), throwingMerger()));
 
         json.add(propertyName, members);
     }
@@ -190,6 +191,12 @@ public final class JavaClass extends VersionableJavaObject {
             final MemberMapKey key = new MemberMapKey(type, javaMember.getOriginalSignature());
             javaClass.javaMembers.put(key, javaMember);
         }
+    }
+
+    private static <T> BinaryOperator<T> throwingMerger() {
+        return (t, u) -> {
+            throw new IllegalStateException();
+        };
     }
 
     public enum Type {

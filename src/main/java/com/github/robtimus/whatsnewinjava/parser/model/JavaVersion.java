@@ -100,7 +100,7 @@ public final class JavaVersion implements Comparable<JavaVersion> {
             int minor = minorString == null ? 0 : Integer.parseInt(minorString);
             int patch = patchString == null ? 0 : Integer.parseInt(patchString);
 
-            if (version.equals(major + ".0" + minor)) {
+            if ((major + ".0" + minor).equals(version)) {
                 // map 1.02 to 1.0.2
                 patch = minor;
                 minor = 0;

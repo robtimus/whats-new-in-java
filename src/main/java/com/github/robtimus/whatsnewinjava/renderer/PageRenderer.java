@@ -26,6 +26,7 @@ public final class PageRenderer {
     private static final TemplateSpec TEMPLATE_SPEC_REMOVED_ = new TemplateSpec(PAGE_TEMPLATE_REMOVED, TemplateMode.HTML);
 
     private static final Map<JavaClass.Type, String> INTERFACE_PREFIXES;
+
     static {
         Map<JavaClass.Type, String> interfacePrefixes = new EnumMap<>(JavaClass.Type.class);
         for (JavaClass.Type type : JavaClass.Type.values()) {
