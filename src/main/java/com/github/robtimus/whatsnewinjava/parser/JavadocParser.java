@@ -281,7 +281,7 @@ public final class JavadocParser {
             if (javaVersion <= 14) {
                 return document.selectFirst("div.contentContainer > section.packageDescription > div.deprecationBlock");
             }
-            return document.selectFirst("main[role='main'] > section.package-description > div.deprecationBlock");
+            return document.selectFirst("main[role='main'] > section.package-description > div.deprecation-block");
         }
 
         private void handleClassFile(Path file) {
