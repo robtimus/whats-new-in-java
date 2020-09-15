@@ -183,7 +183,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
             }
-            return document.selectFirst("div.contentContainer > section.moduleTags > dl > dt > span:contains(Since:)");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.moduleTags > dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("main[role='main'] > section.module-description > dl > dt:contains(Since:)");
         }
 
         private Element moduleDeprecatedBlockElement(Document document) {
@@ -191,7 +194,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
             }
-            return document.selectFirst("div.contentContainer > section.moduleDescription > div.deprecationBlock");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.moduleDescription > div.deprecationBlock");
+            }
+            return document.selectFirst("main[role='main'] > section.module-description > div.deprecationBlock");
         }
 
         private Elements modulePackageLinks(Document document) {
@@ -261,7 +267,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > section[role=region] > dl > dt > span:contains(Since:)");
             }
-            return document.selectFirst("div.contentContainer > section.packageDescription > dl > dt > span:contains(Since:)");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.packageDescription > dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("main[role='main'] > section.package-description > dl > dt:contains(Since:)");
         }
 
         private Element packageDeprecatedBlockElement(Document document) {
@@ -269,7 +278,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > section[role=region] > div.deprecationBlock");
             }
-            return document.selectFirst("div.contentContainer > section.packageDescription > div.deprecationBlock");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.packageDescription > div.deprecationBlock");
+            }
+            return document.selectFirst("main[role='main'] > section.package-description > div.deprecationBlock");
         }
 
         private void handleClassFile(Path file) {
@@ -346,7 +358,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.select("div.contentContainer ul.inheritance > li > a").last();
             }
-            return document.select("div.contentContainer div.inheritance > a").last();
+            if (javaVersion <= 14) {
+                return document.select("div.contentContainer div.inheritance > a").last();
+            }
+            return document.select("main[role='main'] div.inheritance > a").last();
         }
 
         private JavaInterfaceList classInterfaceList(Document document, JavaClass.Type type) {
@@ -380,7 +395,11 @@ public final class JavadocParser {
                 Element labelElement = document.selectFirst("div.contentContainer > div.description dl > dt:contains(" + label + ")");
                 return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
             }
-            Element labelElement = document.selectFirst("div.contentContainer > section.description dl > dt:contains(" + label + ")");
+            if (javaVersion <= 14) {
+                Element labelElement = document.selectFirst("div.contentContainer > section.description dl > dt:contains(" + label + ")");
+                return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
+            }
+            Element labelElement = document.selectFirst("main[role='main'] > section.description dl > dt:contains(" + label + ")");
             return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
         }
 
@@ -404,7 +423,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > div.description dl > dt > span:contains(Since:)");
             }
-            return document.selectFirst("div.contentContainer > section.description dl > dt > span:contains(Since:)");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.description dl > dt > span:contains(Since:)");
+            }
+            return document.selectFirst("main[role='main'] > section.description dl > dt:contains(Since:)");
         }
 
         private Element classDeprecatedBlockElement(Document document) {
@@ -414,7 +436,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > div.description > ul.blockList > li.blockList > div > span.deprecatedLabel");
             }
-            return document.selectFirst("div.contentContainer > section.description > div.deprecationBlock");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.description > div.deprecationBlock");
+            }
+            return document.selectFirst("main[role='main'] > section.description > div.deprecation-block");
         }
 
         private Elements classInheritedMethodsElements(Document document) {
@@ -425,7 +450,10 @@ public final class JavadocParser {
                 }
                 return elements;
             }
-            return document.select("div.contentContainer > section.summary h3:contains(Methods declared in)");
+            if (javaVersion <= 14) {
+                return document.select("div.contentContainer > section.summary h3:contains(Methods declared in)");
+            }
+            return document.select("main[role='main'] > section.summary h3:contains(Methods declared in)");
         }
 
         private Element classMethodLinkParent(Element inheritedMethodsElement) {
@@ -513,7 +541,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return document.selectFirst("div.contentContainer > div.details h3:contains(" + memberType + " Detail)");
             }
-            return document.selectFirst("div.contentContainer > section.details h2:contains(" + memberType + " Detail)");
+            if (javaVersion <= 14) {
+                return document.selectFirst("div.contentContainer > section.details h2:contains(" + memberType + " Detail)");
+            }
+            return document.selectFirst("main[role='main'] > section.details h2:contains(" + memberType + " Detail)");
         }
 
         private Elements memberElements(Element memberDetailElement) {
@@ -539,17 +570,23 @@ public final class JavadocParser {
                 String name = signatureElement.attr("name");
                 return id.isEmpty() ? name : id;
             }
-            // sometimes multiple anchors exist,
-            // e.g. Comparable.compareTo(java.lang.Object) and Comparable.compareTo(T)
-            // take the last one
-            return memberElement.select("h3 > a").last().attr("id");
+            if (javaVersion <= 14) {
+                // sometimes multiple anchors exist,
+                // e.g. Comparable.compareTo(java.lang.Object) and Comparable.compareTo(T)
+                // take the last one
+                return memberElement.select("h3 > a").last().attr("id");
+            }
+            return memberElement.attr("id");
         }
 
         private Element memberSinceTagElement(Element memberElement) {
             if (javaVersion <= 12) {
                 return memberElement.selectFirst("li dl > dt > span:contains(Since:)");
             }
-            return memberElement.selectFirst("dl > dt > span:contains(Since:)");
+            if (javaVersion <= 14) {
+                return memberElement.selectFirst("dl > dt > span:contains(Since:)");
+            }
+            return memberElement.selectFirst("dl > dt:contains(Since:)");
         }
 
         private Element memberDeprecatedBlockElement(Element memberElement) {
@@ -559,7 +596,10 @@ public final class JavadocParser {
             if (javaVersion <= 12) {
                 return memberElement.selectFirst("li > div > span.deprecatedLabel");
             }
-            return memberElement.selectFirst("div.deprecationBlock > span.deprecatedLabel");
+            if (javaVersion <= 14) {
+                return memberElement.selectFirst("div.deprecationBlock > span.deprecatedLabel");
+            }
+            return memberElement.selectFirst("div.deprecation-block > span.deprecated-label");
         }
 
         private String extractPackageName(Path file) {
@@ -573,8 +613,12 @@ public final class JavadocParser {
         }
 
         private String extractSinceString(Element sinceTagElement) {
-            // the since tag element is the span inside the dt; we want the dt's sibling (the dd)
-            Element sinceValueElement = sinceTagElement.parent().nextElementSibling();
+            // Java 14 and before: the since tag element is the span inside the dt
+            // Java 15: the since tag element is the dt itself
+            // We want the dt's sibling (the dd)
+            Element sinceValueElement = "span".equalsIgnoreCase(sinceTagElement.tagName())
+                    ? sinceTagElement.parent().nextElementSibling()
+                    : sinceTagElement.nextElementSibling();
             return sinceValueElement.text();
         }
 
