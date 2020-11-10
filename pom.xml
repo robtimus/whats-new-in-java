@@ -62,7 +62,7 @@
 
   <properties>
     <version.gson>2.8.6</version.gson>
-    <version.io-functions>1.1</version.io-functions>
+    <version.io-functions>2.0</version.io-functions>
     <version.jsoup>1.13.1</version.jsoup>
     <version.thymeleaf>3.0.11.RELEASE</version.thymeleaf>
   </properties>
