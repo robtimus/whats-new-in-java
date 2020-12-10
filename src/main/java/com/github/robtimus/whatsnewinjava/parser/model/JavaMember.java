@@ -3,6 +3,7 @@ package com.github.robtimus.whatsnewinjava.parser.model;
 import static java.util.Objects.requireNonNull;
 import com.google.gson.JsonObject;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavaMember extends VersionableJavaObject {
 
     private final JavaClass javaClass;

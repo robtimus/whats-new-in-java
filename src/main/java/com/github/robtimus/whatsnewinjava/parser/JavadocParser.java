@@ -39,6 +39,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaModule;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 import com.github.robtimus.whatsnewinjava.parser.model.Javadoc;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavadocParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavadocParser.class);

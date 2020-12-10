@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import com.google.gson.JsonObject;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavaModule extends VersionableJavaObject {
 
     private final JavaAPI javaAPI;

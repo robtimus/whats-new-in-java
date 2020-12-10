@@ -3,6 +3,7 @@ package com.github.robtimus.whatsnewinjava.parser.model;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public abstract class VersionableJavaObject {
 
     private final JavaVersion since;

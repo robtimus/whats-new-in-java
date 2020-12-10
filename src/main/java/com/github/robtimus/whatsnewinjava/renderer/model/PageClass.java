@@ -15,6 +15,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaClass.Type;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaMember;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PageClass {
 
     private final PagePackage pagePackage;

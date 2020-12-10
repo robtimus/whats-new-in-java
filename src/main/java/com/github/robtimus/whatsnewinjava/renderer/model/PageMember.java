@@ -3,6 +3,7 @@ package com.github.robtimus.whatsnewinjava.renderer.model;
 import static java.util.Objects.requireNonNull;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaMember;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PageMember {
 
     private final PageClass pageClass;

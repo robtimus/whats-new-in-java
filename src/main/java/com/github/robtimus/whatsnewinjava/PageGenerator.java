@@ -12,6 +12,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 import com.github.robtimus.whatsnewinjava.renderer.PageRenderer;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PageGenerator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PageGenerator.class);

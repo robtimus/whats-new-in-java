@@ -9,6 +9,7 @@ import java.util.Set;
 import com.github.robtimus.whatsnewinjava.parser.JavadocParser;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaAPI;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JSONGenerator {
 
     private JSONGenerator() {

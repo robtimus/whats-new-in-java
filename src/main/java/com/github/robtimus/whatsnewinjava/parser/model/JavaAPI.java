@@ -25,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavaAPI {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaAPI.class);

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PagePackage {
 
     private final PageModule pageModule;

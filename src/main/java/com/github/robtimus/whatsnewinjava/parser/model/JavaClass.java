@@ -23,6 +23,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavaClass extends VersionableJavaObject {
 
     private final JavaPackage javaPackage;

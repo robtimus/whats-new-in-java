@@ -2,6 +2,7 @@ package com.github.robtimus.whatsnewinjava.parser.model;
 
 import com.google.gson.JsonObject;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class Javadoc {
 
     private final String baseURL;

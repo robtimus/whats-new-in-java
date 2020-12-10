@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
+@SuppressWarnings("javadoc")
 public final class PageModule {
 
     private final String name;

@@ -14,6 +14,7 @@ import com.github.robtimus.whatsnewinjava.renderer.model.PageMember;
 import com.github.robtimus.whatsnewinjava.renderer.model.PageModule;
 import com.github.robtimus.whatsnewinjava.renderer.model.PagePackage;
 
+@SuppressWarnings("nls")
 final class LinkGenerator {
 
     private final NavigableMap<JavaVersion, JavaAPI> javaAPIs;

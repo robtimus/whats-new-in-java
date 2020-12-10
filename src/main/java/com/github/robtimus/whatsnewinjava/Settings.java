@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class Settings {
 
     private static final JavaVersion MINIMAL_JAVA_VERSION;

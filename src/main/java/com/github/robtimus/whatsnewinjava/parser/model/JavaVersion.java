@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class JavaVersion implements Comparable<JavaVersion> {
 
     private static final Comparator<JavaVersion> COMPARATOR = comparing(JavaVersion::getMajor)

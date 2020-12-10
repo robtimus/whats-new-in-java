@@ -15,6 +15,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 import com.github.robtimus.whatsnewinjava.renderer.model.PageModel;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PageRenderer {
 
     private static final String PAGE_TEMPLATE_NEW = "page-template-new.html";

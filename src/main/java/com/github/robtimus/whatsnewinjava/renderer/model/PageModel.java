@@ -27,6 +27,7 @@ import com.github.robtimus.whatsnewinjava.parser.model.JavaModule;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaPackage;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaVersion;
 
+@SuppressWarnings({ "nls", "javadoc" })
 public final class PageModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PageModel.class);
