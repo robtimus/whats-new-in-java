@@ -382,6 +382,7 @@ public final class JavadocParser {
             switch (type) {
             case CLASS:
             case ENUM:
+            case RECORD:
                 return "All Implemented Interfaces:";
             case ANNOTATION:
             case INTERFACE:

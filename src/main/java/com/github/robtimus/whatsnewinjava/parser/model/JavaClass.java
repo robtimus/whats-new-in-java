@@ -205,6 +205,7 @@ public final class JavaClass extends VersionableJavaObject {
         ENUM(false),
         INTERFACE(true),
         ANNOTATION(true),
+        RECORD(false),
         ;
 
         private final boolean isInterface;
