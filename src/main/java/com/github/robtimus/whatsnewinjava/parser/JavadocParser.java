@@ -401,7 +401,11 @@ public final class JavadocParser {
                 Element labelElement = document.selectFirst("div.contentContainer > section.description dl > dt:contains(" + label + ")");
                 return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
             }
-            Element labelElement = document.selectFirst("main[role='main'] > section.description dl > dt:contains(" + label + ")");
+            if (javaVersion <= 16) {
+                Element labelElement = document.selectFirst("main[role='main'] > section.description dl > dt:contains(" + label + ")");
+                return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
+            }
+            Element labelElement = document.selectFirst("main[role='main'] > section.class-description dl > dt:contains(" + label + ")");
             return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
         }
 
@@ -428,7 +432,10 @@ public final class JavadocParser {
             if (javaVersion <= 14) {
                 return document.selectFirst("div.contentContainer > section.description dl > dt > span:contains(Since:)");
             }
-            return document.selectFirst("main[role='main'] > section.description dl > dt:contains(Since:)");
+            if (javaVersion <= 16) {
+                return document.selectFirst("main[role='main'] > section.description dl > dt:contains(Since:)");
+            }
+            return document.selectFirst("main[role='main'] > section.class-description dl > dt:contains(Since:)");
         }
 
         private Element classDeprecatedBlockElement(Document document) {
@@ -441,7 +448,10 @@ public final class JavadocParser {
             if (javaVersion <= 14) {
                 return document.selectFirst("div.contentContainer > section.description > div.deprecationBlock");
             }
-            return document.selectFirst("main[role='main'] > section.description > div.deprecation-block");
+            if (javaVersion <= 16) {
+                return document.selectFirst("main[role='main'] > section.description > div.deprecation-block");
+            }
+            return document.selectFirst("main[role='main'] > section.class-description > div.deprecation-block");
         }
 
         private Elements classInheritedMethodsElements(Document document) {
