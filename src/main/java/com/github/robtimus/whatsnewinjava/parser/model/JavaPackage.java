@@ -66,7 +66,8 @@ public final class JavaPackage extends VersionableJavaObject {
 
     @Override
     public boolean isDeprecated() {
-        return super.isDeprecated() || (javaModule != null && javaModule.isDeprecated());
+        return super.isDeprecated()
+                || javaModule != null && javaModule.isDeprecated();
     }
 
     @Override

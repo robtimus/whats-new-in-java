@@ -22,7 +22,7 @@
   <parent>
     <groupId>com.github.robtimus</groupId>
     <artifactId>robtimus-parent</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <relativePath />
   </parent>
 
@@ -61,9 +61,9 @@
   </issueManagement>
 
   <properties>
-    <version.gson>2.8.7</version.gson>
+    <version.gson>2.8.9</version.gson>
     <version.io-functions>2.0</version.io-functions>
-    <version.jsoup>1.13.1</version.jsoup>
+    <version.jsoup>1.14.3</version.jsoup>
     <version.thymeleaf>3.0.12.RELEASE</version.thymeleaf>
   </properties>
 

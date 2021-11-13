@@ -380,15 +380,15 @@ public final class JavadocParser {
 
         private String classInterfaceListLabel(JavaClass.Type type) {
             switch (type) {
-            case CLASS:
-            case ENUM:
-            case RECORD:
-                return "All Implemented Interfaces:";
-            case ANNOTATION:
-            case INTERFACE:
-                return "All Superinterfaces:";
-            default:
-                throw new IllegalArgumentException("Unsupported Java class type: " + type);
+                case CLASS:
+                case ENUM:
+                case RECORD:
+                    return "All Implemented Interfaces:";
+                case ANNOTATION:
+                case INTERFACE:
+                    return "All Superinterfaces:";
+                default:
+                    throw new IllegalArgumentException("Unsupported Java class type: " + type);
             }
         }
 

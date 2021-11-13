@@ -695,21 +695,21 @@ public final class PageModel {
 
         private JavaVersion extractVersion(Set<JavaVersion> javaVersions, Object source) {
             switch (javaVersions.size()) {
-            case 0:
-                return null;
-            case 1:
-                return javaVersions.iterator().next();
-            default:
-                Set<JavaVersion> uniqueVersions = new TreeSet<>(javaVersions);
-                if (uniqueVersions.size() == 1) {
+                case 0:
+                    return null;
+                case 1:
                     return javaVersions.iterator().next();
-                }
-                Set<JavaVersion> tooNewJavaVersions = new TreeSet<>(javaVersions);
-                tooNewJavaVersions.removeIf(v -> v.compareTo(minimalJavaVersion) < 0);
-                if (tooNewJavaVersions.isEmpty()) {
-                    LOGGER.warn("Found multiple versions for {} which are smaller than {}: {}", source, minimalJavaVersion, javaVersions);
-                }
-                return javaVersions.stream().max(naturalOrder()).get();
+                default:
+                    Set<JavaVersion> uniqueVersions = new TreeSet<>(javaVersions);
+                    if (uniqueVersions.size() == 1) {
+                        return javaVersions.iterator().next();
+                    }
+                    Set<JavaVersion> tooNewJavaVersions = new TreeSet<>(javaVersions);
+                    tooNewJavaVersions.removeIf(v -> v.compareTo(minimalJavaVersion) < 0);
+                    if (tooNewJavaVersions.isEmpty()) {
+                        LOGGER.warn("Found multiple versions for {} which are smaller than {}: {}", source, minimalJavaVersion, javaVersions);
+                    }
+                    return javaVersions.stream().max(naturalOrder()).get();
             }
         }
     }
