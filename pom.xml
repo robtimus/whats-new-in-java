@@ -22,7 +22,7 @@
   <parent>
     <groupId>com.github.robtimus</groupId>
     <artifactId>robtimus-parent</artifactId>
-    <version>1.4.3</version>
+    <version>1.6</version>
     <relativePath />
   </parent>
 
@@ -64,6 +64,7 @@
     <version.gson>2.8.9</version.gson>
     <version.io-functions>2.0</version.io-functions>
     <version.jsoup>1.14.3</version.jsoup>
+    <version.slf4j>1.7.36</version.slf4j>
     <version.thymeleaf>3.0.12.RELEASE</version.thymeleaf>
   </properties>
 
@@ -95,6 +96,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <version>${version.slf4j}</version>
     </dependency>
 
     <dependency>
