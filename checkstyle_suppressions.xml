@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN" "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN" "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files=".*\.java" checks="RegexpHeader" id="Apache"/>
-    <suppress files=".*\.java" checks="LineLength"/>
-    <suppress files=".*\.java" checks="JavadocPackage|JavadocVariable|JavadocType|MissingJavadocType"/>
+  <suppress files=".*\.java" checks="LineLength"/>
+  <suppress files=".*\.java" checks="JavadocPackage|JavadocVariable|JavadocType|MissingJavadocType|MissingJavadocMethod"/>
 </suppressions>
