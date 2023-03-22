@@ -22,10 +22,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.github.robtimus.whatsnewinjava.parser.model.JavaClass;
 
 @SuppressWarnings({ "nls", "javadoc" })
 public final class PagePackage {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PagePackage.class);
 
     private final PageModule pageModule;
 
@@ -78,8 +82,7 @@ public final class PagePackage {
         }
         PageClass result = classes.computeIfAbsent(className, k -> new PageClass(this, className, type, superClass));
         if (type != result.getType()) {
-            throw new IllegalStateException(String.format("Non-matching Java class encountered for class %s.%s; expected type %s, was %s",
-                    name, className, type, result.getType()));
+            LOGGER.warn("Type has changed for class {}.{} from {} to {}", name, className, result.getType(), type);
         }
         return result;
     }

@@ -88,6 +88,8 @@ public final class JavadocParser {
 
     private static final class Parser {
 
+        private static final String ENCODING = "UTF-8";
+
         private static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*,\\s*");
         private static final Pattern SINCE_PATTERN = Pattern.compile("^(?:(?:JDK|J2SE|JSE)\\s*)?([\\d.u]+)$");
         private static final Pattern INTERFACE_TITLE_PATTERN = Pattern.compile("(class|enum|interface|annotation) in (.*)");
@@ -158,7 +160,7 @@ public final class JavadocParser {
             LOGGER.debug("Parsing module file {}", file);
 
             try (InputStream input = Files.newInputStream(file)) {
-                Document document = Jsoup.parse(input, "UTF-8", "");
+                Document document = Jsoup.parse(input, ENCODING, "");
                 JavaVersion since = null;
                 boolean deprecated = false;
 
@@ -182,10 +184,9 @@ public final class JavadocParser {
                     for (Element modulePackageLink : modulePackageLinks) {
                         if (modulePackageLink.attr("href").endsWith("/package-summary.html")) {
                             String packageName = modulePackageLink.text();
-                            if (packageNamesToModuleNames.containsKey(packageName)) {
+                            packageNamesToModuleNames.merge(packageName, moduleNameFromFile, (u, v) -> {
                                 throw new IllegalStateException("Duplicate package: " + packageName);
-                            }
-                            packageNamesToModuleNames.put(packageName, moduleNameFromFile);
+                            });
                         }
                     }
                     javaAPI.addJavaModule(moduleNameFromFile, since, deprecated);
@@ -245,7 +246,7 @@ public final class JavadocParser {
             LOGGER.debug("Parsing package file {}", file);
 
             try (InputStream input = Files.newInputStream(file)) {
-                Document document = Jsoup.parse(input, "UTF-8", "");
+                Document document = Jsoup.parse(input, ENCODING, "");
                 JavaVersion since = null;
                 boolean deprecated = false;
 
@@ -313,7 +314,7 @@ public final class JavadocParser {
             String className = extractClassName(file);
 
             try (InputStream input = Files.newInputStream(file)) {
-                Document document = Jsoup.parse(input, "UTF-8", "");
+                Document document = Jsoup.parse(input, ENCODING, "");
                 parseClassInfo(document, packageName, className);
                 parseFields(document, packageName, className);
                 parseConstructors(document, packageName, className);
@@ -504,7 +505,7 @@ public final class JavadocParser {
                     for (Element methodLink : methodLinks) {
                         String href = methodLink.attr("href");
                         try {
-                            String signature = URLDecoder.decode(href.replaceAll(".*#", ""), "UTF-8");
+                            String signature = URLDecoder.decode(href.replaceAll(".*#", ""), ENCODING);
                             signatures.add(signature);
                         } catch (UnsupportedEncodingException e) {
                             throw new IllegalStateException(e);
@@ -687,7 +688,7 @@ public final class JavadocParser {
         }
 
         private boolean isClassFile(String fileName) {
-            return !fileName.startsWith("package-") && !fileName.contains("-package-");
+            return !fileName.startsWith("package-") && !fileName.contains("-package-") && fileName.endsWith(".html");
         }
 
         private boolean isModuleFile(Path file) {
