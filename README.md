@@ -28,3 +28,8 @@ Click on _Filter_ at the top of the page to enter a filter. This filter has two 
 To clear an existing filter, click on the little cross icon after the filter.
 
 Note: if a filter is in place, _Expand All_ will only expand the filter results.
+
+## Alternatives
+
+* [Java SE](https://docs.oracle.com/en/java/javase/20/docs/api/new-list.html)
+* [The Java Version Almanac](https://javaalmanac.io/)
