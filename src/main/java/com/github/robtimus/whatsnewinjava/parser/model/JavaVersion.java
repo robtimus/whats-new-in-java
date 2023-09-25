@@ -25,27 +25,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({ "nls", "javadoc" })
-public final class JavaVersion implements Comparable<JavaVersion> {
+public record JavaVersion(int major, int minor, int patch, String displayValue) implements Comparable<JavaVersion> {
 
-    private static final Comparator<JavaVersion> COMPARATOR = comparing(JavaVersion::getMajor)
-            .thenComparing(JavaVersion::getMinor)
-            .thenComparing(JavaVersion::getPatch);
+    private static final Comparator<JavaVersion> COMPARATOR = comparing(JavaVersion::major)
+            .thenComparing(JavaVersion::minor)
+            .thenComparing(JavaVersion::patch);
 
     private static final Map<String, JavaVersion> INSTANCE_CACHE = new HashMap<>();
 
     private static final Pattern VERSION_PATTERN = Pattern.compile("(\\d+)(?:\\.(\\d+))?(?:[\\.u](\\d+))?\\.?");
-
-    private final int major;
-    private final int minor;
-    private final int patch;
-    private final String displayValue;
-
-    private JavaVersion(int major, int minor, int patch, String displayValue) {
-        this.major = major;
-        this.minor = minor;
-        this.patch = patch;
-        this.displayValue = displayValue;
-    }
 
     public boolean introducedModules() {
         return major == 9 && minor == 0 && patch == 0;
@@ -53,18 +41,6 @@ public final class JavaVersion implements Comparable<JavaVersion> {
 
     public boolean hasModules() {
         return major >= 9;
-    }
-
-    private int getMajor() {
-        return major;
-    }
-
-    private int getMinor() {
-        return minor;
-    }
-
-    private int getPatch() {
-        return patch;
     }
 
     @Override

@@ -397,17 +397,10 @@ public final class JavadocParser {
         }
 
         private String classInterfaceListLabel(JavaClass.Type type) {
-            switch (type) {
-                case CLASS:
-                case ENUM:
-                case RECORD:
-                    return "All Implemented Interfaces:";
-                case ANNOTATION:
-                case INTERFACE:
-                    return "All Superinterfaces:";
-                default:
-                    throw new IllegalArgumentException("Unsupported Java class type: " + type);
-            }
+            return switch (type) {
+                case CLASS, ENUM, RECORD -> "All Implemented Interfaces:";
+                case ANNOTATION, INTERFACE -> "All Superinterfaces:";
+            };
         }
 
         private List<Node> classInterfaceListNodes(Document document, String label) {
@@ -428,8 +421,8 @@ public final class JavadocParser {
         }
 
         private String extractInterfaceListText(Node node) {
-            if (node instanceof Element) {
-                Element link = ((Element) node).selectFirst("a");
+            if (node instanceof Element element) {
+                Element link = element.selectFirst("a");
                 String title = link.attr("title");
                 Matcher matcher = title == null ? null : INTERFACE_TITLE_PATTERN.matcher(title);
                 if (matcher == null || !matcher.matches()) {
@@ -437,8 +430,8 @@ public final class JavadocParser {
                 }
                 return matcher.group(2) + "." + ((Element) node).text();
             }
-            if (node instanceof TextNode) {
-                return ((TextNode) node).text();
+            if (node instanceof TextNode textNode) {
+                return textNode.text();
             }
             throw new IllegalStateException("Unexpected node type: " + node.getClass());
         }

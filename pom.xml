@@ -61,6 +61,7 @@
   </issueManagement>
 
   <properties>
+    <version.java>17</version.java>
     <version.gson>2.8.9</version.gson>
     <version.io-functions>2.0</version.io-functions>
     <version.jsoup>1.14.3</version.jsoup>

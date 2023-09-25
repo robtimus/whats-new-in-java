@@ -23,7 +23,6 @@ import static java.util.Collections.unmodifiableCollection;
 import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import java.util.Collection;
 import java.util.Comparator;
@@ -146,7 +145,7 @@ public final class JavaClass extends VersionableJavaObject {
             json.addProperty("superClass", superClass);
         }
         JsonArray interfaces = interfaceList.getInterfaceNames().stream()
-                .collect(Collector.of(JsonArray::new, (a, i) -> a.add(i), throwingMerger()));
+                .collect(Collector.of(JsonArray::new, JsonArray::add, throwingMerger()));
         json.add("interfaces", interfaces);
 
         addMembers("constructors", JavaMember.Type.CONSTRUCTOR, json);
@@ -236,13 +235,10 @@ public final class JavaClass extends VersionableJavaObject {
         }
     }
 
-    private static final class MemberMapKey implements Comparable<MemberMapKey> {
+    private record MemberMapKey(JavaMember.Type type, String signature) implements Comparable<MemberMapKey> {
 
         private static final Comparator<MemberMapKey> COMPARATOR = comparing(MemberMapKey::getSignature)
                 .thenComparing(MemberMapKey::getType);
-
-        private final JavaMember.Type type;
-        private final String signature;
 
         private MemberMapKey(JavaMember.Type type, String signature) {
             this.type = type;
@@ -313,7 +309,7 @@ public final class JavaClass extends VersionableJavaObject {
             } else {
                 String argumentList = prettifiedSignature.substring(index + 1, prettifiedSignature.indexOf(')'));
                 argumentTypes = ARGUMENT_LIST_SPLIT_PATTERN.splitAsStream(argumentList)
-                        .collect(toList());
+                        .toList();
             }
         }
 

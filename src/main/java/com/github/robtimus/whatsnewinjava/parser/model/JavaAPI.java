@@ -21,7 +21,6 @@ import static java.util.Collections.unmodifiableCollection;
 import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.nullsFirst;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import java.io.IOException;
 import java.io.Reader;
@@ -116,7 +115,7 @@ public final class JavaAPI {
     public Collection<JavaPackage> getJavaPackages() {
         return javaModules.values().stream()
                 .flatMap(m -> m.getJavaPackages().stream())
-                .collect(toList());
+                .toList();
     }
 
     public JavaPackage findJavaPackage(String packageName) {

@@ -726,7 +726,7 @@ public final class PageModel {
                     if (tooNewJavaVersions.isEmpty()) {
                         LOGGER.warn("Found multiple versions for {} which are smaller than {}: {}", source, minimalJavaVersion, javaVersions);
                     }
-                    return javaVersions.stream().max(naturalOrder()).get();
+                    return javaVersions.stream().max(naturalOrder()).orElseThrow();
             }
         }
     }
