@@ -36,26 +36,26 @@ public final class JavaMember extends VersionableJavaObject {
 
         this.type = requireNonNull(type);
         this.originalSignature = requireNonNull(signature);
-        this.prettifiedSignature = prettifySignature(signature).replace("<init>", javaClass.getName());
+        this.prettifiedSignature = prettifySignature(signature).replace("<init>", javaClass.name());
     }
 
-    public JavaAPI getJavaAPI() {
-        return javaClass.getJavaAPI();
+    public JavaAPI javaAPI() {
+        return javaClass.javaAPI();
     }
 
-    public JavaClass getJavaClass() {
+    public JavaClass javaClass() {
         return javaClass;
     }
 
-    public Type getType() {
+    public Type type() {
         return type;
     }
 
-    public String getOriginalSignature() {
+    public String originalSignature() {
         return originalSignature;
     }
 
-    public String getPrettifiedSignature() {
+    public String prettifiedSignature() {
         return prettifiedSignature;
     }
 
@@ -72,7 +72,7 @@ public final class JavaMember extends VersionableJavaObject {
 
     @Override
     public String toString() {
-        return javaClass + "." + getPrettifiedSignature();
+        return javaClass + "." + prettifiedSignature();
     }
 
     static JavaMember fromJSON(JsonObject json, JavaClass javaClass, Type type, String signature) {

@@ -37,7 +37,7 @@ public final class JavaInterfaceList {
         }
     }
 
-    public Collection<String> getInterfaceNames() {
+    public Collection<String> interfaceNames() {
         return unmodifiableCollection(interfaceNames.values());
     }
 

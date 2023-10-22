@@ -35,19 +35,19 @@ public final class PageMember {
         this.signature = requireNonNull(signature);
     }
 
-    public PageClass getPageClass() {
+    public PageClass pageClass() {
         return pageClass;
     }
 
-    public JavaMember.Type getType() {
+    public JavaMember.Type type() {
         return type;
     }
 
-    public String getSignature() {
+    public String signature() {
         return signature;
     }
 
-    String getSignatureForCompare() {
+    String signatureForCompare() {
         return type == JavaMember.Type.CONSTRUCTOR ? signature.replaceFirst("^.*\\(", "<init>\\(") : signature;
     }
 

@@ -43,19 +43,19 @@ public final class JavaPackage extends VersionableJavaObject {
         this.javaClasses = new TreeMap<>();
     }
 
-    public JavaAPI getJavaAPI() {
-        return javaModule.getJavaAPI();
+    public JavaAPI javaAPI() {
+        return javaModule.javaAPI();
     }
 
-    public JavaModule getJavaModule() {
+    public JavaModule javaModule() {
         return javaModule;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public Collection<JavaClass> getJavaClasses() {
+    public Collection<JavaClass> javaClasses() {
         return unmodifiableCollection(javaClasses.values());
     }
 
@@ -64,7 +64,7 @@ public final class JavaPackage extends VersionableJavaObject {
             JavaVersion since, boolean deprecated) {
 
         if (javaClasses.containsKey(className)) {
-            throw new IllegalStateException(String.format("Duplicate class: %s.%s", name, className));
+            throw new IllegalStateException("Duplicate class: %s.%s".formatted(name, className));
         }
         javaClasses.put(className, new JavaClass(this, className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated));
     }
@@ -72,7 +72,7 @@ public final class JavaPackage extends VersionableJavaObject {
     public JavaClass getJavaClass(String className) {
         JavaClass javaClass = findJavaClass(className);
         if (javaClass == null) {
-            throw new IllegalStateException(String.format("Could not find class %s.%s", name, className));
+            throw new IllegalStateException("Could not find class %s.%s".formatted(name, className));
         }
         return javaClass;
     }
@@ -98,7 +98,7 @@ public final class JavaPackage extends VersionableJavaObject {
 
         JsonObject classes = new JsonObject();
         for (JavaClass javaClass : javaClasses.values()) {
-            classes.add(javaClass.getName(), javaClass.toJSON());
+            classes.add(javaClass.name(), javaClass.toJSON());
         }
         json.add("classes", classes);
     }
@@ -113,7 +113,7 @@ public final class JavaPackage extends VersionableJavaObject {
         for (String className : classes.keySet()) {
             JsonObject classJSON = classes.get(className).getAsJsonObject();
             JavaClass javaClass = JavaClass.fromJSON(classJSON, javaPackage, className);
-            javaPackage.javaClasses.put(javaClass.getName(), javaClass);
+            javaPackage.javaClasses.put(javaClass.name(), javaClass);
         }
 
         return javaPackage;

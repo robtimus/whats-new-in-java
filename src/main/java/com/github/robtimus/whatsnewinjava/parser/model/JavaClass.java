@@ -64,7 +64,7 @@ public final class JavaClass extends VersionableJavaObject {
         this.name = requireNonNull(name);
         this.type = requireNonNull(type);
 
-        if (!type.isInterface() && !"java.lang".equals(javaPackage.getName()) && !"Object".equals(name)) {
+        if (!type.isInterface() && !"java.lang".equals(javaPackage.name()) && !"Object".equals(name)) {
             requireNonNull(superClass);
         }
         this.superClass = superClass;
@@ -75,38 +75,38 @@ public final class JavaClass extends VersionableJavaObject {
                 .collect(toMap(identity(), Signature::new, throwingMerger(), TreeMap::new));
     }
 
-    public JavaAPI getJavaAPI() {
-        return javaPackage.getJavaAPI();
+    public JavaAPI javaAPI() {
+        return javaPackage.javaAPI();
     }
 
-    public JavaPackage getJavaPackage() {
+    public JavaPackage javaPackage() {
         return javaPackage;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public Type getType() {
+    public Type type() {
         return type;
     }
 
-    public String getSuperClass() {
+    public String superClass() {
         return superClass;
     }
 
-    public JavaInterfaceList getInterfaceList() {
+    public JavaInterfaceList interfaceList() {
         return interfaceList;
     }
 
-    public Collection<JavaMember> getJavaMembers() {
+    public Collection<JavaMember> javaMembers() {
         return unmodifiableCollection(javaMembers.values());
     }
 
     public void addJavaMember(JavaMember.Type type, String signature, JavaVersion since, boolean deprecated) {
         final MemberMapKey key = new MemberMapKey(type, signature);
         if (javaMembers.containsKey(key)) {
-            throw new IllegalStateException(String.format("Duplicate signature for class %s.%s: %s %s", javaPackage.getName(), name, type, signature));
+            throw new IllegalStateException("Duplicate signature for class %s.%s: %s %s".formatted(javaPackage.name(), name, type, signature));
         }
         javaMembers.put(key, new JavaMember(this, type, signature, since, deprecated));
     }
@@ -114,7 +114,7 @@ public final class JavaClass extends VersionableJavaObject {
     public JavaMember getJavaMember(JavaMember.Type type, String signature) {
         JavaMember javaMember = findJavaMember(type, signature);
         if (javaMember == null) {
-            throw new IllegalStateException(String.format("Could not find member in class %s.%s: %s %s", javaPackage.getName(), name, type, signature));
+            throw new IllegalStateException("Could not find member in class %s.%s: %s %s".formatted(javaPackage.name(), name, type, signature));
         }
         return javaMember;
     }
@@ -144,7 +144,7 @@ public final class JavaClass extends VersionableJavaObject {
         if (superClass != null) {
             json.addProperty("superClass", superClass);
         }
-        JsonArray interfaces = interfaceList.getInterfaceNames().stream()
+        JsonArray interfaces = interfaceList.interfaceNames().stream()
                 .collect(Collector.of(JsonArray::new, JsonArray::add, throwingMerger()));
         json.add("interfaces", interfaces);
 
@@ -159,8 +159,8 @@ public final class JavaClass extends VersionableJavaObject {
 
     private void addMembers(String propertyName, JavaMember.Type type, JsonObject json) {
         JsonObject members = javaMembers.values().stream()
-                .filter(m -> m.getType() == type)
-                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.getOriginalSignature(), m.toJSON()), throwingMerger()));
+                .filter(m -> m.type() == type)
+                .collect(Collector.of(JsonObject::new, (o, m) -> o.add(m.originalSignature(), m.toJSON()), throwingMerger()));
 
         json.add(propertyName, members);
     }
@@ -205,7 +205,7 @@ public final class JavaClass extends VersionableJavaObject {
         for (String signature : members.keySet()) {
             JsonObject memberJSON = members.get(signature).getAsJsonObject();
             JavaMember javaMember = JavaMember.fromJSON(memberJSON, javaClass, type, signature);
-            final MemberMapKey key = new MemberMapKey(type, javaMember.getOriginalSignature());
+            final MemberMapKey key = new MemberMapKey(type, javaMember.originalSignature());
             javaClass.javaMembers.put(key, javaMember);
         }
     }

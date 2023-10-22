@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<th:block th:replace="page-header :: header('What\'s deprecated in Java')"></th:block>
+<th:block th:replace="~{page-header :: header('What\'s deprecated in Java')}"></th:block>
 <body>
-  <th:block th:replace="toolbar-deprecated :: toolbar"></th:block>
-  <th:block th:replace="java-versions :: java-versions"></th:block>
-  <th:block th:replace="filter-dialog :: dialog"></th:block>
+  <th:block th:replace="~{toolbar-deprecated :: toolbar}"></th:block>
+  <th:block th:replace="~{java-versions :: java-versions}"></th:block>
+  <th:block th:replace="~{filter-dialog :: dialog}"></th:block>
 </body>

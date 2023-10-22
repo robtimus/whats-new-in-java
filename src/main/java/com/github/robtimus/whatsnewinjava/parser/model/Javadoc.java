@@ -20,23 +20,7 @@ package com.github.robtimus.whatsnewinjava.parser.model;
 import com.google.gson.JsonObject;
 
 @SuppressWarnings({ "nls", "javadoc" })
-public final class Javadoc {
-
-    private final String baseURL;
-    private final boolean useModules;
-
-    public Javadoc(String baseURL, boolean useModules) {
-        this.baseURL = baseURL;
-        this.useModules = useModules;
-    }
-
-    public String getBaseURL() {
-        return baseURL;
-    }
-
-    public boolean useModules() {
-        return useModules;
-    }
+public record Javadoc(String baseURL, boolean useModules) {
 
     JsonObject toJSON() {
         JsonObject json = new JsonObject();

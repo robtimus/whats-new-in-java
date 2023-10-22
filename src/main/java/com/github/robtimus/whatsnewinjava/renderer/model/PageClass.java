@@ -52,49 +52,49 @@ public final class PageClass {
         this.pagePackage = requireNonNull(pagePackage);
 
         this.name = requireNonNull(name);
-        this.fullName = requireNonNull(pagePackage.getName()) + "." + name;
+        this.fullName = requireNonNull(pagePackage.name()) + "." + name;
         this.type = requireNonNull(type);
 
         this.superClass = superClass;
         this.interfaceList = new LinkedHashSet<>();
         this.alteredInterfaces = new LinkedHashMap<>();
 
-        this.members = new TreeSet<>(comparing(PageMember::getSignatureForCompare).thenComparing(PageMember::getType));
+        this.members = new TreeSet<>(comparing(PageMember::signatureForCompare).thenComparing(PageMember::type));
     }
 
-    public PagePackage getPagePackage() {
+    public PagePackage pagePackage() {
         return pagePackage;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public String getFullName() {
+    public String fullName() {
         return fullName;
     }
 
-    public JavaClass.Type getType() {
+    public JavaClass.Type type() {
         return type;
     }
 
-    public String getSuperClass() {
+    public String superClass() {
         return superClass;
     }
 
-    public String getPreviousClass() {
+    public String previousClass() {
         return previousSuperClass;
     }
 
-    public Set<String> getInterfaceList() {
+    public Set<String> interfaceList() {
         return unmodifiableSet(interfaceList);
     }
 
-    public Map<String, String> getAlteredInterfaces() {
+    public Map<String, String> alteredInterfaces() {
         return unmodifiableMap(alteredInterfaces);
     }
 
-    public Collection<PageMember> getMembers() {
+    public Collection<PageMember> members() {
         return unmodifiableCollection(members);
     }
 

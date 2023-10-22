@@ -31,7 +31,7 @@ public abstract class VersionableJavaObject {
         this.deprecated = deprecated;
     }
 
-    public JavaVersion getSince() {
+    public JavaVersion since() {
         return since;
     }
 

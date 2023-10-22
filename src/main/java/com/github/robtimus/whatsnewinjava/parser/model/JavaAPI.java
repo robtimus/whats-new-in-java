@@ -60,7 +60,7 @@ public final class JavaAPI {
         this.javadoc = requireNonNull(javadoc);
     }
 
-    public Collection<JavaModule> getJavaModules() {
+    public Collection<JavaModule> javaModules() {
         return unmodifiableCollection(javaModules.values());
     }
 
@@ -70,10 +70,10 @@ public final class JavaAPI {
 
     public void addJavaModule(String moduleName, JavaVersion since, boolean deprecated) {
         if (javaModules.containsKey(AUTOMATIC_MODULE_NAME)) {
-            throw new IllegalStateException(String.format("Cannot add module when automatic module is defined: %s", moduleName));
+            throw new IllegalStateException("Cannot add module when automatic module is defined: %s".formatted(moduleName));
         }
         if (javaModules.containsKey(moduleName)) {
-            throw new IllegalStateException(String.format("Duplicate module: %s", moduleName));
+            throw new IllegalStateException("Duplicate module: %s".formatted(moduleName));
         }
         javaModules.put(moduleName, new JavaModule(this, moduleName, false, since, deprecated));
     }
@@ -91,7 +91,7 @@ public final class JavaAPI {
     public JavaModule getJavaModule(String moduleName) {
         JavaModule javaModule = findJavaModule(moduleName);
         if (javaModule == null) {
-            throw new IllegalStateException(String.format("Could not find module %s", moduleName));
+            throw new IllegalStateException("Could not find module %s".formatted(moduleName));
         }
         return javaModule;
     }
@@ -112,21 +112,21 @@ public final class JavaAPI {
         return javaModules.get(AUTOMATIC_MODULE_NAME);
     }
 
-    public Collection<JavaPackage> getJavaPackages() {
+    public Collection<JavaPackage> javaPackages() {
         return javaModules.values().stream()
-                .flatMap(m -> m.getJavaPackages().stream())
+                .flatMap(m -> m.javaPackages().stream())
                 .toList();
     }
 
     public JavaPackage findJavaPackage(String packageName) {
         return javaModules.values().stream()
-                .flatMap(m -> m.getJavaPackages().stream())
-                .filter(p -> p.getName().equals(packageName))
+                .flatMap(m -> m.javaPackages().stream())
+                .filter(p -> p.name().equals(packageName))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Javadoc getJavadoc() {
+    public Javadoc javadoc() {
         return javadoc;
     }
 
@@ -138,13 +138,13 @@ public final class JavaAPI {
         if (automaticModule == null) {
             JsonObject modules = new JsonObject();
             for (JavaModule javaModule : javaModules.values()) {
-                modules.add(javaModule.getName(), javaModule.toJSON());
+                modules.add(javaModule.name(), javaModule.toJSON());
             }
             json.add("modules", modules);
         } else {
             JsonObject packages = new JsonObject();
-            for (JavaPackage javaPackage : automaticModule.getJavaPackages()) {
-                packages.add(javaPackage.getName(), javaPackage.toJSON());
+            for (JavaPackage javaPackage : automaticModule.javaPackages()) {
+                packages.add(javaPackage.name(), javaPackage.toJSON());
             }
             json.add("packages", packages);
         }
@@ -174,7 +174,7 @@ public final class JavaAPI {
             for (String moduleName : modules.keySet()) {
                 JsonObject moduleJSON = modules.get(moduleName).getAsJsonObject();
                 JavaModule javaModule = JavaModule.fromJSON(moduleJSON, javaAPI, moduleName);
-                javaAPI.javaModules.put(javaModule.getName(), javaModule);
+                javaAPI.javaModules.put(javaModule.name(), javaModule);
             }
         }
 

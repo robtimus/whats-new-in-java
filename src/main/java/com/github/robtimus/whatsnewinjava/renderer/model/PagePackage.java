@@ -47,19 +47,19 @@ public final class PagePackage {
         this.classes = new TreeMap<>();
     }
 
-    public PageModule getPageModule() {
+    public PageModule pageModule() {
         return pageModule;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public Collection<PageClass> getClasses() {
+    public Collection<PageClass> classes() {
         return unmodifiableCollection(classes.values());
     }
 
-    public String getNewModuleName() {
+    public String newModuleName() {
         return newModuleName;
     }
 
@@ -78,18 +78,18 @@ public final class PagePackage {
 
     PageClass ensureClassExists(String className, JavaClass.Type type, String superClass) {
         if (newModuleName != null) {
-            throw new IllegalStateException(String.format("Cannot add classes to package %s which is marked as moved to new module %s", name, newModuleName));
+            throw new IllegalStateException("Cannot add classes to package %s which is marked as moved to new module %s".formatted(name, newModuleName));
         }
         PageClass result = classes.computeIfAbsent(className, k -> new PageClass(this, className, type, superClass));
-        if (type != result.getType()) {
-            LOGGER.warn("Type has changed for class {}.{} from {} to {}", name, className, result.getType(), type);
+        if (type != result.type()) {
+            LOGGER.warn("Type has changed for class {}.{} from {} to {}", name, className, result.type(), type);
         }
         return result;
     }
 
     void movedToNewModule(String newModuleName) {
         if (!classes.isEmpty()) {
-            throw new IllegalStateException(String.format("Cannot mark package %s as moved to new module if it has nested classes", name));
+            throw new IllegalStateException("Cannot mark package %s as moved to new module if it has nested classes".formatted(name));
         }
         this.newModuleName = newModuleName;
     }

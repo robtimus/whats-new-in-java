@@ -43,7 +43,7 @@ final class LinkGenerator {
 
     LinkGenerator(NavigableMap<JavaVersion, JavaAPI> javaAPIs, boolean omitLatestBaseURL) {
         this.javaAPIs = javaAPIs;
-        latestBaseURL = javaAPIs.isEmpty() || omitLatestBaseURL ? "" : javaAPIs.lastEntry().getValue().getJavadoc().getBaseURL();
+        latestBaseURL = javaAPIs.isEmpty() || omitLatestBaseURL ? "" : javaAPIs.lastEntry().getValue().javadoc().baseURL();
     }
 
     public String getLatestBaseURL() {
@@ -51,47 +51,47 @@ final class LinkGenerator {
     }
 
     public String generateLink(PageModule pageModule) {
-        return generateModuleLink(pageModule.getName());
+        return generateModuleLink(pageModule.name());
     }
 
     public String generateNewModuleLink(PagePackage pagePackage) {
-        return generateModuleLink(pagePackage.getNewModuleName());
+        return generateModuleLink(pagePackage.newModuleName());
     }
 
     private String generateModuleLink(String moduleName) {
         JavaModule latestModule = findLatestModule(moduleName);
-        Javadoc javadoc = latestModule.getJavaAPI().getJavadoc();
+        Javadoc javadoc = latestModule.javaAPI().javadoc();
         String format = javadoc.useModules() ? "%s%s/module-summary.html" : "%s%s-summary.html";
-        return String.format(format, javadoc.getBaseURL(), moduleName)
+        return format.formatted(javadoc.baseURL(), moduleName)
                 .replace(latestBaseURL, "");
     }
 
     public String generateLink(PagePackage pagePackage) {
         JavaPackage latestPackage = findLatestPackage(pagePackage);
-        return String.format("%s%s/package-summary.html", latestPackage.getJavaAPI().getJavadoc().getBaseURL(), getRelativeBaseURL(latestPackage))
+        return "%s%s/package-summary.html".formatted(latestPackage.javaAPI().javadoc().baseURL(), getRelativeBaseURL(latestPackage))
                 .replace(latestBaseURL, "");
     }
 
     public String generateLink(PageClass pageClass) {
         JavaClass latestClass = findLatestClass(pageClass);
-        Javadoc javadoc = latestClass.getJavaAPI().getJavadoc();
-        return String.format("%s%s/%s.html", javadoc.getBaseURL(), getRelativeBaseURL(latestClass.getJavaPackage()), latestClass.getName())
+        Javadoc javadoc = latestClass.javaAPI().javadoc();
+        return "%s%s/%s.html".formatted(javadoc.baseURL(), getRelativeBaseURL(latestClass.javaPackage()), latestClass.name())
                 .replace(latestBaseURL, "");
     }
 
     public String generateLink(PageMember pageMember) {
         JavaMember latestMember = findLatestMember(pageMember);
-        JavaClass latestClass = latestMember.getJavaClass();
-        Javadoc javadoc = latestClass.getJavaAPI().getJavadoc();
-        return String.format("%s%s/%s.html#%s", javadoc.getBaseURL(), getRelativeBaseURL(latestClass.getJavaPackage()), latestClass.getName(), latestMember.getOriginalSignature())
+        JavaClass latestClass = latestMember.javaClass();
+        Javadoc javadoc = latestClass.javaAPI().javadoc();
+        return "%s%s/%s.html#%s".formatted(javadoc.baseURL(), getRelativeBaseURL(latestClass.javaPackage()), latestClass.name(), latestMember.originalSignature())
                 .replace(latestBaseURL, "");
     }
 
     private String getRelativeBaseURL(JavaPackage javaPackage) {
-        JavaModule javaModule = javaPackage.getJavaModule();
-        String packagePath = javaPackage.getName().replace('.', '/');
+        JavaModule javaModule = javaPackage.javaModule();
+        String packagePath = javaPackage.name().replace('.', '/');
 
-        return javaPackage.getJavaAPI().getJavadoc().useModules() ? javaModule.getName() + "/" + packagePath : packagePath;
+        return javaPackage.javaAPI().javadoc().useModules() ? javaModule.name() + "/" + packagePath : packagePath;
     }
 
     private JavaModule findLatestModule(String moduleName) {
@@ -104,7 +104,7 @@ final class LinkGenerator {
 
     private JavaPackage findLatestPackage(PagePackage pagePackage) {
         return javaAPIs.descendingMap().values().stream()
-                .map(api -> api.findJavaPackage(pagePackage.getName()))
+                .map(api -> api.findJavaPackage(pagePackage.name()))
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Could not find package " + pagePackage));
@@ -112,32 +112,32 @@ final class LinkGenerator {
 
     private JavaClass findLatestClass(PageClass pageClass) {
         return javaAPIs.descendingMap().values().stream()
-                .map(api -> api.findJavaPackage(pageClass.getPagePackage().getName()))
+                .map(api -> api.findJavaPackage(pageClass.pagePackage().name()))
                 .filter(Objects::nonNull)
-                .flatMap(p -> p.getJavaClasses().stream())
-                .filter(c -> pageClass.getName().equals(c.getName()))
+                .flatMap(p -> p.javaClasses().stream())
+                .filter(c -> pageClass.name().equals(c.name()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Could not find class " + pageClass));
     }
 
     private JavaMember findLatestMember(PageMember pageMember) {
-        PageClass pageClass = pageMember.getPageClass();
+        PageClass pageClass = pageMember.pageClass();
         return javaAPIs.descendingMap().values().stream()
-                .map(api -> api.findJavaPackage(pageClass.getPagePackage().getName()))
+                .map(api -> api.findJavaPackage(pageClass.pagePackage().name()))
                 .filter(Objects::nonNull)
-                .flatMap(p -> p.getJavaClasses().stream())
-                .filter(c -> pageClass.getName().equals(c.getName()))
+                .flatMap(p -> p.javaClasses().stream())
+                .filter(c -> pageClass.name().equals(c.name()))
                 .filter(Objects::nonNull)
-                .flatMap(c -> c.getJavaMembers().stream())
+                .flatMap(c -> c.javaMembers().stream())
                 .filter(m -> matches(m, pageMember))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Could not find member " + pageMember + " of class " + pageClass));
     }
 
     private boolean matches(JavaMember javaMember, PageMember toMatch) {
-        assert javaMember.getJavaClass().getName().equals(toMatch.getPageClass().getName());
-        assert javaMember.getJavaClass().getJavaPackage().getName().equals(toMatch.getPageClass().getPagePackage().getName());
+        assert javaMember.javaClass().name().equals(toMatch.pageClass().name());
+        assert javaMember.javaClass().javaPackage().name().equals(toMatch.pageClass().pagePackage().name());
 
-        return javaMember.getType() == toMatch.getType() && javaMember.getPrettifiedSignature().equals(toMatch.getSignature());
+        return javaMember.type() == toMatch.type() && javaMember.prettifiedSignature().equals(toMatch.signature());
     }
 }

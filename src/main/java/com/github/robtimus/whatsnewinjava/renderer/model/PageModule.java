@@ -36,11 +36,11 @@ public final class PageModule {
         this.packages = new TreeMap<>();
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public Collection<PagePackage> getPackages() {
+    public Collection<PagePackage> packages() {
         return unmodifiableCollection(packages.values());
     }
 

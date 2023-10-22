@@ -47,11 +47,11 @@ public final class JavaModule extends VersionableJavaObject {
         this.javaPackages = new TreeMap<>();
     }
 
-    public JavaAPI getJavaAPI() {
+    public JavaAPI javaAPI() {
         return javaAPI;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
@@ -59,21 +59,21 @@ public final class JavaModule extends VersionableJavaObject {
         return isAutomatic;
     }
 
-    public Collection<JavaPackage> getJavaPackages() {
+    public Collection<JavaPackage> javaPackages() {
         return unmodifiableCollection(javaPackages.values());
     }
 
     public void addJavaPackage(String packageName, JavaVersion since, boolean deprecated) {
         if (javaPackages.containsKey(packageName)) {
-            throw new IllegalStateException(String.format("Duplicate package: %s.%s", name, packageName));
+            throw new IllegalStateException("Duplicate package: %s.%s".formatted(name, packageName));
         }
         javaPackages.put(packageName, new JavaPackage(this, packageName, since, deprecated));
     }
 
     void addJavaPackage(JavaPackage javaPackage) {
-        String packageName = javaPackage.getName();
+        String packageName = javaPackage.name();
         if (javaPackages.containsKey(packageName)) {
-            throw new IllegalStateException(String.format("Duplicate package: %s.%s", name, packageName));
+            throw new IllegalStateException("Duplicate package: %s.%s".formatted(name, packageName));
         }
         javaPackages.put(packageName, javaPackage);
     }
@@ -81,7 +81,7 @@ public final class JavaModule extends VersionableJavaObject {
     public JavaPackage getJavaPackage(String packageName) {
         JavaPackage javaPackage = findJavaPackage(packageName);
         if (javaPackage == null) {
-            throw new IllegalStateException(String.format("Could not find package %s", packageName));
+            throw new IllegalStateException("Could not find package %s".formatted(packageName));
         }
         return javaPackage;
     }
@@ -112,7 +112,7 @@ public final class JavaModule extends VersionableJavaObject {
 
         JsonObject packages = new JsonObject();
         for (JavaPackage javaPackage : javaPackages.values()) {
-            packages.add(javaPackage.getName(), javaPackage.toJSON());
+            packages.add(javaPackage.name(), javaPackage.toJSON());
         }
         json.add("packages", packages);
     }
@@ -127,7 +127,7 @@ public final class JavaModule extends VersionableJavaObject {
         for (String packageName : packages.keySet()) {
             JsonObject packageJSON = packages.get(packageName).getAsJsonObject();
             JavaPackage javaPackage = JavaPackage.fromJSON(packageJSON, javaModule, packageName);
-            javaModule.javaPackages.put(javaPackage.getName(), javaPackage);
+            javaModule.javaPackages.put(javaPackage.name(), javaPackage);
         }
 
         return javaModule;
