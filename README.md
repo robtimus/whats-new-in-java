@@ -31,5 +31,5 @@ Note: if a filter is in place, _Expand All_ will only expand the filter results.
 
 ## Alternatives
 
-* [Java SE](https://docs.oracle.com/en/java/javase/20/docs/api/new-list.html)
+* [Java SE](https://docs.oracle.com/en/java/javase/24/docs/api/new-list.html)
 * [The Java Version Almanac](https://javaalmanac.io/)
