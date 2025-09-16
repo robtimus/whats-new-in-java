@@ -711,7 +711,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFile\u003e"
+                "java.lang.Comparable\u003cjava.io.File\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.io.File,java.lang.String)": {},
@@ -1964,10 +1964,10 @@
             "ObjectInputFilter.Status": {
               "type": "enum",
               "since": "9",
-              "superClass": "ObjectInputFilter.Status",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cObjectInputFilter.Status\u003e",
+                "java.lang.Comparable\u003cjava.io.ObjectInputFilter.Status\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -2421,7 +2421,7 @@
               "since": "1.2",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cObject\u003e"
+                "java.lang.Comparable\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String,java.lang.Class)": {},
@@ -4073,7 +4073,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cBoolean\u003e",
+                "java.lang.Comparable\u003cjava.lang.Boolean\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {
@@ -4187,7 +4187,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cByte\u003e",
+                "java.lang.Comparable\u003cjava.lang.Byte\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {
@@ -4293,7 +4293,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCharacter\u003e",
+                "java.lang.Comparable\u003cjava.lang.Character\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {
@@ -5755,10 +5755,10 @@
             "Character.UnicodeScript": {
               "type": "enum",
               "since": "7",
-              "superClass": "Character.UnicodeScript",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCharacter.UnicodeScript\u003e",
+                "java.lang.Comparable\u003cjava.lang.Character.UnicodeScript\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -5797,7 +5797,7 @@
                 "java.io.Serializable",
                 "java.lang.constant.Constable",
                 "java.lang.invoke.TypeDescriptor",
-                "java.lang.invoke.TypeDescriptor.OfField\u003cClass\u003c?\u003e\u003e",
+                "java.lang.invoke.TypeDescriptor.OfField\u003cjava.lang.Class\u003c?\u003e\u003e",
                 "java.lang.reflect.AnnotatedElement",
                 "java.lang.reflect.GenericDeclaration",
                 "java.lang.reflect.Type"
@@ -6484,7 +6484,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDouble\u003e",
+                "java.lang.Comparable\u003cjava.lang.Double\u003e",
                 "java.lang.constant.Constable",
                 "java.lang.constant.ConstantDesc"
               ],
@@ -6858,7 +6858,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFloat\u003e",
+                "java.lang.Comparable\u003cjava.lang.Float\u003e",
                 "java.lang.constant.Constable",
                 "java.lang.constant.ConstantDesc"
               ],
@@ -7464,7 +7464,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cInteger\u003e",
+                "java.lang.Comparable\u003cjava.lang.Integer\u003e",
                 "java.lang.constant.Constable",
                 "java.lang.constant.ConstantDesc"
               ],
@@ -7807,7 +7807,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLong\u003e",
+                "java.lang.Comparable\u003cjava.lang.Long\u003e",
                 "java.lang.constant.Constable",
                 "java.lang.constant.ConstantDesc"
               ],
@@ -8949,10 +8949,10 @@
             },
             "ProcessBuilder.Redirect.Type": {
               "type": "enum",
-              "superClass": "ProcessBuilder.Redirect.Type",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cProcessBuilder.Redirect.Type\u003e",
+                "java.lang.Comparable\u003cjava.lang.ProcessBuilder.Redirect.Type\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -8985,7 +8985,7 @@
               "type": "interface",
               "since": "9",
               "interfaces": [
-                "java.lang.Comparable\u003cProcessHandle\u003e"
+                "java.lang.Comparable\u003cjava.lang.ProcessHandle\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -9177,7 +9177,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cRuntime.Version\u003e"
+                "java.lang.Comparable\u003cjava.lang.Runtime.Version\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -9492,7 +9492,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cShort\u003e",
+                "java.lang.Comparable\u003cjava.lang.Short\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {
@@ -9687,10 +9687,10 @@
             "StackWalker.Option": {
               "type": "enum",
               "since": "9",
-              "superClass": "StackWalker.Option",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStackWalker.Option\u003e",
+                "java.lang.Comparable\u003cjava.lang.StackWalker.Option\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -9958,7 +9958,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.CharSequence",
-                "java.lang.Comparable\u003cString\u003e",
+                "java.lang.Comparable\u003cjava.lang.String\u003e",
                 "java.lang.constant.Constable",
                 "java.lang.constant.ConstantDesc"
               ],
@@ -10191,7 +10191,7 @@
                 "java.io.Serializable",
                 "java.lang.Appendable",
                 "java.lang.CharSequence",
-                "java.lang.Comparable\u003cStringBuffer\u003e"
+                "java.lang.Comparable\u003cjava.lang.StringBuffer\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -10333,7 +10333,7 @@
                 "java.io.Serializable",
                 "java.lang.Appendable",
                 "java.lang.CharSequence",
-                "java.lang.Comparable\u003cStringBuilder\u003e"
+                "java.lang.Comparable\u003cjava.lang.StringBuilder\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -10583,10 +10583,10 @@
             "System.Logger.Level": {
               "type": "enum",
               "since": "9",
-              "superClass": "System.Logger.Level",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSystem.Logger.Level\u003e",
+                "java.lang.Comparable\u003cjava.lang.System.Logger.Level\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -10765,10 +10765,10 @@
             "Thread.State": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "Thread.State",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cThread.State\u003e",
+                "java.lang.Comparable\u003cjava.lang.Thread.State\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -11479,10 +11479,10 @@
             "ElementType": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "ElementType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cElementType\u003e",
+                "java.lang.Comparable\u003cjava.lang.annotation.ElementType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -11591,10 +11591,10 @@
             "RetentionPolicy": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "RetentionPolicy",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRetentionPolicy\u003e",
+                "java.lang.Comparable\u003cjava.lang.annotation.RetentionPolicy\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -11643,7 +11643,7 @@
               "interfaces": [
                 "java.lang.constant.ConstantDesc",
                 "java.lang.invoke.TypeDescriptor",
-                "java.lang.invoke.TypeDescriptor.OfField\u003cClassDesc\u003e"
+                "java.lang.invoke.TypeDescriptor.OfField\u003cjava.lang.constant.ClassDesc\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -11810,10 +11810,10 @@
             "DirectMethodHandleDesc.Kind": {
               "type": "enum",
               "since": "12",
-              "superClass": "DirectMethodHandleDesc.Kind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDirectMethodHandleDesc.Kind\u003e",
+                "java.lang.Comparable\u003cjava.lang.constant.DirectMethodHandleDesc.Kind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -11944,7 +11944,7 @@
               "interfaces": [
                 "java.lang.constant.ConstantDesc",
                 "java.lang.invoke.TypeDescriptor",
-                "java.lang.invoke.TypeDescriptor.OfMethod\u003cClassDesc,MethodTypeDesc\u003e"
+                "java.lang.invoke.TypeDescriptor.OfMethod\u003cjava.lang.constant.ClassDesc,java.lang.constant.MethodTypeDesc\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -12454,10 +12454,10 @@
             "MethodHandles.Lookup.ClassOption": {
               "type": "enum",
               "since": "15",
-              "superClass": "MethodHandles.Lookup.ClassOption",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMethodHandles.Lookup.ClassOption\u003e",
+                "java.lang.Comparable\u003cjava.lang.invoke.MethodHandles.Lookup.ClassOption\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -12491,11 +12491,11 @@
               "since": "7",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "MethodType\u003e",
                 "java.io.Serializable",
                 "java.lang.constant.Constable",
+                "java.lang.invoke.MethodType\u003e",
                 "java.lang.invoke.TypeDescriptor",
-                "java.lang.invoke.TypeDescriptor.OfMethod\u003cClass\u003c?\u003e"
+                "java.lang.invoke.TypeDescriptor.OfMethod\u003cjava.lang.Class\u003c?\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -12845,10 +12845,10 @@
             },
             "VarHandle.AccessMode": {
               "type": "enum",
-              "superClass": "VarHandle.AccessMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cVarHandle.AccessMode\u003e",
+                "java.lang.Comparable\u003cjava.lang.invoke.VarHandle.AccessMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -12882,7 +12882,7 @@
             "VarHandle.VarHandleDesc": {
               "type": "class",
               "since": "12",
-              "superClass": "VarHandle",
+              "superClass": "java.lang.constant.DynamicConstantDesc",
               "interfaces": [
                 "java.lang.constant.ConstantDesc"
               ],
@@ -13108,7 +13108,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -13201,7 +13201,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor.Exports\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Exports\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -13229,10 +13229,10 @@
             "ModuleDescriptor.Exports.Modifier": {
               "type": "enum",
               "since": "9",
-              "superClass": "ModuleDescriptor.Exports.Modifier",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModuleDescriptor.Exports.Modifier\u003e",
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Exports.Modifier\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -13264,10 +13264,10 @@
             "ModuleDescriptor.Modifier": {
               "type": "enum",
               "since": "9",
-              "superClass": "ModuleDescriptor.Modifier",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModuleDescriptor.Modifier\u003e",
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Modifier\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -13301,7 +13301,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor.Opens\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Opens\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -13329,10 +13329,10 @@
             "ModuleDescriptor.Opens.Modifier": {
               "type": "enum",
               "since": "9",
-              "superClass": "ModuleDescriptor.Opens.Modifier",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModuleDescriptor.Opens.Modifier\u003e",
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Opens.Modifier\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -13366,7 +13366,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor.Provides\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Provides\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -13394,7 +13394,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor.Requires\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Requires\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -13422,10 +13422,10 @@
             "ModuleDescriptor.Requires.Modifier": {
               "type": "enum",
               "since": "9",
-              "superClass": "ModuleDescriptor.Requires.Modifier",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModuleDescriptor.Requires.Modifier\u003e",
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Requires.Modifier\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -13459,7 +13459,7 @@
               "since": "9",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cModuleDescriptor.Version\u003e"
+                "java.lang.Comparable\u003cjava.lang.module.ModuleDescriptor.Version\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -15067,7 +15067,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cBigDecimal\u003e"
+                "java.lang.Comparable\u003cjava.math.BigDecimal\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(char[])": {
@@ -15304,7 +15304,7 @@
               "superClass": "java.lang.Number",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cBigInteger\u003e"
+                "java.lang.Comparable\u003cjava.math.BigInteger\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(byte[])": {},
@@ -15454,10 +15454,10 @@
             "RoundingMode": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "RoundingMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRoundingMode\u003e",
+                "java.lang.Comparable\u003cjava.math.RoundingMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -15552,10 +15552,10 @@
             "Authenticator.RequestorType": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "Authenticator.RequestorType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAuthenticator.RequestorType\u003e",
+                "java.lang.Comparable\u003cjava.net.Authenticator.RequestorType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -17213,10 +17213,10 @@
             "Proxy.Type": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "Proxy.Type",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cProxy.Type\u003e",
+                "java.lang.Comparable\u003cjava.net.Proxy.Type\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -17889,10 +17889,10 @@
             "StandardProtocolFamily": {
               "type": "enum",
               "since": "7",
-              "superClass": "StandardProtocolFamily",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardProtocolFamily\u003e",
+                "java.lang.Comparable\u003cjava.net.StandardProtocolFamily\u003e",
                 "java.lang.constant.Constable",
                 "java.net.ProtocolFamily"
               ],
@@ -17965,7 +17965,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cURI\u003e"
+                "java.lang.Comparable\u003cjava.net.URI\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String)": {},
@@ -18778,7 +18778,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cByteBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.ByteBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -18926,7 +18926,7 @@
               "interfaces": [
                 "java.lang.Appendable",
                 "java.lang.CharSequence",
-                "java.lang.Comparable\u003cCharBuffer\u003e",
+                "java.lang.Comparable\u003cjava.nio.CharBuffer\u003e",
                 "java.lang.Readable"
               ],
               "constructors": {},
@@ -19032,7 +19032,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cDoubleBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.DoubleBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -19113,7 +19113,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cFloatBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.FloatBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -19194,7 +19194,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cIntBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.IntBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -19313,7 +19313,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cLongBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.LongBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -19394,7 +19394,7 @@
               "since": "1.4",
               "superClass": "java.nio.ByteBuffer",
               "interfaces": [
-                "java.lang.Comparable\u003cByteBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.ByteBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -19539,7 +19539,7 @@
               "since": "1.4",
               "superClass": "java.nio.Buffer",
               "interfaces": [
-                "java.lang.Comparable\u003cShortBuffer\u003e"
+                "java.lang.Comparable\u003cjava.nio.ShortBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -22011,7 +22011,7 @@
               "since": "1.4",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cCharset\u003e"
+                "java.lang.Comparable\u003cjava.nio.charset.Charset\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String,java.lang.String[])": {}
@@ -22518,10 +22518,10 @@
             "AccessMode": {
               "type": "enum",
               "since": "7",
-              "superClass": "AccessMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAccessMode\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.AccessMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -23146,10 +23146,10 @@
             "FileVisitOption": {
               "type": "enum",
               "since": "7",
-              "superClass": "FileVisitOption",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFileVisitOption\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.FileVisitOption\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -23181,10 +23181,10 @@
             "FileVisitResult": {
               "type": "enum",
               "since": "7",
-              "superClass": "FileVisitResult",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFileVisitResult\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.FileVisitResult\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -23396,10 +23396,10 @@
             "LinkOption": {
               "type": "enum",
               "since": "7",
-              "superClass": "LinkOption",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLinkOption\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.LinkOption\u003e",
                 "java.lang.constant.Constable",
                 "java.nio.file.CopyOption",
                 "java.nio.file.OpenOption"
@@ -23601,8 +23601,8 @@
               "type": "interface",
               "since": "7",
               "interfaces": [
-                "java.lang.Comparable\u003cPath\u003e",
-                "java.lang.Iterable\u003cPath\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.Path\u003e",
+                "java.lang.Iterable\u003cjava.nio.file.Path\u003e",
                 "java.nio.file.Watchable"
               ],
               "constructors": {},
@@ -23862,10 +23862,10 @@
             "StandardCopyOption": {
               "type": "enum",
               "since": "7",
-              "superClass": "StandardCopyOption",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardCopyOption\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.StandardCopyOption\u003e",
                 "java.lang.constant.Constable",
                 "java.nio.file.CopyOption"
               ],
@@ -23898,10 +23898,10 @@
             "StandardOpenOption": {
               "type": "enum",
               "since": "7",
-              "superClass": "StandardOpenOption",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardOpenOption\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.StandardOpenOption\u003e",
                 "java.lang.constant.Constable",
                 "java.nio.file.OpenOption"
               ],
@@ -24105,10 +24105,10 @@
             "AclEntryFlag": {
               "type": "enum",
               "since": "7",
-              "superClass": "AclEntryFlag",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAclEntryFlag\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryFlag\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -24140,10 +24140,10 @@
             "AclEntryPermission": {
               "type": "enum",
               "since": "7",
-              "superClass": "AclEntryPermission",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAclEntryPermission\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryPermission\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -24179,10 +24179,10 @@
             "AclEntryType": {
               "type": "enum",
               "since": "7",
-              "superClass": "AclEntryType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAclEntryType\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -24384,7 +24384,7 @@
               "since": "7",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cFileTime\u003e"
+                "java.lang.Comparable\u003cjava.nio.file.attribute.FileTime\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -24484,10 +24484,10 @@
             "PosixFilePermission": {
               "type": "enum",
               "since": "7",
-              "superClass": "PosixFilePermission",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cPosixFilePermission\u003e",
+                "java.lang.Comparable\u003cjava.nio.file.attribute.PosixFilePermission\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -25080,7 +25080,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String,double,java.lang.String)": {
@@ -25297,10 +25297,10 @@
             "CryptoPrimitive": {
               "type": "enum",
               "since": "7",
-              "superClass": "CryptoPrimitive",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCryptoPrimitive\u003e",
+                "java.lang.Comparable\u003cjava.security.CryptoPrimitive\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -25535,10 +25535,10 @@
             "DrbgParameters.Capability": {
               "type": "enum",
               "since": "9",
-              "superClass": "DrbgParameters.Capability",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDrbgParameters.Capability\u003e",
+                "java.lang.Comparable\u003cjava.security.DrbgParameters.Capability\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -26330,10 +26330,10 @@
             "KeyRep.Type": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "KeyRep.Type",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cKeyRep.Type\u003e",
+                "java.lang.Comparable\u003cjava.security.KeyRep.Type\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -27371,7 +27371,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String,double,java.lang.String)": {
@@ -28430,10 +28430,10 @@
             "CRLReason": {
               "type": "enum",
               "since": "7",
-              "superClass": "CRLReason",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCRLReason\u003e",
+                "java.lang.Comparable\u003cjava.security.cert.CRLReason\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -28771,10 +28771,10 @@
             "CertPathValidatorException.BasicReason": {
               "type": "enum",
               "since": "7",
-              "superClass": "CertPathValidatorException.BasicReason",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCertPathValidatorException.BasicReason\u003e",
+                "java.lang.Comparable\u003cjava.security.cert.CertPathValidatorException.BasicReason\u003e",
                 "java.lang.constant.Constable",
                 "java.security.cert.CertPathValidatorException.Reason"
               ],
@@ -29686,10 +29686,10 @@
             "PKIXReason": {
               "type": "enum",
               "since": "7",
-              "superClass": "PKIXReason",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cPKIXReason\u003e",
+                "java.lang.Comparable\u003cjava.security.cert.PKIXReason\u003e",
                 "java.lang.constant.Constable",
                 "java.security.cert.CertPathValidatorException.Reason"
               ],
@@ -29765,10 +29765,10 @@
             },
             "PKIXRevocationChecker.Option": {
               "type": "enum",
-              "superClass": "PKIXRevocationChecker.Option",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cPKIXRevocationChecker.Option\u003e",
+                "java.lang.Comparable\u003cjava.security.cert.PKIXRevocationChecker.Option\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -32144,7 +32144,7 @@
               "since": "1.1",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cCollationKey\u003e"
+                "java.lang.Comparable\u003cjava.text.CollationKey\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String)": {
@@ -32177,7 +32177,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.Cloneable",
-                "java.util.Comparator\u003cObject\u003e"
+                "java.util.Comparator\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -32911,10 +32911,10 @@
             "Normalizer.Form": {
               "type": "enum",
               "since": "6",
-              "superClass": "Normalizer.Form",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cNormalizer.Form\u003e",
+                "java.lang.Comparable\u003cjava.text.Normalizer.Form\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -33080,10 +33080,10 @@
             "NumberFormat.Style": {
               "type": "enum",
               "since": "12",
-              "superClass": "NumberFormat.Style",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cNumberFormat.Style\u003e",
+                "java.lang.Comparable\u003cjava.text.NumberFormat.Style\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -33191,7 +33191,7 @@
               "superClass": "java.text.Collator",
               "interfaces": [
                 "java.lang.Cloneable",
-                "java.util.Comparator\u003cObject\u003e"
+                "java.util.Comparator\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String)": {}
@@ -33624,10 +33624,10 @@
             "DayOfWeek": {
               "type": "enum",
               "since": "8",
-              "superClass": "DayOfWeek",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDayOfWeek\u003e",
+                "java.lang.Comparable\u003cjava.time.DayOfWeek\u003e",
                 "java.lang.constant.Constable",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -33676,7 +33676,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDuration\u003e",
+                "java.lang.Comparable\u003cjava.time.Duration\u003e",
                 "java.time.temporal.TemporalAmount"
               ],
               "constructors": {},
@@ -33779,7 +33779,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cInstant\u003e",
+                "java.lang.Comparable\u003cjava.time.Instant\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -33865,7 +33865,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.chrono.ChronoLocalDate",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
@@ -33972,8 +33972,8 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDateTime\u003c?\u003e\u003e",
-                "java.time.chrono.ChronoLocalDateTime\u003cLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDateTime\u003c?\u003e\u003e",
+                "java.time.chrono.ChronoLocalDateTime\u003cjava.time.LocalDate\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34081,7 +34081,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLocalTime\u003e",
+                "java.lang.Comparable\u003cjava.time.LocalTime\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34168,10 +34168,10 @@
             "Month": {
               "type": "enum",
               "since": "8",
-              "superClass": "Month",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMonth\u003e",
+                "java.lang.Comparable\u003cjava.time.Month\u003e",
                 "java.lang.constant.Constable",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34225,7 +34225,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMonthDay\u003e",
+                "java.lang.Comparable\u003cjava.time.MonthDay\u003e",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
               ],
@@ -34279,7 +34279,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cOffsetDateTime\u003e",
+                "java.lang.Comparable\u003cjava.time.OffsetDateTime\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34388,7 +34388,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cOffsetTime\u003e",
+                "java.lang.Comparable\u003cjava.time.OffsetTime\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34535,7 +34535,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cYear\u003e",
+                "java.lang.Comparable\u003cjava.time.Year\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34603,7 +34603,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cYearMonth\u003e",
+                "java.lang.Comparable\u003cjava.time.YearMonth\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34710,7 +34710,7 @@
               "superClass": "java.time.ZoneId",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cZoneOffset\u003e",
+                "java.lang.Comparable\u003cjava.time.ZoneOffset\u003e",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
               ],
@@ -34764,8 +34764,8 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoZonedDateTime\u003c?\u003e\u003e",
-                "java.time.chrono.ChronoZonedDateTime\u003cLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoZonedDateTime\u003c?\u003e\u003e",
+                "java.time.chrono.ChronoZonedDateTime\u003cjava.time.LocalDate\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor"
               ],
@@ -34877,7 +34877,7 @@
               "since": "8",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {
@@ -34929,7 +34929,7 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -34977,7 +34977,7 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.lang.Comparable\u003cChronoLocalDateTime\u003c?\u003e\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDateTime\u003c?\u003e\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
                 "java.time.temporal.TemporalAdjuster"
@@ -35051,7 +35051,7 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.lang.Comparable\u003cChronoZonedDateTime\u003c?\u003e\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoZonedDateTime\u003c?\u003e\u003e",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor"
               ],
@@ -35101,7 +35101,7 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.lang.Comparable\u003cChronology\u003e"
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -35172,7 +35172,7 @@
               "superClass": "java.time.chrono.AbstractChronology",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {},
@@ -35226,7 +35226,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.chrono.ChronoLocalDate",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
@@ -35288,10 +35288,10 @@
             "HijrahEra": {
               "type": "enum",
               "since": "8",
-              "superClass": "HijrahEra",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cHijrahEra\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.HijrahEra\u003e",
                 "java.lang.constant.Constable",
                 "java.time.chrono.Era",
                 "java.time.temporal.TemporalAccessor",
@@ -35338,7 +35338,7 @@
               "superClass": "java.time.chrono.AbstractChronology",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {},
@@ -35391,10 +35391,10 @@
             "IsoEra": {
               "type": "enum",
               "since": "8",
-              "superClass": "IsoEra",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cIsoEra\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.IsoEra\u003e",
                 "java.lang.constant.Constable",
                 "java.time.chrono.Era",
                 "java.time.temporal.TemporalAccessor",
@@ -35441,7 +35441,7 @@
               "superClass": "java.time.chrono.AbstractChronology",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {},
@@ -35495,7 +35495,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.chrono.ChronoLocalDate",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
@@ -35607,7 +35607,7 @@
               "superClass": "java.time.chrono.AbstractChronology",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {},
@@ -35661,7 +35661,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.chrono.ChronoLocalDate",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
@@ -35722,10 +35722,10 @@
             "MinguoEra": {
               "type": "enum",
               "since": "8",
-              "superClass": "MinguoEra",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMinguoEra\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.MinguoEra\u003e",
                 "java.lang.constant.Constable",
                 "java.time.chrono.Era",
                 "java.time.temporal.TemporalAccessor",
@@ -35772,7 +35772,7 @@
               "superClass": "java.time.chrono.AbstractChronology",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronology\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.Chronology\u003e",
                 "java.time.chrono.Chronology"
               ],
               "constructors": {},
@@ -35826,7 +35826,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoLocalDate\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ChronoLocalDate\u003e",
                 "java.time.chrono.ChronoLocalDate",
                 "java.time.temporal.Temporal",
                 "java.time.temporal.TemporalAccessor",
@@ -35887,10 +35887,10 @@
             "ThaiBuddhistEra": {
               "type": "enum",
               "since": "8",
-              "superClass": "ThaiBuddhistEra",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cThaiBuddhistEra\u003e",
+                "java.lang.Comparable\u003cjava.time.chrono.ThaiBuddhistEra\u003e",
                 "java.lang.constant.Constable",
                 "java.time.chrono.Era",
                 "java.time.temporal.TemporalAccessor",
@@ -36162,10 +36162,10 @@
             "FormatStyle": {
               "type": "enum",
               "since": "8",
-              "superClass": "FormatStyle",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFormatStyle\u003e",
+                "java.lang.Comparable\u003cjava.time.format.FormatStyle\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -36197,10 +36197,10 @@
             "ResolverStyle": {
               "type": "enum",
               "since": "8",
-              "superClass": "ResolverStyle",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cResolverStyle\u003e",
+                "java.lang.Comparable\u003cjava.time.format.ResolverStyle\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -36232,10 +36232,10 @@
             "SignStyle": {
               "type": "enum",
               "since": "8",
-              "superClass": "SignStyle",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSignStyle\u003e",
+                "java.lang.Comparable\u003cjava.time.format.SignStyle\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -36267,10 +36267,10 @@
             "TextStyle": {
               "type": "enum",
               "since": "8",
-              "superClass": "TextStyle",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTextStyle\u003e",
+                "java.lang.Comparable\u003cjava.time.format.TextStyle\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -36310,10 +36310,10 @@
             "ChronoField": {
               "type": "enum",
               "since": "8",
-              "superClass": "ChronoField",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoField\u003e",
+                "java.lang.Comparable\u003cjava.time.temporal.ChronoField\u003e",
                 "java.lang.constant.Constable",
                 "java.time.temporal.TemporalField"
               ],
@@ -36360,10 +36360,10 @@
             "ChronoUnit": {
               "type": "enum",
               "since": "8",
-              "superClass": "ChronoUnit",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cChronoUnit\u003e",
+                "java.lang.Comparable\u003cjava.time.temporal.ChronoUnit\u003e",
                 "java.lang.constant.Constable",
                 "java.time.temporal.TemporalUnit"
               ],
@@ -36766,7 +36766,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cZoneOffsetTransition\u003e"
+                "java.lang.Comparable\u003cjava.time.zone.ZoneOffsetTransition\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -36836,10 +36836,10 @@
             },
             "ZoneOffsetTransitionRule.TimeDefinition": {
               "type": "enum",
-              "superClass": "ZoneOffsetTransitionRule.TimeDefinition",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cZoneOffsetTransitionRule.TimeDefinition\u003e",
+                "java.lang.Comparable\u003cjava.time.zone.ZoneOffsetTransitionRule.TimeDefinition\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -38283,7 +38283,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cCalendar\u003e"
+                "java.lang.Comparable\u003cjava.util.Calendar\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -38868,7 +38868,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cDate\u003e"
+                "java.lang.Comparable\u003cjava.util.Date\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -39504,10 +39504,10 @@
             },
             "Formatter.BigDecimalLayoutForm": {
               "type": "enum",
-              "superClass": "Formatter.BigDecimalLayoutForm",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFormatter.BigDecimalLayoutForm\u003e",
+                "java.lang.Comparable\u003cjava.util.Formatter.BigDecimalLayoutForm\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -39581,7 +39581,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cCalendar\u003e"
+                "java.lang.Comparable\u003cjava.util.Calendar\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -40979,10 +40979,10 @@
             "Locale.Category": {
               "type": "enum",
               "since": "7",
-              "superClass": "Locale.Category",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLocale.Category\u003e",
+                "java.lang.Comparable\u003cjava.util.Locale.Category\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -41014,10 +41014,10 @@
             "Locale.FilteringMode": {
               "type": "enum",
               "since": "8",
-              "superClass": "Locale.FilteringMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLocale.FilteringMode\u003e",
+                "java.lang.Comparable\u003cjava.util.Locale.FilteringMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -41049,10 +41049,10 @@
             "Locale.IsoCountryCode": {
               "type": "enum",
               "since": "9",
-              "superClass": "Locale.IsoCountryCode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLocale.IsoCountryCode\u003e",
+                "java.lang.Comparable\u003cjava.util.Locale.IsoCountryCode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -41903,8 +41903,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Iterator\u003cDouble\u003e",
-                "java.util.PrimitiveIterator\u003cDouble,DoubleConsumer\u003e"
+                "java.util.Iterator\u003cjava.lang.Double\u003e",
+                "java.util.PrimitiveIterator\u003cjava.lang.Double,java.util.function.DoubleConsumer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -41923,8 +41923,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Iterator\u003cInteger\u003e",
-                "java.util.PrimitiveIterator\u003cInteger,IntConsumer\u003e"
+                "java.util.Iterator\u003cjava.lang.Integer\u003e",
+                "java.util.PrimitiveIterator\u003cjava.lang.Integer,java.util.function.IntConsumer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -41943,8 +41943,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Iterator\u003cLong\u003e",
-                "java.util.PrimitiveIterator\u003cLong,LongConsumer\u003e"
+                "java.util.Iterator\u003cjava.lang.Long\u003e",
+                "java.util.PrimitiveIterator\u003cjava.lang.Long,java.util.function.LongConsumer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -42027,11 +42027,11 @@
             "Properties": {
               "type": "class",
               "since": "1.0",
-              "superClass": "Object",
+              "superClass": "java.util.Hashtable",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -42470,7 +42470,7 @@
               "interfaces": [
                 "java.io.Closeable",
                 "java.lang.AutoCloseable",
-                "java.util.Iterator\u003cString\u003e"
+                "java.util.Iterator\u003cjava.lang.String\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.io.File)": {},
@@ -42965,8 +42965,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Spliterator\u003cDouble\u003e",
-                "java.util.Spliterator.OfPrimitive\u003cDouble,DoubleConsumer,Spliterator.OfDouble\u003e"
+                "java.util.Spliterator\u003cjava.lang.Double\u003e",
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Double,java.util.function.DoubleConsumer,java.util.Spliterator.OfDouble\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -42989,8 +42989,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Spliterator\u003cInteger\u003e",
-                "java.util.Spliterator.OfPrimitive\u003cInteger,IntConsumer,Spliterator.OfInt\u003e"
+                "java.util.Spliterator\u003cjava.lang.Integer\u003e",
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Integer,java.util.function.IntConsumer,java.util.Spliterator.OfInt\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -43013,8 +43013,8 @@
               "type": "interface",
               "since": "8",
               "interfaces": [
-                "java.util.Spliterator\u003cLong\u003e",
-                "java.util.Spliterator.OfPrimitive\u003cLong,LongConsumer,Spliterator.OfLong\u003e"
+                "java.util.Spliterator\u003cjava.lang.Long\u003e",
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Long,java.util.function.LongConsumer,java.util.Spliterator.OfLong\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -43109,9 +43109,9 @@
               "since": "8",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Spliterator\u003cDouble\u003e",
+                "java.util.Spliterator\u003cjava.lang.Double\u003e",
                 "java.util.Spliterator.OfDouble",
-                "java.util.Spliterator.OfPrimitive\u003cDouble,DoubleConsumer,Spliterator.OfDouble\u003e"
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Double,java.util.function.DoubleConsumer,java.util.Spliterator.OfDouble\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(long,int)": {}
@@ -43148,9 +43148,9 @@
               "since": "8",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Spliterator\u003cInteger\u003e",
+                "java.util.Spliterator\u003cjava.lang.Integer\u003e",
                 "java.util.Spliterator.OfInt",
-                "java.util.Spliterator.OfPrimitive\u003cInteger,IntConsumer,Spliterator.OfInt\u003e"
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Integer,java.util.function.IntConsumer,java.util.Spliterator.OfInt\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(long,int)": {}
@@ -43187,9 +43187,9 @@
               "since": "8",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Spliterator\u003cLong\u003e",
+                "java.util.Spliterator\u003cjava.lang.Long\u003e",
                 "java.util.Spliterator.OfLong",
-                "java.util.Spliterator.OfPrimitive\u003cLong,LongConsumer,Spliterator.OfLong\u003e"
+                "java.util.Spliterator.OfPrimitive\u003cjava.lang.Long,java.util.function.LongConsumer,java.util.Spliterator.OfLong\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(long,int)": {}
@@ -43457,7 +43457,7 @@
               "since": "1.0",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Enumeration\u003cObject\u003e"
+                "java.util.Enumeration\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String)": {},
@@ -43897,7 +43897,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cUUID\u003e"
+                "java.lang.Comparable\u003cjava.util.UUID\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(long,long)": {}
@@ -45750,7 +45750,7 @@
               "type": "interface",
               "since": "5.0",
               "interfaces": [
-                "java.lang.Comparable\u003cDelayed\u003e"
+                "java.lang.Comparable\u003cjava.util.concurrent.Delayed\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -46676,10 +46676,10 @@
             "RecursiveAction": {
               "type": "class",
               "since": "7",
-              "superClass": "Void",
+              "superClass": "java.util.concurrent.ForkJoinTask",
               "interfaces": [
                 "java.io.Serializable",
-                "java.util.concurrent.Future\u003cVoid\u003e"
+                "java.util.concurrent.Future\u003cjava.lang.Void\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -46885,7 +46885,7 @@
               "type": "interface",
               "since": "6",
               "interfaces": [
-                "java.lang.Comparable\u003cDelayed\u003e",
+                "java.lang.Comparable\u003cjava.util.concurrent.Delayed\u003e",
                 "java.lang.Runnable",
                 "java.util.concurrent.Delayed",
                 "java.util.concurrent.Future\u003cV\u003e",
@@ -46943,7 +46943,7 @@
               "type": "interface",
               "since": "5.0",
               "interfaces": [
-                "java.lang.Comparable\u003cDelayed\u003e",
+                "java.lang.Comparable\u003cjava.util.concurrent.Delayed\u003e",
                 "java.util.concurrent.Delayed",
                 "java.util.concurrent.Future\u003cV\u003e"
               ],
@@ -47493,10 +47493,10 @@
             "TimeUnit": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "TimeUnit",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTimeUnit\u003e",
+                "java.lang.Comparable\u003cjava.util.concurrent.TimeUnit\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -49747,7 +49747,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -51201,10 +51201,10 @@
             },
             "Collector.Characteristics": {
               "type": "enum",
-              "superClass": "Collector.Characteristics",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCollector.Characteristics\u003e",
+                "java.lang.Comparable\u003cjava.util.stream.Collector.Characteristics\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -51319,7 +51319,7 @@
               "since": "8",
               "interfaces": [
                 "java.lang.AutoCloseable",
-                "java.util.stream.BaseStream\u003cDouble,DoubleStream\u003e"
+                "java.util.stream.BaseStream\u003cjava.lang.Double,java.util.stream.DoubleStream\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -51417,7 +51417,7 @@
               "since": "8",
               "interfaces": [
                 "java.lang.AutoCloseable",
-                "java.util.stream.BaseStream\u003cInteger,IntStream\u003e"
+                "java.util.stream.BaseStream\u003cjava.lang.Integer,java.util.stream.IntStream\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -51519,7 +51519,7 @@
               "since": "8",
               "interfaces": [
                 "java.lang.AutoCloseable",
-                "java.util.stream.BaseStream\u003cLong,LongStream\u003e"
+                "java.util.stream.BaseStream\u003cjava.lang.Long,java.util.stream.LongStream\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -51620,7 +51620,7 @@
               "since": "8",
               "interfaces": [
                 "java.lang.AutoCloseable",
-                "java.util.stream.BaseStream\u003cT,Stream\u003cT\u003e\u003e"
+                "java.util.stream.BaseStream\u003cT,java.util.stream.Stream\u003cT\u003e\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -55213,10 +55213,10 @@
             "SSLEngineResult.HandshakeStatus": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "SSLEngineResult.HandshakeStatus",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSSLEngineResult.HandshakeStatus\u003e",
+                "java.lang.Comparable\u003cjavax.net.ssl.SSLEngineResult.HandshakeStatus\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -55248,10 +55248,10 @@
             "SSLEngineResult.Status": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "SSLEngineResult.Status",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSSLEngineResult.Status\u003e",
+                "java.lang.Comparable\u003cjavax.net.ssl.SSLEngineResult.Status\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -57960,10 +57960,10 @@
             "SourceVersion": {
               "type": "enum",
               "since": "6",
-              "superClass": "SourceVersion",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSourceVersion\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.SourceVersion\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -58130,10 +58130,10 @@
             "ElementKind": {
               "type": "enum",
               "since": "6",
-              "superClass": "ElementKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cElementKind\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.element.ElementKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -58231,10 +58231,10 @@
             "Modifier": {
               "type": "enum",
               "since": "6",
-              "superClass": "Modifier",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModifier\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.element.Modifier\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -58309,10 +58309,10 @@
             "ModuleElement.DirectiveKind": {
               "type": "enum",
               "since": "9",
-              "superClass": "ModuleElement.DirectiveKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cModuleElement.DirectiveKind\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.element.ModuleElement.DirectiveKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -58470,10 +58470,10 @@
             "NestingKind": {
               "type": "enum",
               "since": "6",
-              "superClass": "NestingKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cNestingKind\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.element.NestingKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -59132,10 +59132,10 @@
             "TypeKind": {
               "type": "enum",
               "since": "6",
-              "superClass": "TypeKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTypeKind\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.type.TypeKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -60588,10 +60588,10 @@
             "Elements.Origin": {
               "type": "enum",
               "since": "9",
-              "superClass": "Elements.Origin",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cElements.Origin\u003e",
+                "java.lang.Comparable\u003cjavax.lang.model.util.Elements.Origin\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -61622,10 +61622,10 @@
             },
             "Diagnostic.Kind": {
               "type": "enum",
-              "superClass": "Diagnostic.Kind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDiagnostic.Kind\u003e",
+                "java.lang.Comparable\u003cjavax.tools.Diagnostic.Kind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -61717,7 +61717,7 @@
             "DocumentationTool.DocumentationTask": {
               "type": "interface",
               "interfaces": [
-                "java.util.concurrent.Callable\u003cBoolean\u003e"
+                "java.util.concurrent.Callable\u003cjava.lang.Boolean\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -61732,10 +61732,10 @@
             },
             "DocumentationTool.Location": {
               "type": "enum",
-              "superClass": "DocumentationTool.Location",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDocumentationTool.Location\u003e",
+                "java.lang.Comparable\u003cjavax.tools.DocumentationTool.Location\u003e",
                 "java.lang.constant.Constable",
                 "javax.tools.JavaFileManager.Location"
               ],
@@ -61953,7 +61953,7 @@
             "JavaCompiler.CompilationTask": {
               "type": "interface",
               "interfaces": [
-                "java.util.concurrent.Callable\u003cBoolean\u003e"
+                "java.util.concurrent.Callable\u003cjava.lang.Boolean\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -62056,10 +62056,10 @@
             },
             "JavaFileObject.Kind": {
               "type": "enum",
-              "superClass": "JavaFileObject.Kind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cJavaFileObject.Kind\u003e",
+                "java.lang.Comparable\u003cjavax.tools.JavaFileObject.Kind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -62226,10 +62226,10 @@
             "StandardLocation": {
               "type": "enum",
               "since": "6",
-              "superClass": "StandardLocation",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardLocation\u003e",
+                "java.lang.Comparable\u003cjavax.tools.StandardLocation\u003e",
                 "java.lang.constant.Constable",
                 "javax.tools.JavaFileManager.Location"
               ],
@@ -66682,10 +66682,10 @@
             "Component.BaselineResizeBehavior": {
               "type": "enum",
               "since": "6",
-              "superClass": "Component.BaselineResizeBehavior",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cComponent.BaselineResizeBehavior\u003e",
+                "java.lang.Comparable\u003cjava.awt.Component.BaselineResizeBehavior\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -67638,10 +67638,10 @@
             "Desktop.Action": {
               "type": "enum",
               "since": "6",
-              "superClass": "Desktop.Action",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDesktop.Action\u003e",
+                "java.lang.Comparable\u003cjava.awt.Desktop.Action\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -68160,10 +68160,10 @@
             "Dialog.ModalExclusionType": {
               "type": "enum",
               "since": "6",
-              "superClass": "Dialog.ModalExclusionType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDialog.ModalExclusionType\u003e",
+                "java.lang.Comparable\u003cjava.awt.Dialog.ModalExclusionType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -68195,10 +68195,10 @@
             "Dialog.ModalityType": {
               "type": "enum",
               "since": "6",
-              "superClass": "Dialog.ModalityType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDialog.ModalityType\u003e",
+                "java.lang.Comparable\u003cjava.awt.Dialog.ModalityType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -70368,10 +70368,10 @@
             "GraphicsDevice.WindowTranslucency": {
               "type": "enum",
               "since": "7",
-              "superClass": "GraphicsDevice.WindowTranslucency",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cGraphicsDevice.WindowTranslucency\u003e",
+                "java.lang.Comparable\u003cjava.awt.GraphicsDevice.WindowTranslucency\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -73091,10 +73091,10 @@
             "MultipleGradientPaint.ColorSpaceType": {
               "type": "enum",
               "since": "6",
-              "superClass": "MultipleGradientPaint.ColorSpaceType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMultipleGradientPaint.ColorSpaceType\u003e",
+                "java.lang.Comparable\u003cjava.awt.MultipleGradientPaint.ColorSpaceType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -73126,10 +73126,10 @@
             "MultipleGradientPaint.CycleMethod": {
               "type": "enum",
               "since": "6",
-              "superClass": "MultipleGradientPaint.CycleMethod",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMultipleGradientPaint.CycleMethod\u003e",
+                "java.lang.Comparable\u003cjava.awt.MultipleGradientPaint.CycleMethod\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -74511,7 +74511,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.awt.RenderingHints.Key,java.lang.Object)": {},
@@ -75842,10 +75842,10 @@
             },
             "Taskbar.Feature": {
               "type": "enum",
-              "superClass": "Taskbar.Feature",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTaskbar.Feature\u003e",
+                "java.lang.Comparable\u003cjava.awt.Taskbar.Feature\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -75876,10 +75876,10 @@
             },
             "Taskbar.State": {
               "type": "enum",
-              "superClass": "Taskbar.State",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTaskbar.State\u003e",
+                "java.lang.Comparable\u003cjava.awt.Taskbar.State\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -77407,10 +77407,10 @@
             "TrayIcon.MessageType": {
               "type": "enum",
               "since": "6",
-              "superClass": "TrayIcon.MessageType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTrayIcon.MessageType\u003e",
+                "java.lang.Comparable\u003cjava.awt.TrayIcon.MessageType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -78002,10 +78002,10 @@
             "Window.Type": {
               "type": "enum",
               "since": "7",
-              "superClass": "Window.Type",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cWindow.Type\u003e",
+                "java.lang.Comparable\u003cjava.awt.Window.Type\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -78931,10 +78931,10 @@
             "QuitStrategy": {
               "type": "enum",
               "since": "9",
-              "superClass": "QuitStrategy",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cQuitStrategy\u003e",
+                "java.lang.Comparable\u003cjava.awt.desktop.QuitStrategy\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -79089,10 +79089,10 @@
             },
             "UserSessionEvent.Reason": {
               "type": "enum",
-              "superClass": "UserSessionEvent.Reason",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cUserSessionEvent.Reason\u003e",
+                "java.lang.Comparable\u003cjava.awt.desktop.UserSessionEvent.Reason\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -80020,7 +80020,7 @@
             "AWTEventListenerProxy": {
               "type": "class",
               "since": "1.4",
-              "superClass": "AWTEventListener",
+              "superClass": "java.util.EventListenerProxy",
               "interfaces": [
                 "java.awt.event.AWTEventListener",
                 "java.util.EventListener"
@@ -80435,10 +80435,10 @@
             "FocusEvent.Cause": {
               "type": "enum",
               "since": "9",
-              "superClass": "FocusEvent.Cause",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFocusEvent.Cause\u003e",
+                "java.lang.Comparable\u003cjava.awt.event.FocusEvent.Cause\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -82358,10 +82358,10 @@
             "NumericShaper.Range": {
               "type": "enum",
               "since": "7",
-              "superClass": "NumericShaper.Range",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cNumericShaper.Range\u003e",
+                "java.lang.Comparable\u003cjava.awt.font.NumericShaper.Range\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -90611,7 +90611,7 @@
             "PropertyChangeListenerProxy": {
               "type": "class",
               "since": "1.4",
-              "superClass": "PropertyChangeListener",
+              "superClass": "java.util.EventListenerProxy",
               "interfaces": [
                 "java.beans.PropertyChangeListener",
                 "java.util.EventListener"
@@ -90998,7 +90998,7 @@
             "VetoableChangeListenerProxy": {
               "type": "class",
               "since": "1.4",
-              "superClass": "VetoableChangeListener",
+              "superClass": "java.util.EventListenerProxy",
               "interfaces": [
                 "java.beans.VetoableChangeListener",
                 "java.util.EventListener"
@@ -92010,7 +92010,7 @@
               "type": "class",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Iterator\u003cObject\u003e"
+                "java.util.Iterator\u003cjava.lang.Object\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -99169,13 +99169,13 @@
             },
             "JobStateReasons": {
               "type": "class",
-              "superClass": "JobStateReason",
+              "superClass": "java.util.HashSet",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Iterable\u003cJobStateReason\u003e",
-                "java.util.Collection\u003cJobStateReason\u003e",
-                "java.util.Set\u003cJobStateReason\u003e",
+                "java.lang.Iterable\u003cjavax.print.attribute.standard.JobStateReason\u003e",
+                "java.util.Collection\u003cjavax.print.attribute.standard.JobStateReason\u003e",
+                "java.util.Set\u003cjavax.print.attribute.standard.JobStateReason\u003e",
                 "javax.print.attribute.Attribute",
                 "javax.print.attribute.PrintJobAttribute"
               ],
@@ -100657,11 +100657,11 @@
             },
             "PrinterStateReasons": {
               "type": "class",
-              "superClass": "Severity",
+              "superClass": "java.util.HashMap",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cPrinterStateReason,Severity\u003e",
+                "java.util.Map\u003cjavax.print.attribute.standard.PrinterStateReason,javax.print.attribute.standard.Severity\u003e",
                 "javax.print.attribute.Attribute",
                 "javax.print.attribute.PrintServiceAttribute"
               ],
@@ -106568,7 +106568,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants"
               ],
               "constructors": {
@@ -106980,7 +106980,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants",
                 "javax.swing.plaf.UIResource"
               ],
@@ -107672,10 +107672,10 @@
             "DropMode": {
               "type": "enum",
               "since": "6",
-              "superClass": "DropMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDropMode\u003e",
+                "java.lang.Comparable\u003cjavax.swing.DropMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -107906,10 +107906,10 @@
             "GroupLayout.Alignment": {
               "type": "enum",
               "since": "6",
-              "superClass": "GroupLayout.Alignment",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cGroupLayout.Alignment\u003e",
+                "java.lang.Comparable\u003cjavax.swing.GroupLayout.Alignment\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -132085,10 +132085,10 @@
             "JTable.PrintMode": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "JTable.PrintMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cJTable.PrintMode\u003e",
+                "java.lang.Comparable\u003cjavax.swing.JTable.PrintMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -137934,10 +137934,10 @@
             "LayoutStyle.ComponentPlacement": {
               "type": "enum",
               "since": "6",
-              "superClass": "LayoutStyle.ComponentPlacement",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cLayoutStyle.ComponentPlacement\u003e",
+                "java.lang.Comparable\u003cjavax.swing.LayoutStyle.ComponentPlacement\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -138565,10 +138565,10 @@
             "RowFilter.ComparisonType": {
               "type": "enum",
               "since": "6",
-              "superClass": "RowFilter.ComparisonType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRowFilter.ComparisonType\u003e",
+                "java.lang.Comparable\u003cjavax.swing.RowFilter.ComparisonType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -138949,10 +138949,10 @@
             "SortOrder": {
               "type": "enum",
               "since": "6",
-              "superClass": "SortOrder",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSortOrder\u003e",
+                "java.lang.Comparable\u003cjavax.swing.SortOrder\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -139501,10 +139501,10 @@
             "SwingWorker.StateValue": {
               "type": "enum",
               "since": "6",
-              "superClass": "SwingWorker.StateValue",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSwingWorker.StateValue\u003e",
+                "java.lang.Comparable\u003cjavax.swing.SwingWorker.StateValue\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -139858,11 +139858,11 @@
             "UIDefaults": {
               "type": "class",
               "since": "1.2",
-              "superClass": "Object",
+              "superClass": "java.util.Hashtable",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e"
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -142126,10 +142126,10 @@
             "RowSorterEvent.Type": {
               "type": "enum",
               "since": "6",
-              "superClass": "RowSorterEvent.Type",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRowSorterEvent.Type\u003e",
+                "java.lang.Comparable\u003cjavax.swing.event.RowSorterEvent.Type\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -145845,7 +145845,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants"
               ],
               "constructors": {
@@ -146251,7 +146251,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants",
                 "javax.swing.plaf.UIResource"
               ],
@@ -148052,12 +148052,12 @@
             },
             "BasicDirectoryModel": {
               "type": "class",
-              "superClass": "Object",
+              "superClass": "javax.swing.AbstractListModel",
               "interfaces": [
                 "java.beans.PropertyChangeListener",
                 "java.io.Serializable",
                 "java.util.EventListener",
-                "javax.swing.ListModel\u003cObject\u003e"
+                "javax.swing.ListModel\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(javax.swing.JFileChooser)": {}
@@ -158459,11 +158459,11 @@
             },
             "MetalFileChooserUI.DirectoryComboBoxModel": {
               "type": "class",
-              "superClass": "Object",
+              "superClass": "javax.swing.AbstractListModel",
               "interfaces": [
                 "java.io.Serializable",
-                "javax.swing.ComboBoxModel\u003cObject\u003e",
-                "javax.swing.ListModel\u003cObject\u003e"
+                "javax.swing.ComboBoxModel\u003cjava.lang.Object\u003e",
+                "javax.swing.ListModel\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -158506,7 +158506,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants"
               ],
               "constructors": {
@@ -158905,13 +158905,13 @@
             },
             "MetalFileChooserUI.FilterComboBoxModel": {
               "type": "class",
-              "superClass": "Object",
+              "superClass": "javax.swing.AbstractListModel",
               "interfaces": [
                 "java.beans.PropertyChangeListener",
                 "java.io.Serializable",
                 "java.util.EventListener",
-                "javax.swing.ComboBoxModel\u003cObject\u003e",
-                "javax.swing.ListModel\u003cObject\u003e"
+                "javax.swing.ComboBoxModel\u003cjava.lang.Object\u003e",
+                "javax.swing.ListModel\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -158955,7 +158955,7 @@
                 "java.awt.image.ImageObserver",
                 "java.io.Serializable",
                 "javax.accessibility.Accessible",
-                "javax.swing.ListCellRenderer\u003cObject\u003e",
+                "javax.swing.ListCellRenderer\u003cjava.lang.Object\u003e",
                 "javax.swing.SwingConstants"
               ],
               "constructors": {
@@ -163583,7 +163583,7 @@
               "type": "class",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "javax.swing.Painter\u003cJComponent\u003e"
+                "javax.swing.Painter\u003cjavax.swing.JComponent\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -163645,10 +163645,10 @@
             },
             "AbstractRegionPainter.PaintContext.CacheMode": {
               "type": "enum",
-              "superClass": "AbstractRegionPainter.PaintContext.CacheMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cAbstractRegionPainter.PaintContext.CacheMode\u003e",
+                "java.lang.Comparable\u003cjavax.swing.plaf.nimbus.AbstractRegionPainter.PaintContext.CacheMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -169068,7 +169068,7 @@
             "TableRowSorter": {
               "type": "class",
               "since": "6",
-              "superClass": "Integer",
+              "superClass": "javax.swing.DefaultRowSorter",
               "interfaces": [],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -176150,10 +176150,10 @@
             "FormSubmitEvent.MethodType": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "FormSubmitEvent.MethodType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cFormSubmitEvent.MethodType\u003e",
+                "java.lang.Comparable\u003cjavax.swing.text.html.FormSubmitEvent.MethodType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -182369,10 +182369,10 @@
             "MemoryType": {
               "type": "enum",
               "since": "5.0",
-              "superClass": "MemoryType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cMemoryType\u003e",
+                "java.lang.Comparable\u003cjava.lang.management.MemoryType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -182766,13 +182766,13 @@
             "AttributeList": {
               "type": "class",
               "since": "5.0",
-              "superClass": "Object",
+              "superClass": "java.util.ArrayList",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Iterable\u003cObject\u003e",
-                "java.util.Collection\u003cObject\u003e",
-                "java.util.List\u003cObject\u003e",
+                "java.lang.Iterable\u003cjava.lang.Object\u003e",
+                "java.util.Collection\u003cjava.lang.Object\u003e",
+                "java.util.List\u003cjava.lang.Object\u003e",
                 "java.util.RandomAccess"
               ],
               "constructors": {
@@ -184605,7 +184605,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cObjectName\u003e",
+                "java.lang.Comparable\u003cjavax.management.ObjectName\u003e",
                 "javax.management.QueryExp"
               ],
               "constructors": {
@@ -186699,7 +186699,7 @@
             "CompositeType": {
               "type": "class",
               "since": "5.0",
-              "superClass": "CompositeData",
+              "superClass": "javax.management.openmbean.OpenType",
               "interfaces": [
                 "java.io.Serializable"
               ],
@@ -187335,7 +187335,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.util.Map\u003cObject,Object\u003e",
+                "java.util.Map\u003cjava.lang.Object,java.lang.Object\u003e",
                 "javax.management.openmbean.TabularData"
               ],
               "constructors": {
@@ -187393,7 +187393,7 @@
             "TabularType": {
               "type": "class",
               "since": "5.0",
-              "superClass": "TabularData",
+              "superClass": "javax.management.openmbean.OpenType",
               "interfaces": [
                 "java.io.Serializable"
               ],
@@ -188252,13 +188252,13 @@
             "RoleList": {
               "type": "class",
               "since": "5.0",
-              "superClass": "Object",
+              "superClass": "java.util.ArrayList",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Iterable\u003cObject\u003e",
-                "java.util.Collection\u003cObject\u003e",
-                "java.util.List\u003cObject\u003e",
+                "java.lang.Iterable\u003cjava.lang.Object\u003e",
+                "java.util.Collection\u003cjava.lang.Object\u003e",
+                "java.util.List\u003cjava.lang.Object\u003e",
                 "java.util.RandomAccess"
               ],
               "constructors": {
@@ -188467,13 +188467,13 @@
             "RoleUnresolvedList": {
               "type": "class",
               "since": "5.0",
-              "superClass": "Object",
+              "superClass": "java.util.ArrayList",
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Iterable\u003cObject\u003e",
-                "java.util.Collection\u003cObject\u003e",
-                "java.util.List\u003cObject\u003e",
+                "java.lang.Iterable\u003cjava.lang.Object\u003e",
+                "java.util.Collection\u003cjava.lang.Object\u003e",
+                "java.util.List\u003cjava.lang.Object\u003e",
                 "java.util.RandomAccess"
               ],
               "constructors": {
@@ -189993,7 +189993,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cObject\u003e",
+                "java.lang.Comparable\u003cjava.lang.Object\u003e",
                 "javax.naming.Name"
               ],
               "constructors": {
@@ -190039,7 +190039,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cObject\u003e",
+                "java.lang.Comparable\u003cjava.lang.Object\u003e",
                 "javax.naming.Name"
               ],
               "constructors": {
@@ -190753,7 +190753,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cObject\u003e"
+                "java.lang.Comparable\u003cjava.lang.Object\u003e"
               ],
               "constructors": {},
               "fields": {
@@ -193105,7 +193105,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cObject\u003e",
+                "java.lang.Comparable\u003cjava.lang.Object\u003e",
                 "javax.naming.Name"
               ],
               "constructors": {
@@ -193316,7 +193316,7 @@
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cObject\u003e"
+                "java.lang.Comparable\u003cjava.lang.Object\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(java.lang.String)": {},
@@ -193958,10 +193958,10 @@
             "HttpClient.Redirect": {
               "type": "enum",
               "since": "11",
-              "superClass": "HttpClient.Redirect",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cHttpClient.Redirect\u003e",
+                "java.lang.Comparable\u003cjava.net.http.HttpClient.Redirect\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -193993,10 +193993,10 @@
             "HttpClient.Version": {
               "type": "enum",
               "since": "11",
-              "superClass": "HttpClient.Version",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cHttpClient.Version\u003e",
+                "java.lang.Comparable\u003cjava.net.http.HttpClient.Version\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -194132,7 +194132,7 @@
               "type": "interface",
               "since": "11",
               "interfaces": [
-                "java.util.concurrent.Flow.Publisher\u003cByteBuffer\u003e"
+                "java.util.concurrent.Flow.Publisher\u003cjava.nio.ByteBuffer\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -194276,7 +194276,7 @@
               "type": "interface",
               "since": "11",
               "interfaces": [
-                "java.util.concurrent.Flow.Subscriber\u003cList\u003cByteBuffer\u003e\u003e"
+                "java.util.concurrent.Flow.Subscriber\u003cjava.util.List\u003cjava.nio.ByteBuffer\u003e\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -196985,7 +196985,7 @@
               "type": "interface",
               "since": "6",
               "interfaces": [
-                "java.util.Map\u003cString,Object\u003e"
+                "java.util.Map\u003cjava.lang.String,java.lang.Object\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -197242,7 +197242,7 @@
               "since": "6",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Map\u003cString,Object\u003e",
+                "java.util.Map\u003cjava.lang.String,java.lang.Object\u003e",
                 "javax.script.Bindings"
               ],
               "constructors": {
@@ -198572,10 +198572,10 @@
             "CardTerminals.State": {
               "type": "enum",
               "since": "6",
-              "superClass": "CardTerminals.State",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCardTerminals.State\u003e",
+                "java.lang.Comparable\u003cjavax.smartcardio.CardTerminals.State\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -198795,7 +198795,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -199381,10 +199381,10 @@
             "ClientInfoStatus": {
               "type": "enum",
               "since": "6",
-              "superClass": "ClientInfoStatus",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cClientInfoStatus\u003e",
+                "java.lang.Comparable\u003cjava.sql.ClientInfoStatus\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -199641,7 +199641,7 @@
               "superClass": "java.sql.SQLWarning",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(int,boolean,boolean,int,int)": {},
@@ -200065,7 +200065,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cDate\u003e"
+                "java.lang.Comparable\u003cjava.util.Date\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(int,int,int)": {
@@ -200250,10 +200250,10 @@
             "JDBCType": {
               "type": "enum",
               "since": "8",
-              "superClass": "JDBCType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cJDBCType\u003e",
+                "java.lang.Comparable\u003cjava.sql.JDBCType\u003e",
                 "java.lang.constant.Constable",
                 "java.sql.SQLType"
               ],
@@ -200564,10 +200564,10 @@
             "PseudoColumnUsage": {
               "type": "enum",
               "since": "7",
-              "superClass": "PseudoColumnUsage",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cPseudoColumnUsage\u003e",
+                "java.lang.Comparable\u003cjava.sql.PseudoColumnUsage\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -201227,10 +201227,10 @@
             "RowIdLifetime": {
               "type": "enum",
               "since": "6",
-              "superClass": "RowIdLifetime",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRowIdLifetime\u003e",
+                "java.lang.Comparable\u003cjava.sql.RowIdLifetime\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -201265,7 +201265,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201360,7 +201360,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201429,7 +201429,7 @@
               "superClass": "java.lang.Exception",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -201493,7 +201493,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201656,7 +201656,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201725,7 +201725,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201794,7 +201794,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -201863,7 +201863,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202059,7 +202059,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202128,7 +202128,7 @@
               "superClass": "java.sql.SQLNonTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202197,7 +202197,7 @@
               "superClass": "java.sql.SQLTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202266,7 +202266,7 @@
               "superClass": "java.sql.SQLTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202335,7 +202335,7 @@
               "superClass": "java.sql.SQLTransientException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202404,7 +202404,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {
@@ -202486,7 +202486,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -202800,7 +202800,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cDate\u003e"
+                "java.lang.Comparable\u003cjava.util.Date\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(int,int,int)": {
@@ -202878,7 +202878,7 @@
               "interfaces": [
                 "java.io.Serializable",
                 "java.lang.Cloneable",
-                "java.lang.Comparable\u003cDate\u003e"
+                "java.lang.Comparable\u003cjava.util.Date\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e(int,int,int,int,int,int,int)": {
@@ -205876,7 +205876,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -206610,7 +206610,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -206793,7 +206793,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -206886,7 +206886,7 @@
               "superClass": "java.sql.SQLException",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Iterable\u003cThrowable\u003e"
+                "java.lang.Iterable\u003cjava.lang.Throwable\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {},
@@ -207608,10 +207608,10 @@
             },
             "CatalogFeatures.Feature": {
               "type": "enum",
-              "superClass": "CatalogFeatures.Feature",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCatalogFeatures.Feature\u003e",
+                "java.lang.Comparable\u003cjavax.xml.catalog.CatalogFeatures.Feature\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -208499,7 +208499,7 @@
               "type": "interface",
               "since": "6",
               "interfaces": [
-                "java.util.Iterator\u003cObject\u003e"
+                "java.util.Iterator\u003cjava.lang.Object\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -209329,7 +209329,7 @@
               "since": "6",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.Iterator\u003cObject\u003e",
+                "java.util.Iterator\u003cjava.lang.Object\u003e",
                 "javax.xml.stream.XMLEventReader"
               ],
               "constructors": {
@@ -210613,10 +210613,10 @@
             },
             "XPathEvaluationResult.XPathResultType": {
               "type": "enum",
-              "superClass": "XPathEvaluationResult.XPathResultType",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cXPathEvaluationResult.XPathResultType\u003e",
+                "java.lang.Comparable\u003cjavax.xml.xpath.XPathEvaluationResult.XPathResultType\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -210897,7 +210897,7 @@
               "type": "interface",
               "since": "9",
               "interfaces": [
-                "java.lang.Iterable\u003cNode\u003e"
+                "java.lang.Iterable\u003corg.w3c.dom.Node\u003e"
               ],
               "constructors": {},
               "fields": {},
@@ -216030,10 +216030,10 @@
             },
             "StandardNamespace": {
               "type": "enum",
-              "superClass": "StandardNamespace",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardNamespace\u003e",
+                "java.lang.Comparable\u003cjdk.dynalink.StandardNamespace\u003e",
                 "java.lang.constant.Constable",
                 "jdk.dynalink.Namespace"
               ],
@@ -216066,10 +216066,10 @@
             },
             "StandardOperation": {
               "type": "enum",
-              "superClass": "StandardOperation",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cStandardOperation\u003e",
+                "java.lang.Comparable\u003cjdk.dynalink.StandardOperation\u003e",
                 "java.lang.constant.Constable",
                 "jdk.dynalink.Operation"
               ],
@@ -216198,10 +216198,10 @@
             },
             "ConversionComparator.Comparison": {
               "type": "enum",
-              "superClass": "ConversionComparator.Comparison",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cConversionComparator.Comparison\u003e",
+                "java.lang.Comparable\u003cjdk.dynalink.linker.ConversionComparator.Comparison\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -216299,7 +216299,7 @@
               "type": "class",
               "superClass": "java.lang.Object",
               "interfaces": [
-                "java.util.function.Supplier\u003cList\u003cGuardingDynamicLinker\u003e\u003e"
+                "java.util.function.Supplier\u003cjava.util.List\u003cjdk.dynalink.linker.GuardingDynamicLinker\u003e\u003e"
               ],
               "constructors": {
                 "\u003cinit\u003e()": {}
@@ -216795,10 +216795,10 @@
             },
             "CLinker.TypeKind": {
               "type": "enum",
-              "superClass": "CLinker.TypeKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cCLinker.TypeKind\u003e",
+                "java.lang.Comparable\u003cjdk.incubator.foreign.CLinker.TypeKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -218831,10 +218831,10 @@
             },
             "VectorShape": {
               "type": "enum",
-              "superClass": "VectorShape",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cVectorShape\u003e",
+                "java.lang.Comparable\u003cjdk.incubator.vector.VectorShape\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -219106,10 +219106,10 @@
             },
             "Doclet.Option.Kind": {
               "type": "enum",
-              "superClass": "Doclet.Option.Kind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDoclet.Option.Kind\u003e",
+                "java.lang.Comparable\u003cjdk.javadoc.doclet.Doclet.Option.Kind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -219161,10 +219161,10 @@
             },
             "DocletEnvironment.ModuleMode": {
               "type": "enum",
-              "superClass": "DocletEnvironment.ModuleMode",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cDocletEnvironment.ModuleMode\u003e",
+                "java.lang.Comparable\u003cjdk.javadoc.doclet.DocletEnvironment.ModuleMode\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -219270,10 +219270,10 @@
             },
             "Taglet.Location": {
               "type": "enum",
-              "superClass": "Taglet.Location",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cTaglet.Location\u003e",
+                "java.lang.Comparable\u003cjdk.javadoc.doclet.Taglet.Location\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -219800,10 +219800,10 @@
             "RecordingState": {
               "type": "enum",
               "since": "9",
-              "superClass": "RecordingState",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cRecordingState\u003e",
+                "java.lang.Comparable\u003cjdk.jfr.RecordingState\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -220991,10 +220991,10 @@
             },
             "Snippet.Kind": {
               "type": "enum",
-              "superClass": "Snippet.Kind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSnippet.Kind\u003e",
+                "java.lang.Comparable\u003cjdk.jshell.Snippet.Kind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -221026,10 +221026,10 @@
             },
             "Snippet.Status": {
               "type": "enum",
-              "superClass": "Snippet.Status",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSnippet.Status\u003e",
+                "java.lang.Comparable\u003cjdk.jshell.Snippet.Status\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -221062,10 +221062,10 @@
             },
             "Snippet.SubKind": {
               "type": "enum",
-              "superClass": "Snippet.SubKind",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSnippet.SubKind\u003e",
+                "java.lang.Comparable\u003cjdk.jshell.Snippet.SubKind\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},
@@ -221161,10 +221161,10 @@
             },
             "SourceCodeAnalysis.Completeness": {
               "type": "enum",
-              "superClass": "SourceCodeAnalysis.Completeness",
+              "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
-                "java.lang.Comparable\u003cSourceCodeAnalysis.Completeness\u003e",
+                "java.lang.Comparable\u003cjdk.jshell.SourceCodeAnalysis.Completeness\u003e",
                 "java.lang.constant.Constable"
               ],
               "constructors": {},

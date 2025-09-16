@@ -3834,7 +3834,7 @@
         "Component.BaselineResizeBehavior": {
           "type": "enum",
           "since": "6",
-          "superClass": "Component.BaselineResizeBehavior",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.Component.BaselineResizeBehavior\u003e"
@@ -4736,7 +4736,7 @@
         "Desktop.Action": {
           "type": "enum",
           "since": "6",
-          "superClass": "Desktop.Action",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.Desktop.Action\u003e"
@@ -5253,7 +5253,7 @@
         "Dialog.ModalExclusionType": {
           "type": "enum",
           "since": "6",
-          "superClass": "Dialog.ModalExclusionType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.Dialog.ModalExclusionType\u003e"
@@ -5286,7 +5286,7 @@
         "Dialog.ModalityType": {
           "type": "enum",
           "since": "6",
-          "superClass": "Dialog.ModalityType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.Dialog.ModalityType\u003e"
@@ -7280,7 +7280,7 @@
         "GraphicsDevice.WindowTranslucency": {
           "type": "enum",
           "since": "7",
-          "superClass": "GraphicsDevice.WindowTranslucency",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.GraphicsDevice.WindowTranslucency\u003e"
@@ -10003,7 +10003,7 @@
         "MultipleGradientPaint.ColorSpaceType": {
           "type": "enum",
           "since": "6",
-          "superClass": "MultipleGradientPaint.ColorSpaceType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.MultipleGradientPaint.ColorSpaceType\u003e"
@@ -10036,7 +10036,7 @@
         "MultipleGradientPaint.CycleMethod": {
           "type": "enum",
           "since": "6",
-          "superClass": "MultipleGradientPaint.CycleMethod",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.MultipleGradientPaint.CycleMethod\u003e"
@@ -14204,7 +14204,7 @@
         "TrayIcon.MessageType": {
           "type": "enum",
           "since": "6",
-          "superClass": "TrayIcon.MessageType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.TrayIcon.MessageType\u003e"
@@ -14794,7 +14794,7 @@
         "Window.Type": {
           "type": "enum",
           "since": "7",
-          "superClass": "Window.Type",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.Window.Type\u003e"
@@ -16579,7 +16579,7 @@
         "AWTEventListenerProxy": {
           "type": "class",
           "since": "1.4",
-          "superClass": "AWTEventListener",
+          "superClass": "java.util.EventListenerProxy",
           "interfaces": [
             "java.awt.event.AWTEventListener",
             "java.util.EventListener"
@@ -18856,7 +18856,7 @@
         "NumericShaper.Range": {
           "type": "enum",
           "since": "7",
-          "superClass": "NumericShaper.Range",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.awt.font.NumericShaper.Range\u003e"
@@ -26925,7 +26925,7 @@
         "PropertyChangeListenerProxy": {
           "type": "class",
           "since": "1.4",
-          "superClass": "PropertyChangeListener",
+          "superClass": "java.util.EventListenerProxy",
           "interfaces": [
             "java.beans.PropertyChangeListener",
             "java.util.EventListener"
@@ -27288,7 +27288,7 @@
         "VetoableChangeListenerProxy": {
           "type": "class",
           "since": "1.4",
-          "superClass": "VetoableChangeListener",
+          "superClass": "java.util.EventListenerProxy",
           "interfaces": [
             "java.beans.VetoableChangeListener",
             "java.util.EventListener"
@@ -33438,7 +33438,7 @@
         "Character.UnicodeScript": {
           "type": "enum",
           "since": "7",
-          "superClass": "Character.UnicodeScript",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.Character.UnicodeScript\u003e"
@@ -36160,7 +36160,7 @@
         },
         "ProcessBuilder.Redirect.Type": {
           "type": "enum",
-          "superClass": "ProcessBuilder.Redirect.Type",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.ProcessBuilder.Redirect.Type\u003e"
@@ -37527,7 +37527,7 @@
         "Thread.State": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "Thread.State",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.Thread.State\u003e"
@@ -38234,7 +38234,7 @@
         "ElementType": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "ElementType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.annotation.ElementType\u003e"
@@ -38344,7 +38344,7 @@
         "RetentionPolicy": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "RetentionPolicy",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.annotation.RetentionPolicy\u003e"
@@ -39378,7 +39378,7 @@
         "MemoryType": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "MemoryType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.lang.management.MemoryType\u003e"
@@ -41219,7 +41219,7 @@
         "RoundingMode": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "RoundingMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.math.RoundingMode\u003e"
@@ -41306,7 +41306,7 @@
         "Authenticator.RequestorType": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "Authenticator.RequestorType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.net.Authenticator.RequestorType\u003e"
@@ -42934,7 +42934,7 @@
         "Proxy.Type": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "Proxy.Type",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.net.Proxy.Type\u003e"
@@ -43563,7 +43563,7 @@
         "StandardProtocolFamily": {
           "type": "enum",
           "since": "7",
-          "superClass": "StandardProtocolFamily",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.net.StandardProtocolFamily\u003e",
@@ -47891,7 +47891,7 @@
         "AccessMode": {
           "type": "enum",
           "since": "7",
-          "superClass": "AccessMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.AccessMode\u003e"
@@ -48501,7 +48501,7 @@
         "FileVisitOption": {
           "type": "enum",
           "since": "7",
-          "superClass": "FileVisitOption",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.FileVisitOption\u003e"
@@ -48534,7 +48534,7 @@
         "FileVisitResult": {
           "type": "enum",
           "since": "7",
-          "superClass": "FileVisitResult",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.FileVisitResult\u003e"
@@ -48731,7 +48731,7 @@
         "LinkOption": {
           "type": "enum",
           "since": "7",
-          "superClass": "LinkOption",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.LinkOption\u003e",
@@ -49186,7 +49186,7 @@
         "StandardCopyOption": {
           "type": "enum",
           "since": "7",
-          "superClass": "StandardCopyOption",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.StandardCopyOption\u003e",
@@ -49220,7 +49220,7 @@
         "StandardOpenOption": {
           "type": "enum",
           "since": "7",
-          "superClass": "StandardOpenOption",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.StandardOpenOption\u003e",
@@ -49425,7 +49425,7 @@
         "AclEntryFlag": {
           "type": "enum",
           "since": "7",
-          "superClass": "AclEntryFlag",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryFlag\u003e"
@@ -49458,7 +49458,7 @@
         "AclEntryPermission": {
           "type": "enum",
           "since": "7",
-          "superClass": "AclEntryPermission",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryPermission\u003e"
@@ -49495,7 +49495,7 @@
         "AclEntryType": {
           "type": "enum",
           "since": "7",
-          "superClass": "AclEntryType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.attribute.AclEntryType\u003e"
@@ -49798,7 +49798,7 @@
         "PosixFilePermission": {
           "type": "enum",
           "since": "7",
-          "superClass": "PosixFilePermission",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.nio.file.attribute.PosixFilePermission\u003e"
@@ -53241,7 +53241,7 @@
         "CryptoPrimitive": {
           "type": "enum",
           "since": "7",
-          "superClass": "CryptoPrimitive",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.CryptoPrimitive\u003e"
@@ -54098,7 +54098,7 @@
         "KeyRep.Type": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "KeyRep.Type",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.KeyRep.Type\u003e"
@@ -56237,7 +56237,7 @@
         "CRLReason": {
           "type": "enum",
           "since": "7",
-          "superClass": "CRLReason",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.cert.CRLReason\u003e"
@@ -56576,7 +56576,7 @@
         "CertPathValidatorException.BasicReason": {
           "type": "enum",
           "since": "7",
-          "superClass": "CertPathValidatorException.BasicReason",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.cert.CertPathValidatorException.BasicReason\u003e",
@@ -57483,7 +57483,7 @@
         "PKIXReason": {
           "type": "enum",
           "since": "7",
-          "superClass": "PKIXReason",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.cert.PKIXReason\u003e",
@@ -57560,7 +57560,7 @@
         },
         "PKIXRevocationChecker.Option": {
           "type": "enum",
-          "superClass": "PKIXRevocationChecker.Option",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.security.cert.PKIXRevocationChecker.Option\u003e"
@@ -58139,7 +58139,10 @@
           "constructors": {},
           "fields": {},
           "methods": {
-            "getModulus--": {}
+            "getModulus--": {},
+            "getParams--": {
+              "since": "8"
+            }
           },
           "inheritedMethods": []
         },
@@ -58173,6 +58176,7 @@
             "getEncoded--",
             "getFormat--",
             "getModulus--",
+            "getParams--",
             "getPrivateExponent--",
             "isDestroyed--"
           ]
@@ -58205,6 +58209,7 @@
             "getEncoded--",
             "getFormat--",
             "getModulus--",
+            "getParams--",
             "getPrivateExponent--",
             "isDestroyed--"
           ]
@@ -58231,6 +58236,7 @@
             "getEncoded--",
             "getFormat--",
             "getModulus--",
+            "getParams--",
             "isDestroyed--"
           ]
         },
@@ -58253,7 +58259,8 @@
             "getAlgorithm--",
             "getEncoded--",
             "getFormat--",
-            "getModulus--"
+            "getModulus--",
+            "getParams--"
           ]
         }
       }
@@ -58780,7 +58787,9 @@
             "SHA224": {},
             "SHA256": {},
             "SHA384": {},
-            "SHA512": {}
+            "SHA512": {},
+            "SHA512_224": {},
+            "SHA512_256": {}
           },
           "methods": {
             "getDigestAlgorithm--": {}
@@ -58844,6 +58853,9 @@
           "fields": {
             "DEFAULT": {
               "since": "5.0"
+            },
+            "TRAILER_FIELD_BC": {
+              "since": "8"
             }
           },
           "methods": {
@@ -58859,7 +58871,8 @@
             "getSaltLength--": {},
             "getTrailerField--": {
               "since": "5.0"
-            }
+            },
+            "toString--": {}
           },
           "inheritedMethods": [
             "clone--",
@@ -58869,7 +58882,6 @@
             "hashCode--",
             "notify--",
             "notifyAll--",
-            "toString--",
             "wait--",
             "wait-long-",
             "wait-long-int-"
@@ -58883,13 +58895,19 @@
             "java.security.spec.AlgorithmParameterSpec"
           ],
           "constructors": {
-            "RSAKeyGenParameterSpec-int-java.math.BigInteger-": {}
+            "RSAKeyGenParameterSpec-int-java.math.BigInteger-": {},
+            "RSAKeyGenParameterSpec-int-java.math.BigInteger-java.security.spec.AlgorithmParameterSpec-": {
+              "since": "8"
+            }
           },
           "fields": {
             "F0": {},
             "F4": {}
           },
           "methods": {
+            "getKeyParams--": {
+              "since": "8"
+            },
             "getKeysize--": {},
             "getPublicExponent--": {}
           },
@@ -58915,7 +58933,10 @@
             "java.security.spec.KeySpec"
           ],
           "constructors": {
-            "RSAMultiPrimePrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.security.spec.RSAOtherPrimeInfo:A-": {}
+            "RSAMultiPrimePrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.security.spec.RSAOtherPrimeInfo:A-": {},
+            "RSAMultiPrimePrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.security.spec.RSAOtherPrimeInfo:A-java.security.spec.AlgorithmParameterSpec-": {
+              "since": "8"
+            }
           },
           "fields": {},
           "methods": {
@@ -58933,6 +58954,7 @@
             "finalize--",
             "getClass--",
             "getModulus--",
+            "getParams--",
             "getPrivateExponent--",
             "hashCode--",
             "notify--",
@@ -58978,7 +59000,10 @@
             "java.security.spec.KeySpec"
           ],
           "constructors": {
-            "RSAPrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-": {}
+            "RSAPrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-": {},
+            "RSAPrivateCrtKeySpec-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.math.BigInteger-java.security.spec.AlgorithmParameterSpec-": {
+              "since": "8"
+            }
           },
           "fields": {},
           "methods": {
@@ -58995,6 +59020,7 @@
             "finalize--",
             "getClass--",
             "getModulus--",
+            "getParams--",
             "getPrivateExponent--",
             "hashCode--",
             "notify--",
@@ -59012,11 +59038,17 @@
             "java.security.spec.KeySpec"
           ],
           "constructors": {
-            "RSAPrivateKeySpec-java.math.BigInteger-java.math.BigInteger-": {}
+            "RSAPrivateKeySpec-java.math.BigInteger-java.math.BigInteger-": {},
+            "RSAPrivateKeySpec-java.math.BigInteger-java.math.BigInteger-java.security.spec.AlgorithmParameterSpec-": {
+              "since": "8"
+            }
           },
           "fields": {},
           "methods": {
             "getModulus--": {},
+            "getParams--": {
+              "since": "8"
+            },
             "getPrivateExponent--": {}
           },
           "inheritedMethods": [
@@ -59040,11 +59072,17 @@
             "java.security.spec.KeySpec"
           ],
           "constructors": {
-            "RSAPublicKeySpec-java.math.BigInteger-java.math.BigInteger-": {}
+            "RSAPublicKeySpec-java.math.BigInteger-java.math.BigInteger-": {},
+            "RSAPublicKeySpec-java.math.BigInteger-java.math.BigInteger-java.security.spec.AlgorithmParameterSpec-": {
+              "since": "8"
+            }
           },
           "fields": {},
           "methods": {
             "getModulus--": {},
+            "getParams--": {
+              "since": "8"
+            },
             "getPublicExponent--": {}
           },
           "inheritedMethods": [
@@ -59725,7 +59763,7 @@
         "ClientInfoStatus": {
           "type": "enum",
           "since": "6",
-          "superClass": "ClientInfoStatus",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.sql.ClientInfoStatus\u003e"
@@ -60546,7 +60584,7 @@
         "JDBCType": {
           "type": "enum",
           "since": "8",
-          "superClass": "JDBCType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.sql.JDBCType\u003e",
@@ -60853,7 +60891,7 @@
         "PseudoColumnUsage": {
           "type": "enum",
           "since": "7",
-          "superClass": "PseudoColumnUsage",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.sql.PseudoColumnUsage\u003e"
@@ -61512,7 +61550,7 @@
         "RowIdLifetime": {
           "type": "enum",
           "since": "6",
-          "superClass": "RowIdLifetime",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.sql.RowIdLifetime\u003e"
@@ -64371,7 +64409,7 @@
         "Normalizer.Form": {
           "type": "enum",
           "since": "6",
-          "superClass": "Normalizer.Form",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.text.Normalizer.Form\u003e"
@@ -65030,7 +65068,7 @@
         "DayOfWeek": {
           "type": "enum",
           "since": "8",
-          "superClass": "DayOfWeek",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.DayOfWeek\u003e",
@@ -65511,7 +65549,7 @@
         "Month": {
           "type": "enum",
           "since": "8",
-          "superClass": "Month",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.Month\u003e",
@@ -66621,7 +66659,7 @@
         "HijrahEra": {
           "type": "enum",
           "since": "8",
-          "superClass": "HijrahEra",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.chrono.HijrahEra\u003e",
@@ -66719,7 +66757,7 @@
         "IsoEra": {
           "type": "enum",
           "since": "8",
-          "superClass": "IsoEra",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.chrono.IsoEra\u003e",
@@ -67045,7 +67083,7 @@
         "MinguoEra": {
           "type": "enum",
           "since": "8",
-          "superClass": "MinguoEra",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.chrono.MinguoEra\u003e",
@@ -67208,7 +67246,7 @@
         "ThaiBuddhistEra": {
           "type": "enum",
           "since": "8",
-          "superClass": "ThaiBuddhistEra",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.chrono.ThaiBuddhistEra\u003e",
@@ -67469,7 +67507,7 @@
         "FormatStyle": {
           "type": "enum",
           "since": "8",
-          "superClass": "FormatStyle",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.format.FormatStyle\u003e"
@@ -67502,7 +67540,7 @@
         "ResolverStyle": {
           "type": "enum",
           "since": "8",
-          "superClass": "ResolverStyle",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.format.ResolverStyle\u003e"
@@ -67535,7 +67573,7 @@
         "SignStyle": {
           "type": "enum",
           "since": "8",
-          "superClass": "SignStyle",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.format.SignStyle\u003e"
@@ -67567,7 +67605,7 @@
         },
         "TextStyle": {
           "type": "enum",
-          "superClass": "TextStyle",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.format.TextStyle\u003e"
@@ -67608,7 +67646,7 @@
         "ChronoField": {
           "type": "enum",
           "since": "8",
-          "superClass": "ChronoField",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.temporal.ChronoField\u003e",
@@ -67655,7 +67693,7 @@
         "ChronoUnit": {
           "type": "enum",
           "since": "8",
-          "superClass": "ChronoUnit",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.temporal.ChronoUnit\u003e",
@@ -68128,7 +68166,7 @@
         },
         "ZoneOffsetTransitionRule.TimeDefinition": {
           "type": "enum",
-          "superClass": "ZoneOffsetTransitionRule.TimeDefinition",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.time.zone.ZoneOffsetTransitionRule.TimeDefinition\u003e"
@@ -70599,7 +70637,7 @@
         },
         "Formatter.BigDecimalLayoutForm": {
           "type": "enum",
-          "superClass": "Formatter.BigDecimalLayoutForm",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.util.Formatter.BigDecimalLayoutForm\u003e"
@@ -71962,7 +72000,7 @@
         "Locale.Category": {
           "type": "enum",
           "since": "7",
-          "superClass": "Locale.Category",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.util.Locale.Category\u003e"
@@ -71995,7 +72033,7 @@
         "Locale.FilteringMode": {
           "type": "enum",
           "since": "8",
-          "superClass": "Locale.FilteringMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.util.Locale.FilteringMode\u003e"
@@ -72816,7 +72854,7 @@
         "Properties": {
           "type": "class",
           "since": "1.0",
-          "superClass": "Object",
+          "superClass": "java.util.Hashtable",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -77151,7 +77189,7 @@
         "RecursiveAction": {
           "type": "class",
           "since": "7",
-          "superClass": "Void",
+          "superClass": "java.util.concurrent.ForkJoinTask",
           "interfaces": [
             "java.io.Serializable",
             "java.util.concurrent.Future\u003cjava.lang.Void\u003e"
@@ -77910,7 +77948,7 @@
         "TimeUnit": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "TimeUnit",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.util.concurrent.TimeUnit\u003e"
@@ -81949,7 +81987,7 @@
         },
         "Collector.Characteristics": {
           "type": "enum",
-          "superClass": "Collector.Characteristics",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjava.util.stream.Collector.Characteristics\u003e"
@@ -85072,7 +85110,7 @@
         },
         "Resource.AuthenticationType": {
           "type": "enum",
-          "superClass": "Resource.AuthenticationType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.annotation.Resource.AuthenticationType\u003e"
@@ -89549,7 +89587,7 @@
         },
         "WebParam.Mode": {
           "type": "enum",
-          "superClass": "WebParam.Mode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.jws.WebParam.Mode\u003e"
@@ -89618,7 +89656,7 @@
         },
         "SOAPBinding.ParameterStyle": {
           "type": "enum",
-          "superClass": "SOAPBinding.ParameterStyle",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.jws.soap.SOAPBinding.ParameterStyle\u003e"
@@ -89650,7 +89688,7 @@
         },
         "SOAPBinding.Style": {
           "type": "enum",
-          "superClass": "SOAPBinding.Style",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.jws.soap.SOAPBinding.Style\u003e"
@@ -89682,7 +89720,7 @@
         },
         "SOAPBinding.Use": {
           "type": "enum",
-          "superClass": "SOAPBinding.Use",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.jws.soap.SOAPBinding.Use\u003e"
@@ -89751,7 +89789,7 @@
         "SourceVersion": {
           "type": "enum",
           "since": "6",
-          "superClass": "SourceVersion",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.lang.model.SourceVersion\u003e"
@@ -89912,7 +89950,7 @@
         "ElementKind": {
           "type": "enum",
           "since": "6",
-          "superClass": "ElementKind",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.lang.model.element.ElementKind\u003e"
@@ -90005,7 +90043,7 @@
         "Modifier": {
           "type": "enum",
           "since": "6",
-          "superClass": "Modifier",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.lang.model.element.Modifier\u003e"
@@ -90060,7 +90098,7 @@
         "NestingKind": {
           "type": "enum",
           "since": "6",
-          "superClass": "NestingKind",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.lang.model.element.NestingKind\u003e"
@@ -90646,7 +90684,7 @@
         "TypeKind": {
           "type": "enum",
           "since": "6",
-          "superClass": "TypeKind",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.lang.model.type.TypeKind\u003e"
@@ -92216,7 +92254,7 @@
         "AttributeList": {
           "type": "class",
           "since": "5.0",
-          "superClass": "Object",
+          "superClass": "java.util.ArrayList",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -96121,7 +96159,7 @@
         "CompositeType": {
           "type": "class",
           "since": "5.0",
-          "superClass": "CompositeData",
+          "superClass": "javax.management.openmbean.OpenType",
           "interfaces": [
             "java.io.Serializable"
           ],
@@ -96815,7 +96853,7 @@
         "TabularType": {
           "type": "class",
           "since": "5.0",
-          "superClass": "TabularData",
+          "superClass": "javax.management.openmbean.OpenType",
           "interfaces": [
             "java.io.Serializable"
           ],
@@ -97674,7 +97712,7 @@
         "RoleList": {
           "type": "class",
           "since": "5.0",
-          "superClass": "Object",
+          "superClass": "java.util.ArrayList",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -97886,7 +97924,7 @@
         "RoleUnresolvedList": {
           "type": "class",
           "since": "5.0",
-          "superClass": "Object",
+          "superClass": "java.util.ArrayList",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -103837,10 +103875,19 @@
             "beginHandshake--": {},
             "closeInbound--": {},
             "closeOutbound--": {},
+            "getApplicationProtocol--": {
+              "since": "8"
+            },
             "getDelegatedTask--": {},
             "getEnableSessionCreation--": {},
             "getEnabledCipherSuites--": {},
             "getEnabledProtocols--": {},
+            "getHandshakeApplicationProtocol--": {
+              "since": "8"
+            },
+            "getHandshakeApplicationProtocolSelector--": {
+              "since": "8"
+            },
             "getHandshakeSession--": {
               "since": "7"
             },
@@ -103861,6 +103908,9 @@
             "setEnableSessionCreation-boolean-": {},
             "setEnabledCipherSuites-java.lang.String:A-": {},
             "setEnabledProtocols-java.lang.String:A-": {},
+            "setHandshakeApplicationProtocolSelector-java.util.function.BiFunction-": {
+              "since": "8"
+            },
             "setNeedClientAuth-boolean-": {},
             "setSSLParameters-javax.net.ssl.SSLParameters-": {
               "since": "6"
@@ -103920,7 +103970,7 @@
         "SSLEngineResult.HandshakeStatus": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "SSLEngineResult.HandshakeStatus",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.net.ssl.SSLEngineResult.HandshakeStatus\u003e"
@@ -103953,7 +104003,7 @@
         "SSLEngineResult.Status": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "SSLEngineResult.Status",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.net.ssl.SSLEngineResult.Status\u003e"
@@ -104118,6 +104168,9 @@
             "getAlgorithmConstraints--": {
               "since": "7"
             },
+            "getApplicationProtocols--": {
+              "since": "8"
+            },
             "getCipherSuites--": {},
             "getEndpointIdentificationAlgorithm--": {
               "since": "7"
@@ -104136,6 +104189,9 @@
             "getWantClientAuth--": {},
             "setAlgorithmConstraints-java.security.AlgorithmConstraints-": {
               "since": "7"
+            },
+            "setApplicationProtocols-java.lang.String:A-": {
+              "since": "8"
             },
             "setCipherSuites-java.lang.String:A-": {},
             "setEndpointIdentificationAlgorithm-java.lang.String-": {
@@ -104500,9 +104556,18 @@
           "fields": {},
           "methods": {
             "addHandshakeCompletedListener-javax.net.ssl.HandshakeCompletedListener-": {},
+            "getApplicationProtocol--": {
+              "since": "8"
+            },
             "getEnableSessionCreation--": {},
             "getEnabledCipherSuites--": {},
             "getEnabledProtocols--": {},
+            "getHandshakeApplicationProtocol--": {
+              "since": "8"
+            },
+            "getHandshakeApplicationProtocolSelector--": {
+              "since": "8"
+            },
             "getHandshakeSession--": {
               "since": "7"
             },
@@ -104519,6 +104584,9 @@
             "setEnableSessionCreation-boolean-": {},
             "setEnabledCipherSuites-java.lang.String:A-": {},
             "setEnabledProtocols-java.lang.String:A-": {},
+            "setHandshakeApplicationProtocolSelector-java.util.function.BiFunction-": {
+              "since": "8"
+            },
             "setNeedClientAuth-boolean-": {},
             "setSSLParameters-javax.net.ssl.SSLParameters-": {
               "since": "6"
@@ -107448,7 +107516,7 @@
         },
         "JobStateReasons": {
           "type": "class",
-          "superClass": "JobStateReason",
+          "superClass": "java.util.HashSet",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -108935,7 +109003,7 @@
         },
         "PrinterStateReasons": {
           "type": "class",
-          "superClass": "Severity",
+          "superClass": "java.util.HashMap",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -122847,7 +122915,7 @@
         "DropMode": {
           "type": "enum",
           "since": "6",
-          "superClass": "DropMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.DropMode\u003e"
@@ -123077,7 +123145,7 @@
         "GroupLayout.Alignment": {
           "type": "enum",
           "since": "6",
-          "superClass": "GroupLayout.Alignment",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.GroupLayout.Alignment\u003e"
@@ -146999,7 +147067,7 @@
         "JTable.PrintMode": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "JTable.PrintMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.JTable.PrintMode\u003e"
@@ -152797,7 +152865,7 @@
         "LayoutStyle.ComponentPlacement": {
           "type": "enum",
           "since": "6",
-          "superClass": "LayoutStyle.ComponentPlacement",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.LayoutStyle.ComponentPlacement\u003e"
@@ -153398,7 +153466,7 @@
         "RowFilter.ComparisonType": {
           "type": "enum",
           "since": "6",
-          "superClass": "RowFilter.ComparisonType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.RowFilter.ComparisonType\u003e"
@@ -153775,7 +153843,7 @@
         "SortOrder": {
           "type": "enum",
           "since": "6",
-          "superClass": "SortOrder",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.SortOrder\u003e"
@@ -154314,7 +154382,7 @@
         "SwingWorker.StateValue": {
           "type": "enum",
           "since": "6",
-          "superClass": "SwingWorker.StateValue",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.SwingWorker.StateValue\u003e"
@@ -154657,7 +154725,7 @@
         },
         "UIDefaults": {
           "type": "class",
-          "superClass": "Object",
+          "superClass": "java.util.Hashtable",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Cloneable",
@@ -156911,7 +156979,7 @@
         "RowSorterEvent.Type": {
           "type": "enum",
           "since": "6",
-          "superClass": "RowSorterEvent.Type",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.event.RowSorterEvent.Type\u003e"
@@ -162790,7 +162858,7 @@
         },
         "BasicDirectoryModel": {
           "type": "class",
-          "superClass": "Object",
+          "superClass": "javax.swing.AbstractListModel",
           "interfaces": [
             "java.beans.PropertyChangeListener",
             "java.io.Serializable",
@@ -173085,7 +173153,7 @@
         },
         "MetalFileChooserUI.DirectoryComboBoxModel": {
           "type": "class",
-          "superClass": "Object",
+          "superClass": "javax.swing.AbstractListModel",
           "interfaces": [
             "java.io.Serializable",
             "javax.swing.ComboBoxModel\u003cjava.lang.Object\u003e",
@@ -173525,7 +173593,7 @@
         },
         "MetalFileChooserUI.FilterComboBoxModel": {
           "type": "class",
-          "superClass": "Object",
+          "superClass": "javax.swing.AbstractListModel",
           "interfaces": [
             "java.beans.PropertyChangeListener",
             "java.io.Serializable",
@@ -178245,7 +178313,7 @@
         },
         "AbstractRegionPainter.PaintContext.CacheMode": {
           "type": "enum",
-          "superClass": "AbstractRegionPainter.PaintContext.CacheMode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.plaf.nimbus.AbstractRegionPainter.PaintContext.CacheMode\u003e"
@@ -183619,7 +183687,7 @@
         "TableRowSorter": {
           "type": "class",
           "since": "6",
-          "superClass": "Integer",
+          "superClass": "javax.swing.DefaultRowSorter",
           "interfaces": [],
           "constructors": {
             "TableRowSorter--": {},
@@ -190590,7 +190658,7 @@
         "FormSubmitEvent.MethodType": {
           "type": "enum",
           "since": "5.0",
-          "superClass": "FormSubmitEvent.MethodType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.swing.text.html.FormSubmitEvent.MethodType\u003e"
@@ -195548,7 +195616,7 @@
         },
         "Diagnostic.Kind": {
           "type": "enum",
-          "superClass": "Diagnostic.Kind",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.tools.Diagnostic.Kind\u003e"
@@ -195651,7 +195719,7 @@
         },
         "DocumentationTool.Location": {
           "type": "enum",
-          "superClass": "DocumentationTool.Location",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.tools.DocumentationTool.Location\u003e",
@@ -195929,7 +195997,7 @@
         },
         "JavaFileObject.Kind": {
           "type": "enum",
-          "superClass": "JavaFileObject.Kind",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.tools.JavaFileObject.Kind\u003e"
@@ -196055,7 +196123,7 @@
         "StandardLocation": {
           "type": "enum",
           "since": "6",
-          "superClass": "StandardLocation",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.tools.StandardLocation\u003e",
@@ -197419,7 +197487,7 @@
         },
         "XmlAccessOrder": {
           "type": "enum",
-          "superClass": "XmlAccessOrder",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.bind.annotation.XmlAccessOrder\u003e"
@@ -197451,7 +197519,7 @@
         },
         "XmlAccessType": {
           "type": "enum",
-          "superClass": "XmlAccessType",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.bind.annotation.XmlAccessType\u003e"
@@ -197720,7 +197788,7 @@
         },
         "XmlNsForm": {
           "type": "enum",
-          "superClass": "XmlNsForm",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.bind.annotation.XmlNsForm\u003e"
@@ -197876,7 +197944,7 @@
       "classes": {
         "CollapsedStringAdapter": {
           "type": "class",
-          "superClass": "String",
+          "superClass": "javax.xml.bind.annotation.adapters.XmlAdapter",
           "interfaces": [],
           "constructors": {
             "CollapsedStringAdapter--": {}
@@ -197903,7 +197971,7 @@
         },
         "HexBinaryAdapter": {
           "type": "class",
-          "superClass": "String",
+          "superClass": "javax.xml.bind.annotation.adapters.XmlAdapter",
           "interfaces": [],
           "constructors": {
             "HexBinaryAdapter--": {}
@@ -197929,7 +197997,7 @@
         },
         "NormalizedStringAdapter": {
           "type": "class",
-          "superClass": "String",
+          "superClass": "javax.xml.bind.annotation.adapters.XmlAdapter",
           "interfaces": [],
           "constructors": {
             "NormalizedStringAdapter--": {}
@@ -204978,7 +205046,7 @@
         },
         "Service.Mode": {
           "type": "enum",
-          "superClass": "Service.Mode",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.ws.Service.Mode\u003e"
@@ -205321,7 +205389,7 @@
         },
         "MessageContext.Scope": {
           "type": "enum",
-          "superClass": "MessageContext.Scope",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.ws.handler.MessageContext.Scope\u003e"
@@ -205534,7 +205602,7 @@
         },
         "AddressingFeature.Responses": {
           "type": "enum",
-          "superClass": "AddressingFeature.Responses",
+          "superClass": "java.lang.Enum",
           "interfaces": [
             "java.io.Serializable",
             "java.lang.Comparable\u003cjavax.xml.ws.soap.AddressingFeature.Responses\u003e"

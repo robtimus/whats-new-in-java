@@ -19,7 +19,6 @@ package com.github.robtimus.whatsnewinjava.parser;
 
 import static java.util.Collections.emptyList;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.joining;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -92,7 +91,7 @@ public final class JavadocParser {
 
         private static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*,\\s*");
         private static final Pattern SINCE_PATTERN = Pattern.compile("^(?:(?:JDK|J2SE|JSE)\\s*)?([\\d.u]+)$");
-        private static final Pattern INTERFACE_TITLE_PATTERN = Pattern.compile("(class|enum|interface|annotation) in (.*)");
+        private static final Pattern INTERFACE_TITLE_PATTERN = Pattern.compile("(class|enum|enum class|interface|annotation) in (.*)");
 
         private final Path rootFolder;
         private final Set<String> packagesToIgnore;
@@ -375,24 +374,32 @@ public final class JavadocParser {
 
         private Element classSuperClassElement(Document document) {
             if (javaVersion <= 12) {
-                return document.select("div.contentContainer ul.inheritance > li > a").last();
+                Element lastLink = document.select("div.contentContainer ul.inheritance > li > a").last();
+                return lastLink == null ? null : lastLink.parent().selectFirst("a");
             }
             if (javaVersion <= 14) {
-                return document.select("div.contentContainer div.inheritance > a").last();
+                Element lastLink = document.select("div.contentContainer div.inheritance > a").last();
+                return lastLink == null ? null : lastLink.parent().selectFirst("a");
             }
-            return document.select("main[role='main'] div.inheritance > a").last();
+            Element lastLink = document.select("main[role='main'] div.inheritance > a").last();
+            return lastLink == null ? null : lastLink.parent().selectFirst("a");
         }
 
         private JavaInterfaceList classInterfaceList(Document document, JavaClass.Type type) {
             String label = classInterfaceListLabel(type);
-            String text = classInterfaceListNodes(document, label).stream()
-                    .map(this::extractInterfaceListText)
-                    .collect(joining());
+            StringBuilder text = new StringBuilder();
+            for (Node node : classInterfaceListNodes(document, label)) {
+                addInterfaces(node, text);
+            }
             if (text.isEmpty()) {
                 return JavaInterfaceList.EMPTY;
             }
             Set<String> interfaceNames = COMMA_SPLIT_PATTERN.splitAsStream(text)
-                    .collect(Collector.of(InterfaceListCollector::new, InterfaceListCollector::add, InterfaceListCollector::combine, InterfaceListCollector::finish));
+                    .collect(Collector.of(
+                            InterfaceListCollector::new,
+                            InterfaceListCollector::add,
+                            InterfaceListCollector::combine,
+                            InterfaceListCollector::finish));
             return new JavaInterfaceList(interfaceNames);
         }
 
@@ -420,20 +427,39 @@ public final class JavadocParser {
             return labelElement == null ? emptyList() : labelElement.nextElementSibling().childNodes();
         }
 
-        private String extractInterfaceListText(Node node) {
-            if (node instanceof Element element) {
-                Element link = element.selectFirst("a");
-                String title = link.attr("title");
-                Matcher matcher = title == null ? null : INTERFACE_TITLE_PATTERN.matcher(title);
-                if (matcher == null || !matcher.matches()) {
-                    throw new IllegalStateException("Missing or unexpected title: " + title);
+        private void addInterfaces(Node node, StringBuilder text) {
+            switch (node) {
+                case Element element -> {
+                    if ("a".equals(element.tagName())) {
+                        if (!isPreviewLink(element)) {
+                            String title = element.attr("title");
+                            String packageName = extractPackageNameFromTitle(title);
+                            String className = element.text();
+                            text.append(packageName).append('.').append(className);
+                        }
+                    } else {
+                        for (Node child : element.childNodes()) {
+                            addInterfaces(child, text);
+                        }
+                    }
                 }
-                return matcher.group(2) + "." + ((Element) node).text();
+                case TextNode textNode -> text.append(textNode.text());
+                default -> throw new IllegalStateException("Unexpected node type: " + node.getClass());
             }
-            if (node instanceof TextNode textNode) {
-                return textNode.text();
+        }
+
+        private boolean isPreviewLink(Element element) {
+            return "a".equals(element.tagName())
+                    && element.text().equals("PREVIEW")
+                    && element.attr("href").contains("#preview-");
+        }
+
+        private String extractPackageNameFromTitle(String title) {
+            Matcher matcher = title == null ? null : INTERFACE_TITLE_PATTERN.matcher(title);
+            if (matcher == null || !matcher.matches()) {
+                throw new IllegalStateException("Missing or unexpected title: " + title);
             }
-            throw new IllegalStateException("Unexpected node type: " + node.getClass());
+            return matcher.group(2);
         }
 
         private Element classSinceTagElement(Document document) {
@@ -639,9 +665,7 @@ public final class JavadocParser {
             // Java 14 and before: the since tag element is the span inside the dt
             // Java 15: the since tag element is the dt itself
             // We want the dt's sibling (the dd)
-            Element sinceValueElement = "span".equalsIgnoreCase(sinceTagElement.tagName())
-                    ? sinceTagElement.parent().nextElementSibling()
-                    : sinceTagElement.nextElementSibling();
+            Element sinceValueElement = findOuter(sinceTagElement, "dt").nextElementSibling();
             return sinceValueElement.text();
         }
 
@@ -696,6 +720,14 @@ public final class JavadocParser {
                     && !fileName.contains("-package-")
                     && !fileName.matches("compact\\d+-summary\\.html");
         }
+
+        private Element findOuter(Element element, String tagName) {
+            Element result = element;
+            while (!tagName.equals(result.tagName())) {
+                result = result.parent();
+            }
+            return result;
+        }
     }
 
     private static final class InterfaceListCollector {
@@ -704,7 +736,7 @@ public final class JavadocParser {
         private final StringBuilder current = new StringBuilder();
 
         private void add(String part) {
-            if (current.length() == 0) {
+            if (current.isEmpty()) {
                 // no previously opened generic type list
                 if (part.indexOf('<') == -1 || part.indexOf('>') != -1) {
                     // no new generic type list, or one that is immediately ended; just add the part
@@ -729,7 +761,7 @@ public final class JavadocParser {
         }
 
         private Set<String> finish() {
-            if (current.length() > 0) {
+            if (!current.isEmpty()) {
                 throw new IllegalStateException("Contains an opened generic type list: " + current);
             }
             return new LinkedHashSet<>(interfaceNames);
