@@ -33,8 +33,8 @@ public final class JavaPackage extends VersionableJavaObject {
 
     private final Map<String, JavaClass> javaClasses;
 
-    JavaPackage(JavaModule javaModule, String name, JavaVersion since, boolean deprecated) {
-        super(since, deprecated);
+    JavaPackage(JavaModule javaModule, String name, JavaVersion since, boolean deprecated, boolean preview) {
+        super(since, deprecated, preview);
 
         this.javaModule = requireNonNull(javaModule);
 
@@ -61,12 +61,12 @@ public final class JavaPackage extends VersionableJavaObject {
 
     public void addJavaClass(String className, JavaClass.Type type,
             String superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures,
-            JavaVersion since, boolean deprecated) {
+            JavaVersion since, boolean deprecated, boolean preview) {
 
         if (javaClasses.containsKey(className)) {
             throw new IllegalStateException("Duplicate class: %s.%s".formatted(name, className));
         }
-        javaClasses.put(className, new JavaClass(this, className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated));
+        javaClasses.put(className, new JavaClass(this, className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated, preview));
     }
 
     public JavaClass getJavaClass(String className) {
@@ -106,8 +106,9 @@ public final class JavaPackage extends VersionableJavaObject {
     static JavaPackage fromJSON(JsonObject json, JavaModule javaModule, String name) {
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
+        boolean preview = readPreview(json);
 
-        JavaPackage javaPackage = new JavaPackage(javaModule, name, since, deprecated);
+        JavaPackage javaPackage = new JavaPackage(javaModule, name, since, deprecated, preview);
 
         JsonObject classes = json.get("classes").getAsJsonObject();
         for (String className : classes.keySet()) {

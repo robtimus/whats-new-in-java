@@ -68,14 +68,14 @@ public final class JavaAPI {
         return javaModules.containsKey(AUTOMATIC_MODULE_NAME);
     }
 
-    public void addJavaModule(String moduleName, JavaVersion since, boolean deprecated) {
+    public void addJavaModule(String moduleName, JavaVersion since, boolean deprecated, boolean preview) {
         if (javaModules.containsKey(AUTOMATIC_MODULE_NAME)) {
             throw new IllegalStateException("Cannot add module when automatic module is defined: %s".formatted(moduleName));
         }
         if (javaModules.containsKey(moduleName)) {
             throw new IllegalStateException("Duplicate module: %s".formatted(moduleName));
         }
-        javaModules.put(moduleName, new JavaModule(this, moduleName, false, since, deprecated));
+        javaModules.put(moduleName, new JavaModule(this, moduleName, false, since, deprecated, preview));
     }
 
     public void addAutomaticJavaModule() {
@@ -85,7 +85,7 @@ public final class JavaAPI {
         if (!javaModules.isEmpty()) {
             throw new IllegalStateException("Cannot add automatic module if other modules are defined");
         }
-        javaModules.put(AUTOMATIC_MODULE_NAME, new JavaModule(this, AUTOMATIC_MODULE_NAME, true, null, false));
+        javaModules.put(AUTOMATIC_MODULE_NAME, new JavaModule(this, AUTOMATIC_MODULE_NAME, true, null, false, false));
     }
 
     public JavaModule getJavaModule(String moduleName) {
@@ -160,7 +160,7 @@ public final class JavaAPI {
         JavaAPI javaAPI = new JavaAPI(javadoc);
 
         if (json.has("packages")) {
-            JavaModule automaticModule = new JavaModule(javaAPI, AUTOMATIC_MODULE_NAME, true, null, false);
+            JavaModule automaticModule = new JavaModule(javaAPI, AUTOMATIC_MODULE_NAME, true, null, false, false);
             javaAPI.javaModules.put(AUTOMATIC_MODULE_NAME, automaticModule);
 
             JsonObject packages = json.get("packages").getAsJsonObject();

@@ -9994,6 +9994,7 @@
             "StableValue": {
               "type": "interface",
               "since": "25",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -32709,6 +32710,7 @@
             "DEREncodable": {
               "type": "interface",
               "since": "25",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -34363,6 +34365,7 @@
             "PEMDecoder": {
               "type": "class",
               "since": "25",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -34393,6 +34396,7 @@
             "PEMEncoder": {
               "type": "class",
               "since": "25",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -34420,6 +34424,7 @@
             "PEMRecord": {
               "type": "record",
               "since": "25",
+              "preview": true,
               "superClass": "java.lang.Record",
               "interfaces": [
                 "java.security.DEREncodable"
@@ -55560,6 +55565,7 @@
             "StructureViolationException": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -55599,6 +55605,7 @@
             "StructuredTaskScope": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [
                 "java.lang.AutoCloseable"
               ],
@@ -55631,6 +55638,7 @@
             "StructuredTaskScope.Configuration": {
               "type": "interface",
               "since": "25",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -55644,6 +55652,7 @@
             "StructuredTaskScope.FailedException": {
               "type": "class",
               "since": "25",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -55680,6 +55689,7 @@
             "StructuredTaskScope.Joiner": {
               "type": "interface",
               "since": "25",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -55698,6 +55708,7 @@
             "StructuredTaskScope.Subtask": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [
                 "java.util.function.Supplier\u003cT\u003e"
               ],
@@ -55713,6 +55724,7 @@
             "StructuredTaskScope.Subtask.State": {
               "type": "enum",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -55748,6 +55760,7 @@
             "StructuredTaskScope.TimeoutException": {
               "type": "class",
               "since": "25",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -62109,23 +62122,28 @@
               "fields": {},
               "methods": {
                 "encryptKey(java.security.PrivateKey,char[])": {
-                  "since": "25"
+                  "since": "25",
+                  "preview": true
                 },
                 "encryptKey(java.security.PrivateKey,char[],java.lang.String,java.security.spec.AlgorithmParameterSpec,java.security.Provider)": {
-                  "since": "25"
+                  "since": "25",
+                  "preview": true
                 },
                 "encryptKey(java.security.PrivateKey,java.security.Key,java.lang.String,java.security.spec.AlgorithmParameterSpec,java.security.Provider,java.security.SecureRandom)": {
-                  "since": "25"
+                  "since": "25",
+                  "preview": true
                 },
                 "getAlgName()": {},
                 "getAlgParameters()": {},
                 "getEncoded()": {},
                 "getEncryptedData()": {},
                 "getKey(char[])": {
-                  "since": "25"
+                  "since": "25",
+                  "preview": true
                 },
                 "getKey(java.security.Key,java.security.Provider)": {
-                  "since": "25"
+                  "since": "25",
+                  "preview": true
                 },
                 "getKeySpec(java.security.Key)": {
                   "since": "5.0"
@@ -68952,6 +68970,7 @@
             "AbstractAnnotationValueVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractAnnotationValueVisitor14",
               "interfaces": [
                 "javax.lang.model.element.AnnotationValueVisitor\u003cR,P\u003e"
@@ -69185,6 +69204,7 @@
             "AbstractElementVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractElementVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -69432,6 +69452,7 @@
             "AbstractTypeVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractTypeVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"
@@ -69822,6 +69843,7 @@
             "ElementKindVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.ElementKindVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -70092,6 +70114,7 @@
             "ElementScannerPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.ElementScanner14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -70518,6 +70541,7 @@
             "SimpleAnnotationValueVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleAnnotationValueVisitor14",
               "interfaces": [
                 "javax.lang.model.element.AnnotationValueVisitor\u003cR,P\u003e"
@@ -70766,6 +70790,7 @@
             "SimpleElementVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleElementVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -71027,6 +71052,7 @@
             "SimpleTypeVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleTypeVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"
@@ -71355,6 +71381,7 @@
             "TypeKindVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.TypeKindVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"

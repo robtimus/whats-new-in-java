@@ -55,9 +55,9 @@ public final class JavaClass extends VersionableJavaObject {
 
     JavaClass(JavaPackage javaPackage, String name, Type type,
             String superClass, JavaInterfaceList interfaceList, Collection<String> inheritedMethodSignatures,
-            JavaVersion since, boolean deprecated) {
+            JavaVersion since, boolean deprecated, boolean preview) {
 
-        super(since, deprecated);
+        super(since, deprecated, preview);
 
         this.javaPackage = requireNonNull(javaPackage);
 
@@ -103,12 +103,12 @@ public final class JavaClass extends VersionableJavaObject {
         return unmodifiableCollection(javaMembers.values());
     }
 
-    public void addJavaMember(JavaMember.Type type, String signature, JavaVersion since, boolean deprecated) {
+    public void addJavaMember(JavaMember.Type type, String signature, JavaVersion since, boolean deprecated, boolean preview) {
         final MemberMapKey key = new MemberMapKey(type, signature);
         if (javaMembers.containsKey(key)) {
             throw new IllegalStateException("Duplicate signature for class %s.%s: %s %s".formatted(javaPackage.name(), name, type, signature));
         }
-        javaMembers.put(key, new JavaMember(this, type, signature, since, deprecated));
+        javaMembers.put(key, new JavaMember(this, type, signature, since, deprecated, preview));
     }
 
     public JavaMember getJavaMember(JavaMember.Type type, String signature) {
@@ -170,6 +170,7 @@ public final class JavaClass extends VersionableJavaObject {
 
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
+        boolean preview = readPreview(json);
 
         String superClass = readSuperClass(json);
 
@@ -186,7 +187,7 @@ public final class JavaClass extends VersionableJavaObject {
             inheritedMethodSignatures.add(inheritedMethods.get(i).getAsString());
         }
 
-        JavaClass javaClass = new JavaClass(javaPackage, name, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated);
+        JavaClass javaClass = new JavaClass(javaPackage, name, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated, preview);
 
         addMembers(json, "constructors", JavaMember.Type.CONSTRUCTOR, javaClass);
         addMembers(json, "fields", JavaMember.Type.FIELD, javaClass);

@@ -25,10 +25,12 @@ public abstract class VersionableJavaObject {
 
     private final JavaVersion since;
     private final boolean deprecated;
+    private final boolean preview;
 
-    VersionableJavaObject(JavaVersion since, boolean deprecated) {
+    VersionableJavaObject(JavaVersion since, boolean deprecated, boolean preview) {
         this.since = since;
         this.deprecated = deprecated;
+        this.preview = preview;
     }
 
     public JavaVersion since() {
@@ -47,6 +49,10 @@ public abstract class VersionableJavaObject {
         return deprecated;
     }
 
+    public boolean isPreview() {
+        return preview;
+    }
+
     final JsonObject toJSON() {
         JsonObject json = new JsonObject();
         appendToJSON(json);
@@ -60,6 +66,9 @@ public abstract class VersionableJavaObject {
         if (deprecated) {
             json.addProperty("deprecated", true);
         }
+        if (preview) {
+            json.addProperty("preview", true);
+        }
     }
 
     static JavaVersion readSince(JsonObject json) {
@@ -70,5 +79,10 @@ public abstract class VersionableJavaObject {
     static boolean readDeprecated(JsonObject json) {
         JsonElement deprecated = json.get("deprecated");
         return deprecated != null && deprecated.getAsBoolean();
+    }
+
+    static boolean readPreview(JsonObject json) {
+        JsonElement preview = json.get("preview");
+        return preview != null && preview.getAsBoolean();
     }
 }

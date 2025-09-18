@@ -29,8 +29,8 @@ public final class JavaMember extends VersionableJavaObject {
     private final String originalSignature;
     private final String prettifiedSignature;
 
-    JavaMember(JavaClass javaClass, Type type, String signature, JavaVersion since, boolean deprecated) {
-        super(since, deprecated);
+    JavaMember(JavaClass javaClass, Type type, String signature, JavaVersion since, boolean deprecated, boolean preview) {
+        super(since, deprecated, preview);
 
         this.javaClass = requireNonNull(javaClass);
 
@@ -78,8 +78,9 @@ public final class JavaMember extends VersionableJavaObject {
     static JavaMember fromJSON(JsonObject json, JavaClass javaClass, Type type, String signature) {
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
+        boolean preview = readPreview(json);
 
-        return new JavaMember(javaClass, type, signature, since, deprecated);
+        return new JavaMember(javaClass, type, signature, since, deprecated, preview);
     }
 
     public enum Type {

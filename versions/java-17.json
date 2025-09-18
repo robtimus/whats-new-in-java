@@ -15034,6 +15034,7 @@
             "SwitchBootstraps": {
               "type": "class",
               "since": "17",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},

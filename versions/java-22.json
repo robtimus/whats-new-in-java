@@ -9516,6 +9516,7 @@
             "ScopedValue": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -9548,6 +9549,7 @@
             "ScopedValue.Carrier": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -10799,6 +10801,7 @@
             "StringTemplate": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {
@@ -10822,6 +10825,7 @@
             "StringTemplate.Processor": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -10834,6 +10838,7 @@
             "StringTemplate.Processor.Linkage": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12098,10 +12103,12 @@
         },
         "java.lang.classfile": {
           "since": "22",
+          "preview": true,
           "classes": {
             "AccessFlags": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassElement",
                 "java.lang.classfile.ClassFileElement",
@@ -12127,6 +12134,7 @@
             "Annotation": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.Annotation\u003e"
@@ -12149,6 +12157,7 @@
             "AnnotationElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.AnnotationElement\u003e"
@@ -12180,6 +12189,7 @@
             "AnnotationValue": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.AnnotationValue\u003e"
@@ -12222,6 +12232,7 @@
             "AnnotationValue.OfAnnotation": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.ClassFileElement",
@@ -12240,6 +12251,7 @@
             "AnnotationValue.OfArray": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.ClassFileElement",
@@ -12258,6 +12270,7 @@
             "AnnotationValue.OfBoolean": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12279,6 +12292,7 @@
             "AnnotationValue.OfByte": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12300,6 +12314,7 @@
             "AnnotationValue.OfCharacter": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12321,6 +12336,7 @@
             "AnnotationValue.OfClass": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.ClassFileElement",
@@ -12340,6 +12356,7 @@
             "AnnotationValue.OfConstant": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.ClassFileElement",
@@ -12359,6 +12376,7 @@
             "AnnotationValue.OfDouble": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12380,6 +12398,7 @@
             "AnnotationValue.OfEnum": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.ClassFileElement",
@@ -12400,6 +12419,7 @@
             "AnnotationValue.OfFloat": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12421,6 +12441,7 @@
             "AnnotationValue.OfInteger": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12442,6 +12463,7 @@
             "AnnotationValue.OfLong": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12463,6 +12485,7 @@
             "AnnotationValue.OfShort": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12484,6 +12507,7 @@
             "AnnotationValue.OfString": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AnnotationValue",
                 "java.lang.classfile.AnnotationValue.OfConstant",
@@ -12505,6 +12529,7 @@
             "Attribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cA\u003e"
@@ -12522,6 +12547,7 @@
             "AttributeMapper": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12537,6 +12563,7 @@
             "AttributeMapper.AttributeStability": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -12572,6 +12599,7 @@
             "AttributedElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -12587,6 +12615,7 @@
             "Attributes": {
               "type": "class",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -12685,6 +12714,7 @@
             "BootstrapMethodEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.BootstrapMethodEntry\u003e"
@@ -12704,6 +12734,7 @@
             "BufWriter": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12735,6 +12766,7 @@
             "ClassBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileBuilder\u003cjava.lang.classfile.ClassElement,java.lang.classfile.ClassBuilder\u003e",
                 "java.util.function.Consumer\u003cjava.lang.classfile.ClassElement\u003e"
@@ -12775,6 +12807,7 @@
             "ClassElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -12786,6 +12819,7 @@
             "ClassFile": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {
@@ -13139,6 +13173,7 @@
             "ClassFile.AttributeMapperOption": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFile.Option"
               ],
@@ -13153,6 +13188,7 @@
             "ClassFile.AttributesProcessingOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13189,6 +13225,7 @@
             "ClassFile.ClassHierarchyResolverOption": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFile.Option"
               ],
@@ -13203,6 +13240,7 @@
             "ClassFile.ConstantPoolSharingOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13239,6 +13277,7 @@
             "ClassFile.DeadCodeOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13275,6 +13314,7 @@
             "ClassFile.DeadLabelsOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13311,6 +13351,7 @@
             "ClassFile.DebugElementsOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13347,6 +13388,7 @@
             "ClassFile.LineNumbersOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13383,6 +13425,7 @@
             "ClassFile.Option": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13392,6 +13435,7 @@
             "ClassFile.ShortJumpsOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13428,6 +13472,7 @@
             "ClassFile.StackMapsOption": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -13464,6 +13509,7 @@
             "ClassFileBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.util.function.Consumer\u003cE\u003e"
               ],
@@ -13483,6 +13529,7 @@
             "ClassFileElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13492,6 +13539,7 @@
             "ClassFileTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13507,6 +13555,7 @@
             "ClassFileTransform.ResolvedTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13520,6 +13569,7 @@
             "ClassFileVersion": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassElement",
                 "java.lang.classfile.ClassFileElement"
@@ -13536,6 +13586,7 @@
             "ClassHierarchyResolver": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13556,6 +13607,7 @@
             "ClassHierarchyResolver.ClassHierarchyInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13568,6 +13620,7 @@
             "ClassModel": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.ClassElement\u003e",
                 "java.lang.classfile.AttributedElement",
@@ -13604,6 +13657,7 @@
             "ClassReader": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
                 "java.lang.classfile.constantpool.ConstantPool"
@@ -13654,6 +13708,7 @@
             "ClassSignature": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -13671,6 +13726,7 @@
             "ClassTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.ClassTransform,java.lang.classfile.ClassElement,java.lang.classfile.ClassBuilder\u003e"
               ],
@@ -13699,6 +13755,7 @@
             "CodeBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileBuilder\u003cjava.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e",
                 "java.util.function.Consumer\u003cjava.lang.classfile.CodeElement\u003e"
@@ -13953,6 +14010,7 @@
             "CodeBuilder.BlockCodeBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileBuilder\u003cjava.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e",
                 "java.lang.classfile.CodeBuilder",
@@ -14209,6 +14267,7 @@
             "CodeBuilder.CatchBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14222,6 +14281,7 @@
             "CodeElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -14233,6 +14293,7 @@
             "CodeModel": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.CodeElement\u003e",
                 "java.lang.classfile.AttributedElement",
@@ -14264,6 +14325,7 @@
             "CodeTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.CodeTransform,java.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e"
               ],
@@ -14286,6 +14348,7 @@
             "CompoundElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cE\u003e",
                 "java.lang.classfile.ClassFileElement"
@@ -14307,6 +14370,7 @@
             "CustomAttribute": {
               "type": "class",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cT\u003e",
@@ -14343,6 +14407,7 @@
             "FieldBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileBuilder\u003cjava.lang.classfile.FieldElement,java.lang.classfile.FieldBuilder\u003e",
                 "java.util.function.Consumer\u003cjava.lang.classfile.FieldElement\u003e"
@@ -14366,6 +14431,7 @@
             "FieldElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -14377,6 +14443,7 @@
             "FieldModel": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.FieldElement\u003e",
                 "java.lang.classfile.AttributedElement",
@@ -14411,6 +14478,7 @@
             "FieldTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.FieldTransform,java.lang.classfile.FieldElement,java.lang.classfile.FieldBuilder\u003e"
               ],
@@ -14434,6 +14502,7 @@
             "Instruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement"
@@ -14449,6 +14518,7 @@
             "Interfaces": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassElement",
                 "java.lang.classfile.ClassFileElement"
@@ -14467,6 +14537,7 @@
             "Label": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14476,6 +14547,7 @@
             "MethodBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileBuilder\u003cjava.lang.classfile.MethodElement,java.lang.classfile.MethodBuilder\u003e",
                 "java.util.function.Consumer\u003cjava.lang.classfile.MethodElement\u003e"
@@ -14501,6 +14573,7 @@
             "MethodElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -14512,6 +14585,7 @@
             "MethodModel": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.MethodElement\u003e",
                 "java.lang.classfile.AttributedElement",
@@ -14547,6 +14621,7 @@
             "MethodSignature": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14566,6 +14641,7 @@
             "MethodTransform": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.MethodTransform,java.lang.classfile.MethodElement,java.lang.classfile.MethodBuilder\u003e"
               ],
@@ -14590,6 +14666,7 @@
             "Opcode": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -14634,6 +14711,7 @@
             "Opcode.Kind": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -14669,6 +14747,7 @@
             "PseudoInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement"
@@ -14681,6 +14760,7 @@
             "Signature": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14694,6 +14774,7 @@
             "Signature.ArrayTypeSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature",
                 "java.lang.classfile.Signature.RefTypeSig"
@@ -14712,6 +14793,7 @@
             "Signature.BaseTypeSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature"
               ],
@@ -14729,6 +14811,7 @@
             "Signature.ClassTypeSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature",
                 "java.lang.classfile.Signature.RefTypeSig",
@@ -14753,6 +14836,7 @@
             "Signature.RefTypeSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature"
               ],
@@ -14766,6 +14850,7 @@
             "Signature.ThrowableSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature"
               ],
@@ -14779,6 +14864,7 @@
             "Signature.TypeArg": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14796,6 +14882,7 @@
             "Signature.TypeArg.WildcardIndicator": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -14831,6 +14918,7 @@
             "Signature.TypeParam": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14846,6 +14934,7 @@
             "Signature.TypeVarSig": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Signature",
                 "java.lang.classfile.Signature.RefTypeSig",
@@ -14864,6 +14953,7 @@
             "Superclass": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassElement",
                 "java.lang.classfile.ClassFileElement"
@@ -14879,6 +14969,7 @@
             "TypeAnnotation": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Annotation",
                 "java.lang.classfile.ClassFileElement",
@@ -14904,6 +14995,7 @@
             "TypeAnnotation.CatchTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -14920,6 +15012,7 @@
             "TypeAnnotation.EmptyTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -14934,6 +15027,7 @@
             "TypeAnnotation.FormalParameterTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -14950,6 +15044,7 @@
             "TypeAnnotation.LocalVarTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -14966,6 +15061,7 @@
             "TypeAnnotation.LocalVarTargetInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -14980,6 +15076,7 @@
             "TypeAnnotation.OffsetTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -14996,6 +15093,7 @@
             "TypeAnnotation.SupertypeTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -15012,6 +15110,7 @@
             "TypeAnnotation.TargetInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15052,6 +15151,7 @@
             "TypeAnnotation.TargetType": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -15089,6 +15189,7 @@
             "TypeAnnotation.ThrowsTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -15105,6 +15206,7 @@
             "TypeAnnotation.TypeArgumentTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -15122,6 +15224,7 @@
             "TypeAnnotation.TypeParameterBoundTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -15139,6 +15242,7 @@
             "TypeAnnotation.TypeParameterTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.TypeAnnotation.TargetInfo"
               ],
@@ -15155,6 +15259,7 @@
             "TypeAnnotation.TypePathComponent": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {
@@ -15172,6 +15277,7 @@
             "TypeAnnotation.TypePathComponent.Kind": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -15208,6 +15314,7 @@
             "TypeKind": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -15251,6 +15358,7 @@
             "WritableElement": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement"
               ],
@@ -15265,10 +15373,12 @@
         },
         "java.lang.classfile.attribute": {
           "since": "22",
+          "preview": true,
           "classes": {
             "AnnotationDefaultAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.AnnotationDefaultAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15290,6 +15400,7 @@
             "BootstrapMethodsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.BootstrapMethodsAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15310,6 +15421,7 @@
             "CharacterRangeInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15326,6 +15438,7 @@
             "CharacterRangeTableAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.CharacterRangeTableAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15346,6 +15459,7 @@
             "CodeAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.CodeElement\u003e",
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.CodeAttribute\u003e",
@@ -15386,6 +15500,7 @@
             "CompilationIDAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.CompilationIDAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15408,6 +15523,7 @@
             "ConstantValueAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ConstantValueAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15430,6 +15546,7 @@
             "DeprecatedAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.DeprecatedAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15452,6 +15569,7 @@
             "EnclosingMethodAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.EnclosingMethodAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15478,6 +15596,7 @@
             "ExceptionsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ExceptionsAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15502,6 +15621,7 @@
             "InnerClassInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15521,6 +15641,7 @@
             "InnerClassesAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.InnerClassesAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15543,6 +15664,7 @@
             "LineNumberInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15556,6 +15678,7 @@
             "LineNumberTableAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.LineNumberTableAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15576,6 +15699,7 @@
             "LocalVariableInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15592,6 +15716,7 @@
             "LocalVariableTableAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.LocalVariableTableAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15612,6 +15737,7 @@
             "LocalVariableTypeInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15627,6 +15753,7 @@
             "LocalVariableTypeTableAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.LocalVariableTypeTableAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15647,6 +15774,7 @@
             "MethodParameterInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15664,6 +15792,7 @@
             "MethodParametersAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.MethodParametersAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -15686,6 +15815,7 @@
             "ModuleAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModuleAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15718,6 +15848,7 @@
             "ModuleAttribute.ModuleAttributeBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15746,6 +15877,7 @@
             "ModuleExportInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15769,6 +15901,7 @@
             "ModuleHashInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15783,6 +15916,7 @@
             "ModuleHashesAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModuleHashesAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15808,6 +15942,7 @@
             "ModuleMainClassAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModuleMainClassAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15830,6 +15965,7 @@
             "ModuleOpenInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15853,6 +15989,7 @@
             "ModulePackagesAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModulePackagesAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15877,6 +16014,7 @@
             "ModuleProvideInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15893,6 +16031,7 @@
             "ModuleRequireInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -15912,6 +16051,7 @@
             "ModuleResolutionAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModuleResolutionAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15933,6 +16073,7 @@
             "ModuleTargetAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.ModuleTargetAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15955,6 +16096,7 @@
             "NestHostAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.NestHostAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -15977,6 +16119,7 @@
             "NestMembersAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.NestMembersAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16001,6 +16144,7 @@
             "PermittedSubclassesAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.PermittedSubclassesAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16025,6 +16169,7 @@
             "RecordAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RecordAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16047,6 +16192,7 @@
             "RecordComponentInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.AttributedElement",
                 "java.lang.classfile.ClassFileElement"
@@ -16071,6 +16217,7 @@
             "RuntimeInvisibleAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeInvisibleAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16095,6 +16242,7 @@
             "RuntimeInvisibleParameterAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeInvisibleParameterAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -16116,6 +16264,7 @@
             "RuntimeInvisibleTypeAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeInvisibleTypeAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16141,6 +16290,7 @@
             "RuntimeVisibleAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeVisibleAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16165,6 +16315,7 @@
             "RuntimeVisibleParameterAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeVisibleParameterAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -16186,6 +16337,7 @@
             "RuntimeVisibleTypeAnnotationsAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.RuntimeVisibleTypeAnnotationsAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16211,6 +16363,7 @@
             "SignatureAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.SignatureAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16240,6 +16393,7 @@
             "SourceDebugExtensionAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.SourceDebugExtensionAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16261,6 +16415,7 @@
             "SourceFileAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.SourceFileAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16283,6 +16438,7 @@
             "SourceIDAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.SourceIDAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16305,6 +16461,7 @@
             "StackMapFrameInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -16320,6 +16477,7 @@
             "StackMapFrameInfo.ObjectVerificationTypeInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.attribute.StackMapFrameInfo.VerificationTypeInfo"
               ],
@@ -16338,6 +16496,7 @@
             "StackMapFrameInfo.SimpleVerificationTypeInfo": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -16375,6 +16534,7 @@
             "StackMapFrameInfo.UninitializedVerificationTypeInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.attribute.StackMapFrameInfo.VerificationTypeInfo"
               ],
@@ -16391,6 +16551,7 @@
             "StackMapFrameInfo.VerificationTypeInfo": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -16402,6 +16563,7 @@
             "StackMapTableAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.StackMapTableAttribute\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -16423,6 +16585,7 @@
             "SyntheticAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.SyntheticAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16445,6 +16608,7 @@
             "UnknownAttribute": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.Attribute\u003cjava.lang.classfile.attribute.UnknownAttribute\u003e",
                 "java.lang.classfile.ClassElement",
@@ -16468,10 +16632,12 @@
         },
         "java.lang.classfile.components": {
           "since": "22",
+          "preview": true,
           "classes": {
             "ClassPrinter": {
               "type": "class",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -16499,6 +16665,7 @@
             "ClassPrinter.LeafNode": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.components.ClassPrinter.Node"
               ],
@@ -16518,6 +16685,7 @@
             "ClassPrinter.ListNode": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.components.ClassPrinter.Node\u003e",
                 "java.lang.classfile.components.ClassPrinter.Node",
@@ -16579,6 +16747,7 @@
             "ClassPrinter.MapNode": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.components.ClassPrinter.Node",
                 "java.util.Map\u003cjava.lang.constant.ConstantDesc,java.lang.classfile.components.ClassPrinter.Node\u003e"
@@ -16622,6 +16791,7 @@
             "ClassPrinter.Node": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -16637,6 +16807,7 @@
             "ClassPrinter.Verbosity": {
               "type": "enum",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -16672,6 +16843,7 @@
             "ClassRemapper": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.ClassTransform,java.lang.classfile.ClassElement,java.lang.classfile.ClassBuilder\u003e",
                 "java.lang.classfile.ClassTransform"
@@ -16698,6 +16870,7 @@
             "CodeLocalsShifter": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.CodeTransform,java.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e",
                 "java.lang.classfile.CodeTransform"
@@ -16718,6 +16891,7 @@
             "CodeRelabeler": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.CodeTransform,java.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e",
                 "java.lang.classfile.CodeTransform"
@@ -16741,6 +16915,7 @@
             "CodeStackTracker": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileTransform\u003cjava.lang.classfile.CodeTransform,java.lang.classfile.CodeElement,java.lang.classfile.CodeBuilder\u003e",
                 "java.lang.classfile.CodeTransform"
@@ -16764,10 +16939,12 @@
         },
         "java.lang.classfile.constantpool": {
           "since": "22",
+          "preview": true,
           "classes": {
             "AnnotationConstantValueEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -16789,6 +16966,7 @@
             "ClassEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -16815,6 +16993,7 @@
             "ConstantDynamicEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -16846,6 +17025,7 @@
             "ConstantPool": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.constantpool.PoolEntry\u003e"
               ],
@@ -16866,6 +17046,7 @@
             "ConstantPoolBuilder": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.Iterable\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
                 "java.lang.classfile.ClassFileElement",
@@ -16931,6 +17112,7 @@
             "ConstantPoolException": {
               "type": "class",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.IllegalArgumentException",
               "interfaces": [
                 "java.io.Serializable"
@@ -16972,6 +17154,7 @@
             "ConstantValueEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -16995,6 +17178,7 @@
             "DoubleEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17021,6 +17205,7 @@
             "DynamicConstantPoolEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17046,6 +17231,7 @@
             "FieldRefEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17072,6 +17258,7 @@
             "FloatEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17098,6 +17285,7 @@
             "IntegerEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17124,6 +17312,7 @@
             "InterfaceMethodRefEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17150,6 +17339,7 @@
             "InvokeDynamicEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17178,6 +17368,7 @@
             "LoadableConstantEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17200,6 +17391,7 @@
             "LongEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17226,6 +17418,7 @@
             "MemberRefEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17250,6 +17443,7 @@
             "MethodHandleEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17276,6 +17470,7 @@
             "MethodRefEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17302,6 +17497,7 @@
             "MethodTypeEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17327,6 +17523,7 @@
             "ModuleEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17349,6 +17546,7 @@
             "NameAndTypeEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17371,6 +17569,7 @@
             "PackageEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17393,6 +17592,7 @@
             "PoolEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e"
@@ -17412,6 +17612,7 @@
             "StringEntry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.WritableElement\u003cjava.lang.classfile.constantpool.PoolEntry\u003e",
@@ -17438,6 +17639,7 @@
             "Utf8Entry": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.CharSequence",
                 "java.lang.classfile.ClassFileElement",
@@ -17471,10 +17673,12 @@
         },
         "java.lang.classfile.instruction": {
           "since": "22",
+          "preview": true,
           "classes": {
             "ArrayLoadInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17494,6 +17698,7 @@
             "ArrayStoreInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17513,6 +17718,7 @@
             "BranchInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17532,6 +17738,7 @@
             "CharacterRange": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17552,6 +17759,7 @@
             "ConstantInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17574,6 +17782,7 @@
             "ConstantInstruction.ArgumentConstantInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17594,6 +17803,7 @@
             "ConstantInstruction.IntrinsicConstantInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17614,6 +17824,7 @@
             "ConstantInstruction.LoadConstantInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17635,6 +17846,7 @@
             "ConvertInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17656,6 +17868,7 @@
             "DiscontinuedInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17672,6 +17885,7 @@
             "DiscontinuedInstruction.JsrInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17693,6 +17907,7 @@
             "DiscontinuedInstruction.RetInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17714,6 +17929,7 @@
             "ExceptionCatch": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17734,6 +17950,7 @@
             "FieldInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17759,6 +17976,7 @@
             "IncrementInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17779,6 +17997,7 @@
             "InvokeDynamicInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17803,6 +18022,7 @@
             "InvokeInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17830,6 +18050,7 @@
             "LabelTarget": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17845,6 +18066,7 @@
             "LineNumber": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17861,6 +18083,7 @@
             "LoadInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17882,6 +18105,7 @@
             "LocalVariable": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17905,6 +18129,7 @@
             "LocalVariableType": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17928,6 +18153,7 @@
             "LookupSwitchInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17948,6 +18174,7 @@
             "MonitorInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17966,6 +18193,7 @@
             "NewMultiArrayInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -17986,6 +18214,7 @@
             "NewObjectInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18005,6 +18234,7 @@
             "NewPrimitiveArrayInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18024,6 +18254,7 @@
             "NewReferenceArrayInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18043,6 +18274,7 @@
             "NopInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18061,6 +18293,7 @@
             "OperatorInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18080,6 +18313,7 @@
             "ReturnInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18100,6 +18334,7 @@
             "StackInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18118,6 +18353,7 @@
             "StoreInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18139,6 +18375,7 @@
             "SwitchCase": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -18152,6 +18389,7 @@
             "TableSwitchInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18174,6 +18412,7 @@
             "ThrowInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -18192,6 +18431,7 @@
             "TypeCheckInstruction": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.lang.classfile.ClassFileElement",
                 "java.lang.classfile.CodeElement",
@@ -20147,20 +20387,24 @@
               "constructors": {},
               "fields": {
                 "MAX_INDY_CONCAT_ARG_SLOTS": {
-                  "since": "21"
+                  "since": "21",
+                  "preview": true
                 }
               },
               "methods": {
                 "makeConcat(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType)": {},
                 "makeConcatWithConstants(java.lang.invoke.MethodHandles.Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.String,java.lang.Object...)": {},
                 "makeConcatWithTemplate(java.util.List,java.util.List)": {
-                  "since": "21"
+                  "since": "21",
+                  "preview": true
                 },
                 "makeConcatWithTemplateCluster(java.util.List,java.util.List,int)": {
-                  "since": "21"
+                  "since": "21",
+                  "preview": true
                 },
                 "makeConcatWithTemplateGetters(java.util.List,java.util.List,int)": {
-                  "since": "21"
+                  "since": "21",
+                  "preview": true
                 }
               },
               "inheritedMethods": [
@@ -22692,6 +22936,7 @@
             "TemplateRuntime": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -47608,6 +47853,7 @@
             "FormatProcessor": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.StringTemplate.Processor\u003cjava.lang.String,java.lang.RuntimeException\u003e",
@@ -55883,6 +56129,7 @@
             "StructureViolationException": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -55922,6 +56169,7 @@
             "StructuredTaskScope": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -55958,6 +56206,7 @@
             "StructuredTaskScope.ShutdownOnFailure": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.util.concurrent.StructuredTaskScope",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -55997,6 +56246,7 @@
             "StructuredTaskScope.ShutdownOnSuccess": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.util.concurrent.StructuredTaskScope",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -56035,6 +56285,7 @@
             "StructuredTaskScope.Subtask": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [
                 "java.util.function.Supplier\u003cT\u003e"
               ],
@@ -56051,6 +56302,7 @@
             "StructuredTaskScope.Subtask.State": {
               "type": "enum",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -60442,6 +60694,7 @@
             "Gatherer": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -60467,6 +60720,7 @@
             "Gatherer.Downstream": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -60479,6 +60733,7 @@
             "Gatherer.Integrator": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -60492,6 +60747,7 @@
             "Gatherer.Integrator.Greedy": {
               "type": "interface",
               "since": "22",
+              "preview": true,
               "interfaces": [
                 "java.util.stream.Gatherer.Integrator\u003cA,T,R\u003e"
               ],
@@ -60505,6 +60761,7 @@
             "Gatherers": {
               "type": "class",
               "since": "22",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -60765,7 +61022,8 @@
                 "forEach(java.util.function.Consumer)": {},
                 "forEachOrdered(java.util.function.Consumer)": {},
                 "gather(java.util.stream.Gatherer)": {
-                  "since": "22"
+                  "since": "22",
+                  "preview": true
                 },
                 "generate(java.util.function.Supplier)": {},
                 "iterate(T,java.util.function.Predicate,java.util.function.UnaryOperator)": {

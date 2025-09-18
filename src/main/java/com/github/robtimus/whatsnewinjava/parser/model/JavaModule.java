@@ -35,8 +35,8 @@ public final class JavaModule extends VersionableJavaObject {
 
     private final Map<String, JavaPackage> javaPackages;
 
-    JavaModule(JavaAPI javaAPI, String name, boolean isAutomatic, JavaVersion since, boolean deprecated) {
-        super(since, deprecated);
+    JavaModule(JavaAPI javaAPI, String name, boolean isAutomatic, JavaVersion since, boolean deprecated, boolean preview) {
+        super(since, deprecated, preview);
 
         this.javaAPI = requireNonNull(javaAPI);
 
@@ -63,11 +63,11 @@ public final class JavaModule extends VersionableJavaObject {
         return unmodifiableCollection(javaPackages.values());
     }
 
-    public void addJavaPackage(String packageName, JavaVersion since, boolean deprecated) {
+    public void addJavaPackage(String packageName, JavaVersion since, boolean deprecated, boolean preview) {
         if (javaPackages.containsKey(packageName)) {
             throw new IllegalStateException("Duplicate package: %s.%s".formatted(name, packageName));
         }
-        javaPackages.put(packageName, new JavaPackage(this, packageName, since, deprecated));
+        javaPackages.put(packageName, new JavaPackage(this, packageName, since, deprecated, preview));
     }
 
     void addJavaPackage(JavaPackage javaPackage) {
@@ -120,8 +120,9 @@ public final class JavaModule extends VersionableJavaObject {
     static JavaModule fromJSON(JsonObject json, JavaAPI javaAPI, String name) {
         JavaVersion since = readSince(json);
         boolean deprecated = readDeprecated(json);
+        boolean preview = readPreview(json);
 
-        JavaModule javaModule = new JavaModule(javaAPI, name, false, since, deprecated);
+        JavaModule javaModule = new JavaModule(javaAPI, name, false, since, deprecated, preview);
 
         JsonObject packages = json.get("packages").getAsJsonObject();
         for (String packageName : packages.keySet()) {

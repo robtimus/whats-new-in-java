@@ -162,6 +162,7 @@ public final class JavadocParser {
                 Document document = Jsoup.parse(input, ENCODING, "");
                 JavaVersion since = null;
                 boolean deprecated = false;
+                boolean preview = false;
 
                 Element sinceTagElement = moduleSinceTagElement(document);
                 if (sinceTagElement != null) {
@@ -175,8 +176,11 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = moduleDeprecatedBlockElement(document);
                 deprecated = deprecatedBlockElement != null;
 
+                Element previewBlockElement = modulePreviewBlockElement(document, moduleName);
+                preview = previewBlockElement != null;
+
                 if (moduleName != null) {
-                    javaAPI.addJavaModule(moduleName, since, deprecated);
+                    javaAPI.addJavaModule(moduleName, since, deprecated, preview);
                 } else {
                     String moduleNameFromFile = file.getFileName().toString().replace("-summary.html", "");
                     Elements modulePackageLinks = modulePackageLinks(document);
@@ -188,7 +192,7 @@ public final class JavadocParser {
                             });
                         }
                     }
-                    javaAPI.addJavaModule(moduleNameFromFile, since, deprecated);
+                    javaAPI.addJavaModule(moduleNameFromFile, since, deprecated, preview);
                 }
 
             } catch (IOException e) {
@@ -216,6 +220,10 @@ public final class JavadocParser {
                 return document.selectFirst("div.contentContainer > section.moduleDescription > div.deprecationBlock");
             }
             return document.selectFirst("main[role='main'] section.module-description div.deprecationBlock");
+        }
+
+        private Element modulePreviewBlockElement(Document document, String moduleName) {
+            return document.selectFirst("main[role='main'] div.preview-block[id='preview-%s']".formatted(moduleName));
         }
 
         private Elements modulePackageLinks(Document document) {
@@ -248,6 +256,7 @@ public final class JavadocParser {
                 Document document = Jsoup.parse(input, ENCODING, "");
                 JavaVersion since = null;
                 boolean deprecated = false;
+                boolean preview = false;
 
                 Element sinceTagElement = packageSinceTagElement(document);
                 String sinceString = null;
@@ -270,8 +279,11 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = packageDeprecatedBlockElement(document);
                 deprecated = deprecatedBlockElement != null;
 
+                Element previewBlockElement = packagePreviewBlockElement(document, packageName);
+                preview = previewBlockElement != null;
+
                 getJavaModule(packageName)
-                        .addJavaPackage(packageName, since, deprecated);
+                        .addJavaPackage(packageName, since, deprecated, preview);
 
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
@@ -300,6 +312,10 @@ public final class JavadocParser {
                 return document.selectFirst("div.contentContainer > section.packageDescription > div.deprecationBlock");
             }
             return document.selectFirst("main[role='main'] section.package-description div.deprecation-block");
+        }
+
+        private Element packagePreviewBlockElement(Document document, String packageName) {
+            return document.selectFirst("main[role='main'] div.preview-block[id='preview-%s']".formatted(packageName));
         }
 
         private void handleClassFile(Path file) {
@@ -334,6 +350,7 @@ public final class JavadocParser {
 
             JavaVersion since = null;
             boolean deprecated = false;
+            boolean preview = false;
 
             Element sinceTagElement = classSinceTagElement(document);
             if (sinceTagElement != null) {
@@ -347,11 +364,14 @@ public final class JavadocParser {
             Element deprecatedBlockElement = classDeprecatedBlockElement(document);
             deprecated = deprecatedBlockElement != null;
 
+            Element previewBlockElement = classPreviewBlockElement(document, packageName, className);
+            preview = previewBlockElement != null;
+
             Set<String> inheritedMethodSignatures = inheritedMethodSignatures(document);
 
             getJavaModule(packageName)
                     .getJavaPackage(packageName)
-                    .addJavaClass(className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated);
+                    .addJavaClass(className, type, superClass, interfaceList, inheritedMethodSignatures, since, deprecated, preview);
         }
 
         private JavaClass.Type classType(Document document) {
@@ -491,6 +511,11 @@ public final class JavadocParser {
             return document.selectFirst("main[role='main'] section.class-description div.deprecation-block");
         }
 
+        private Element classPreviewBlockElement(Document document, String packageName, String className) {
+            return document.selectFirst("main[role='main'] section.class-description div.preview-block[id='preview-%s.%s']"
+                    .formatted(packageName, className));
+        }
+
         private Elements classInheritedMethodsElements(Document document) {
             if (javaVersion <= 12) {
                 Elements elements = document.select("div.contentContainer > div.summary h3:contains(Methods declared in)");
@@ -559,6 +584,7 @@ public final class JavadocParser {
                 String signature = signature(memberElement);
                 JavaVersion since = null;
                 boolean deprecated = false;
+                boolean preview = false;
 
                 Element sinceTagElement = memberSinceTagElement(memberElement);
                 if (sinceTagElement != null) {
@@ -572,10 +598,13 @@ public final class JavadocParser {
                 Element deprecatedBlockElement = memberDeprecatedBlockElement(memberElement);
                 deprecated = deprecatedBlockElement != null;
 
+                Element previewBlockElement = memberPreviewBlockElement(memberElement);
+                preview = previewBlockElement != null;
+
                 getJavaModule(packageName)
                         .getJavaPackage(packageName)
                         .getJavaClass(className)
-                        .addJavaMember(memberType, signature, since, deprecated);
+                        .addJavaMember(memberType, signature, since, deprecated, preview);
             }
         }
 
@@ -649,6 +678,10 @@ public final class JavadocParser {
                 return memberElement.selectFirst("div.deprecationBlock > span.deprecatedLabel");
             }
             return memberElement.selectFirst("div.deprecation-block > span.deprecated-label");
+        }
+
+        private Element memberPreviewBlockElement(Element memberElement) {
+            return memberElement.selectFirst("div.preview-block");
         }
 
         private String extractPackageName(Path file) {

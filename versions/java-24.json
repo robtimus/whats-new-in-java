@@ -478,17 +478,20 @@
                   "since": "22"
                 },
                 "print(java.lang.Object)": {
-                  "since": "23"
+                  "since": "23",
+                  "preview": true
                 },
                 "printf(java.lang.String,java.lang.Object...)": {},
                 "printf(java.util.Locale,java.lang.String,java.lang.Object...)": {
                   "since": "23"
                 },
                 "println()": {
-                  "since": "24"
+                  "since": "24",
+                  "preview": true
                 },
                 "println(java.lang.Object)": {
-                  "since": "23"
+                  "since": "23",
+                  "preview": true
                 },
                 "readLine()": {},
                 "readLine(java.lang.String,java.lang.Object...)": {},
@@ -502,10 +505,12 @@
                 },
                 "reader()": {},
                 "readln()": {
-                  "since": "24"
+                  "since": "24",
+                  "preview": true
                 },
                 "readln(java.lang.String)": {
-                  "since": "23"
+                  "since": "23",
+                  "preview": true
                 },
                 "writer()": {}
               },
@@ -1398,6 +1403,7 @@
             "IO": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -9622,6 +9628,7 @@
             "ScopedValue": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -9651,6 +9658,7 @@
             "ScopedValue.CallableOp": {
               "type": "interface",
               "since": "23",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -9662,6 +9670,7 @@
             "ScopedValue.Carrier": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -55196,6 +55205,7 @@
             "StructureViolationException": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -55235,6 +55245,7 @@
             "StructuredTaskScope": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -55271,6 +55282,7 @@
             "StructuredTaskScope.ShutdownOnFailure": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.util.concurrent.StructuredTaskScope",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -55310,6 +55322,7 @@
             "StructuredTaskScope.ShutdownOnSuccess": {
               "type": "class",
               "since": "21",
+              "preview": true,
               "superClass": "java.util.concurrent.StructuredTaskScope",
               "interfaces": [
                 "java.lang.AutoCloseable"
@@ -55348,6 +55361,7 @@
             "StructuredTaskScope.Subtask": {
               "type": "interface",
               "since": "21",
+              "preview": true,
               "interfaces": [
                 "java.util.function.Supplier\u003cT\u003e"
               ],
@@ -55364,6 +55378,7 @@
             "StructuredTaskScope.Subtask.State": {
               "type": "enum",
               "since": "21",
+              "preview": true,
               "superClass": "java.lang.Enum",
               "interfaces": [
                 "java.io.Serializable",
@@ -61890,6 +61905,7 @@
             "KDF": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -61924,6 +61940,7 @@
             "KDFParameters": {
               "type": "interface",
               "since": "24",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -61933,6 +61950,7 @@
             "KDFSpi": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {
@@ -62933,6 +62951,7 @@
             "HKDFParameterSpec": {
               "type": "interface",
               "since": "24",
+              "preview": true,
               "interfaces": [
                 "java.security.spec.AlgorithmParameterSpec"
               ],
@@ -62947,6 +62966,7 @@
             "HKDFParameterSpec.Builder": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -62976,6 +62996,7 @@
             "HKDFParameterSpec.Expand": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.security.spec.AlgorithmParameterSpec",
@@ -63005,6 +63026,7 @@
             "HKDFParameterSpec.Extract": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.security.spec.AlgorithmParameterSpec",
@@ -63033,6 +63055,7 @@
             "HKDFParameterSpec.ExtractThenExpand": {
               "type": "class",
               "since": "24",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.security.spec.AlgorithmParameterSpec",
@@ -68504,6 +68527,7 @@
             "AbstractAnnotationValueVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractAnnotationValueVisitor14",
               "interfaces": [
                 "javax.lang.model.element.AnnotationValueVisitor\u003cR,P\u003e"
@@ -68737,6 +68761,7 @@
             "AbstractElementVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractElementVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -68984,6 +69009,7 @@
             "AbstractTypeVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.AbstractTypeVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"
@@ -69374,6 +69400,7 @@
             "ElementKindVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.ElementKindVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -69644,6 +69671,7 @@
             "ElementScannerPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.ElementScanner14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -70070,6 +70098,7 @@
             "SimpleAnnotationValueVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleAnnotationValueVisitor14",
               "interfaces": [
                 "javax.lang.model.element.AnnotationValueVisitor\u003cR,P\u003e"
@@ -70318,6 +70347,7 @@
             "SimpleElementVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleElementVisitor14",
               "interfaces": [
                 "javax.lang.model.element.ElementVisitor\u003cR,P\u003e"
@@ -70579,6 +70609,7 @@
             "SimpleTypeVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.SimpleTypeVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"
@@ -70907,6 +70938,7 @@
             "TypeKindVisitorPreview": {
               "type": "class",
               "since": "23",
+              "preview": true,
               "superClass": "javax.lang.model.util.TypeKindVisitor14",
               "interfaces": [
                 "javax.lang.model.type.TypeVisitor\u003cR,P\u003e"
@@ -230288,7 +230320,8 @@
                 "charset()": {},
                 "flush()": {},
                 "readLine()": {
-                  "since": "24"
+                  "since": "24",
+                  "preview": true
                 },
                 "readLine(java.lang.String)": {},
                 "readPassword(java.lang.String)": {},

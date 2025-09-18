@@ -8036,6 +8036,7 @@
             "MatchException": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.RuntimeException",
               "interfaces": [
                 "java.io.Serializable"
@@ -10923,7 +10924,8 @@
                 "isDaemon()": {},
                 "isInterrupted()": {},
                 "isVirtual()": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "join()": {},
                 "join(java.time.Duration)": {
@@ -10932,10 +10934,12 @@
                 "join(long)": {},
                 "join(long,int)": {},
                 "ofPlatform()": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "ofVirtual()": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "onSpinWait()": {
                   "since": "9"
@@ -10963,7 +10967,8 @@
                 "sleep(long,int)": {},
                 "start()": {},
                 "startVirtualThread(java.lang.Runnable)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "stop()": {
                   "deprecated": true
@@ -10992,6 +10997,7 @@
             "Thread.Builder": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -11010,6 +11016,7 @@
             "Thread.Builder.OfPlatform": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.Thread.Builder"
               ],
@@ -11036,6 +11043,7 @@
             "Thread.Builder.OfVirtual": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.Thread.Builder"
               ],
@@ -12269,6 +12277,7 @@
             "Addressable": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12280,6 +12289,7 @@
             "FunctionDescriptor": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -12313,6 +12323,7 @@
             "GroupLayout": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12361,6 +12372,7 @@
             "Linker": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12378,6 +12390,7 @@
             "MemoryAddress": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.foreign.Addressable"
               ],
@@ -12433,6 +12446,7 @@
             "MemoryLayout": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12466,6 +12480,7 @@
             "MemoryLayout.PathElement": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12480,6 +12495,7 @@
             "MemorySegment": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.foreign.Addressable"
               ],
@@ -12572,6 +12588,7 @@
             "MemorySession": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.AutoCloseable",
                 "java.lang.foreign.SegmentAllocator"
@@ -12620,6 +12637,7 @@
             },
             "SegmentAllocator": {
               "type": "interface",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12655,6 +12673,7 @@
             "SequenceLayout": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12704,6 +12723,7 @@
             },
             "SymbolLookup": {
               "type": "interface",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12718,6 +12738,7 @@
             "VaList": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [
                 "java.lang.foreign.Addressable"
               ],
@@ -12742,6 +12763,7 @@
             "VaList.Builder": {
               "type": "interface",
               "since": "19",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -12757,6 +12779,7 @@
             "ValueLayout": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12816,6 +12839,7 @@
             "ValueLayout.OfAddress": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12865,6 +12889,7 @@
             "ValueLayout.OfBoolean": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12914,6 +12939,7 @@
             "ValueLayout.OfByte": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -12963,6 +12989,7 @@
             "ValueLayout.OfChar": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13012,6 +13039,7 @@
             "ValueLayout.OfDouble": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13061,6 +13089,7 @@
             "ValueLayout.OfFloat": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13110,6 +13139,7 @@
             "ValueLayout.OfInt": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13159,6 +13189,7 @@
             "ValueLayout.OfLong": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13208,6 +13239,7 @@
             "ValueLayout.OfShort": {
               "type": "class",
               "since": "19",
+              "preview": true,
               "superClass": "java.lang.foreign.ValueLayout",
               "interfaces": [
                 "java.lang.foreign.MemoryLayout"
@@ -13561,7 +13593,8 @@
                 },
                 "collectArguments(java.lang.invoke.MethodHandle,int,java.lang.invoke.MethodHandle)": {},
                 "collectCoordinates(java.lang.invoke.VarHandle,int,java.lang.invoke.MethodHandle)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "constant(java.lang.Class,java.lang.Object)": {},
                 "countedLoop(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)": {
@@ -13579,7 +13612,8 @@
                   "since": "9"
                 },
                 "dropCoordinates(java.lang.invoke.VarHandle,int,java.lang.Class...)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "dropReturn(java.lang.invoke.MethodHandle)": {
                   "since": "16"
@@ -13591,11 +13625,13 @@
                 "explicitCastArguments(java.lang.invoke.MethodHandle,java.lang.invoke.MethodType)": {},
                 "filterArguments(java.lang.invoke.MethodHandle,int,java.lang.invoke.MethodHandle...)": {},
                 "filterCoordinates(java.lang.invoke.VarHandle,int,java.lang.invoke.MethodHandle...)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "filterReturnValue(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)": {},
                 "filterValue(java.lang.invoke.VarHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "foldArguments(java.lang.invoke.MethodHandle,int,java.lang.invoke.MethodHandle)": {
                   "since": "9"
@@ -13605,7 +13641,8 @@
                 "identity(java.lang.Class)": {},
                 "insertArguments(java.lang.invoke.MethodHandle,int,java.lang.Object...)": {},
                 "insertCoordinates(java.lang.invoke.VarHandle,int,java.lang.Object...)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "invoker(java.lang.invoke.MethodType)": {},
                 "iteratedLoop(java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle,java.lang.invoke.MethodHandle)": {
@@ -13616,11 +13653,13 @@
                   "since": "9"
                 },
                 "memorySegmentViewVarHandle(java.lang.foreign.ValueLayout)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "permuteArguments(java.lang.invoke.MethodHandle,java.lang.invoke.MethodType,int...)": {},
                 "permuteCoordinates(java.lang.invoke.VarHandle,java.util.List,int...)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "privateLookupIn(java.lang.Class,java.lang.invoke.MethodHandles.Lookup)": {
                   "since": "9"
@@ -16341,6 +16380,7 @@
             "SwitchBootstraps": {
               "type": "class",
               "since": "17",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -21776,7 +21816,8 @@
                 "lock(long,long,boolean)": {},
                 "map(java.nio.channels.FileChannel.MapMode,long,long)": {},
                 "map(java.nio.channels.FileChannel.MapMode,long,long,java.lang.foreign.MemorySession)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "open(java.nio.file.Path,java.nio.file.OpenOption...)": {
                   "since": "7"
@@ -47429,10 +47470,12 @@
                 "newSingleThreadScheduledExecutor()": {},
                 "newSingleThreadScheduledExecutor(java.util.concurrent.ThreadFactory)": {},
                 "newThreadPerTaskExecutor(java.util.concurrent.ThreadFactory)": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "newVirtualThreadPerTaskExecutor()": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 },
                 "newWorkStealingPool()": {
                   "since": "8"
@@ -218621,6 +218664,7 @@
           "classes": {
             "ByteVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -218796,6 +218840,7 @@
             },
             "DoubleVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -218959,6 +219004,7 @@
             },
             "FloatVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -219122,6 +219168,7 @@
             },
             "IntVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -219289,6 +219336,7 @@
             },
             "LongVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -219449,6 +219497,7 @@
             },
             "ShortVector": {
               "type": "class",
+              "preview": true,
               "superClass": "jdk.incubator.vector.Vector",
               "interfaces": [],
               "constructors": {},
@@ -219624,6 +219673,7 @@
             },
             "Vector": {
               "type": "class",
+              "preview": true,
               "superClass": "java.lang.Object",
               "interfaces": [],
               "constructors": {},
@@ -220150,6 +220200,7 @@
             },
             "VectorSpecies": {
               "type": "interface",
+              "preview": true,
               "interfaces": [],
               "constructors": {},
               "fields": {},
@@ -221656,7 +221707,8 @@
                 "getOSThreadId()": {},
                 "getThreadGroup()": {},
                 "isVirtual()": {
-                  "since": "19"
+                  "since": "19",
+                  "preview": true
                 }
               },
               "inheritedMethods": [
