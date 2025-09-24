@@ -187,7 +187,7 @@ public final class JavadocParser {
                     for (Element modulePackageLink : modulePackageLinks) {
                         if (modulePackageLink.attr("href").endsWith("/package-summary.html")) {
                             String packageName = modulePackageLink.text();
-                            packageNamesToModuleNames.merge(packageName, moduleNameFromFile, (u, v) -> {
+                            packageNamesToModuleNames.merge(packageName, moduleNameFromFile, (_, _) -> {
                                 throw new IllegalStateException("Duplicate package: " + packageName);
                             });
                         }

@@ -54,7 +54,7 @@ public final class PageModule {
     }
 
     PagePackage ensurePackageExists(String packageName) {
-        return packages.computeIfAbsent(packageName, k -> new PagePackage(this, packageName));
+        return packages.computeIfAbsent(packageName, _ -> new PagePackage(this, packageName));
     }
 
     PagePackage findPackage(String packageName) {

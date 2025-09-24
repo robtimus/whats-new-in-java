@@ -80,7 +80,7 @@ public final class PagePackage {
         if (newModuleName != null) {
             throw new IllegalStateException("Cannot add classes to package %s which is marked as moved to new module %s".formatted(name, newModuleName));
         }
-        PageClass result = classes.computeIfAbsent(className, k -> new PageClass(this, className, type, superClass));
+        PageClass result = classes.computeIfAbsent(className, _ -> new PageClass(this, className, type, superClass));
         if (type != result.type()) {
             LOGGER.warn("Type has changed for class {}.{} from {} to {}", name, className, result.type(), type);
         }

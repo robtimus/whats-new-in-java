@@ -74,13 +74,13 @@ public final class PageModel {
     }
 
     private PageModule ensureModuleExists(JavaVersion version, String moduleName) {
-        Map<String, PageModule> modules = modulesPerVersion.computeIfAbsent(version, k -> new TreeMap<>());
-        return modules.computeIfAbsent(moduleName, k -> new PageModule(moduleName));
+        Map<String, PageModule> modules = modulesPerVersion.computeIfAbsent(version, _ -> new TreeMap<>());
+        return modules.computeIfAbsent(moduleName, _ -> new PageModule(moduleName));
     }
 
     private PagePackage ensurePackageExists(JavaVersion version, String packageName) {
-        Map<String, PagePackage> packages = packagesPerVersion.computeIfAbsent(version, k -> new TreeMap<>());
-        return packages.computeIfAbsent(packageName, k -> new PagePackage(null, packageName));
+        Map<String, PagePackage> packages = packagesPerVersion.computeIfAbsent(version, _ -> new TreeMap<>());
+        return packages.computeIfAbsent(packageName, _ -> new PagePackage(null, packageName));
     }
 
     private PagePackage ensurePackageExists(JavaVersion version, String moduleName, String packageName) {

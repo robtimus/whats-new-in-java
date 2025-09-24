@@ -61,7 +61,8 @@
   </issueManagement>
 
   <properties>
-    <version.java>21</version.java>
+    <version.java>25</version.java>
+
     <version.gson>2.10.1</version.gson>
     <version.io-functions>2.0</version.io-functions>
     <version.jsoup>1.16.2</version.jsoup>

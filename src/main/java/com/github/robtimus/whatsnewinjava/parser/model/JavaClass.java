@@ -212,7 +212,7 @@ public final class JavaClass extends VersionableJavaObject {
     }
 
     private static <T> BinaryOperator<T> throwingMerger() {
-        return (t, u) -> {
+        return (_, _) -> {
             throw new IllegalStateException();
         };
     }
