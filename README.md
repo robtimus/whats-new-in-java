@@ -1,3 +1,6 @@
+> As of 2025-10-15 this page is no longer maintained. Use [Java SE](https://docs.oracle.com/en/java/javase/25/docs/api/new-list.html) or [The Java Version Almanac](https://javaalmanac.io/) instead.
+---
+
 [This page](https://robtimus.github.io/whats-new-in-java/) shows all modules, packages, classes and members (constructors, fields and methods) that have been added for each Java version since Java 5.0.
 
 ## Results
